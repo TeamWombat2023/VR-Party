@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Keyboard = VRKeys.Keyboard;
 
 public class MainMenuManager : MonoBehaviour
 {
