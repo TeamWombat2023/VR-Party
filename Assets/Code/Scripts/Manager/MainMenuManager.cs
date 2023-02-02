@@ -1,20 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using Keyboard = VRKeys.Keyboard;
+using System.Collections.Generic;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public int currentPanelNumber;
-    public List<GameObject> panels;
+    private int _currentPanelNumber;
     private bool _isMenuActive;
     
-    [SerializeField]
-    InputActionReference openCloseInput;
+    public List<GameObject> panels;
     
     [SerializeField]
-    GameObject menuGameObject;
+    private InputActionReference openCloseInput;
+    
+    [SerializeField]
+    private GameObject menuGameObject;
 
     void Start()
     {
@@ -30,23 +29,16 @@ public class MainMenuManager : MonoBehaviour
         {
             panel.SetActive(false);
         }
-        panels[currentPanelNumber].SetActive(true);
+        panels[_currentPanelNumber].SetActive(true);
     }
     
-    public void GoNextPanel()
+    public void GoToPanel(int newPanelNumber)
     {
-        panels[currentPanelNumber].SetActive(false);
-        currentPanelNumber++;
-        panels[currentPanelNumber].SetActive(true);
+        panels[_currentPanelNumber].SetActive(false);
+        _currentPanelNumber = newPanelNumber;
+        panels[_currentPanelNumber].SetActive(true);
     }
-    
-    public void GoPreviousPanel()
-    {
-        panels[currentPanelNumber].SetActive(false);
-        currentPanelNumber--;
-        panels[currentPanelNumber].SetActive(true);
-    }
-    
+
     public void QuitGame()
     {
         Application.Quit();
