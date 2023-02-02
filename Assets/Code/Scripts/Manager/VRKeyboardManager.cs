@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit;
 using Keyboard = VRKeys.Keyboard;
 
 public class VRKeyboardManager : MonoBehaviour
@@ -9,14 +10,16 @@ public class VRKeyboardManager : MonoBehaviour
     public Vector3 relativePosition = new Vector3(0f, 0f, 2f);
     public GameObject playerCamera;
     public Keyboard keyboard;
-    public TMP_InputField inputField;
+    public List<TMP_InputField> inputFields;
     public GameObject leftHandController;
     public GameObject rightHandController;
     public GameObject leftMallet;
     public GameObject rightMallet;
-
-    public void EnableVRKeyboard()
-	{		
+    
+    private int _currentInputFieldNumber;
+    public void EnableVRKeyboard(int inputFieldNumber)
+	{
+		_currentInputFieldNumber = inputFieldNumber;
 		keyboard.Enable();
 		keyboard.canvas.gameObject.SetActive(false);
 		keyboard.OnUpdate.AddListener(HandleUpdate);
@@ -30,7 +33,7 @@ public class VRKeyboardManager : MonoBehaviour
 		rightHandController.GetComponent<XRRayInteractor>().enabled = false;
 	}
 
-	void AttachMallets()
+	private void AttachMallets()
 	{
 		leftMallet.transform.SetParent(leftHandController.transform);
 		leftMallet.transform.localPosition = Vector3.zero;
@@ -43,7 +46,7 @@ public class VRKeyboardManager : MonoBehaviour
 		rightMallet.SetActive(true);
 	}
 
-	void DetachMallets()
+	private void DetachMallets()
 	{
 		leftMallet.transform.SetParent(null);
 		leftMallet.SetActive(false);
@@ -52,7 +55,7 @@ public class VRKeyboardManager : MonoBehaviour
 		rightMallet.SetActive(false);
 	}
 
-	public void DisableVRKeyboard() 
+	private void DisableVRKeyboard() 
 	{
 		keyboard.OnUpdate.RemoveListener(HandleUpdate);
 		keyboard.OnSubmit.RemoveListener(HandleSubmit);
@@ -66,15 +69,15 @@ public class VRKeyboardManager : MonoBehaviour
 		rightHandController.GetComponent<XRRayInteractor>().enabled = true;
 	}
 
-	public void HandleUpdate(string text)
+	private void HandleUpdate(string text)
 	{
 		keyboard.HideValidationMessage();
+		var inputField = inputFields[_currentInputFieldNumber];
 		inputField.text = text;
 		inputField.caretPosition = inputField.text.Length;
-
 	}
 	
-	public void HandleSubmit(string text)
+	private void HandleSubmit(string text)
 	{
 		DisableVRKeyboard();
 
@@ -82,7 +85,7 @@ public class VRKeyboardManager : MonoBehaviour
 		if (!eventSystem.alreadySelecting) eventSystem.SetSelectedGameObject(null);
 	}
 
-	public void HandleCancel()
+	private void HandleCancel()
 	{
 		DisableVRKeyboard();
 
