@@ -1888,6 +1888,7 @@ MonoBehaviour:
   panels:
   - {fileID: 476366132741196990}
   - {fileID: 476366132058686464}
+  - {fileID: 5593498603882368296}
   openCloseInput: {fileID: -3938187358392759615, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   menuGameObject: {fileID: 476366131457290755}
 --- !u!1001 &407210557
@@ -4709,7 +4710,7 @@ MonoBehaviour:
   relativePosition: {x: 0, y: 0, z: 1.5}
   playerCamera: {fileID: 880923656}
   keyboard: {fileID: 930351546}
-  inputField: {fileID: 476366133282365943}
+  inputField: {fileID: 0}
   leftHandController: {fileID: 1081638066}
   rightHandController: {fileID: 725736649}
   leftMallet: {fileID: 930351545}
