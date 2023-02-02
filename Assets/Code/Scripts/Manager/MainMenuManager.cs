@@ -6,11 +6,9 @@ using Keyboard = VRKeys.Keyboard;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Button exitButton;
     public int currentPanelNumber;
     public List<GameObject> panels;
-    private bool isMenuActive;
+    private bool _isMenuActive;
     
     [SerializeField]
     InputActionReference openCloseInput;
@@ -21,10 +19,9 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         if (menuGameObject != null) 
-            menuGameObject.SetActive(isMenuActive);
+            menuGameObject.SetActive(_isMenuActive);
         
         SetupPanels();
-        exitButton.onClick.AddListener((() => { Application.Quit(); }));
     }
 
     void SetupPanels()
@@ -34,6 +31,25 @@ public class MainMenuManager : MonoBehaviour
             panel.SetActive(false);
         }
         panels[currentPanelNumber].SetActive(true);
+    }
+    
+    public void GoNextPanel()
+    {
+        panels[currentPanelNumber].SetActive(false);
+        currentPanelNumber++;
+        panels[currentPanelNumber].SetActive(true);
+    }
+    
+    public void GoPreviousPanel()
+    {
+        panels[currentPanelNumber].SetActive(false);
+        currentPanelNumber--;
+        panels[currentPanelNumber].SetActive(true);
+    }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     
     private void OnEnable()
@@ -48,12 +64,12 @@ public class MainMenuManager : MonoBehaviour
     
     private void OpenCloseMenu(InputAction.CallbackContext obj)
     {
-        if (!isMenuActive) {
-            isMenuActive = true;
+        if (!_isMenuActive) {
+            _isMenuActive = true;
             menuGameObject.SetActive(true);
         }
         else {
-            isMenuActive = false;
+            _isMenuActive = false;
             menuGameObject.SetActive(false);
         }
     }
