@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private GameObject menuGameObject;
 
-    void Start()
+    private void Start()
     {
         if (menuGameObject != null) 
             menuGameObject.SetActive(_isMenuActive);
@@ -23,9 +23,9 @@ public class MainMenuManager : MonoBehaviour
         SetupPanels();
     }
 
-    void SetupPanels()
+    private void SetupPanels()
     {
-        foreach (GameObject panel in panels)
+        foreach (var panel in panels)
         {
             panel.SetActive(false);
         }
