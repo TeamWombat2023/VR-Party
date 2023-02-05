@@ -13,8 +13,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private TMP_Dropdown maxPlayersDropdown;
     [SerializeField]
-    private TMP_Text errorText;
-    [SerializeField]
     private Toggle isPrivateToggle;
 
     // Join Room
@@ -32,10 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public void ConnectServer() {
         PhotonNetwork.ConnectUsingSettings();
     }
-
-    public override void  OnConnected() {
-        errorText.text = "Connected to server";
-    }
+    
 
     public void CreateRoom() {
         if (newRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
@@ -50,7 +45,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom() {
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
-        errorText.text = "Joining room...";
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
         PhotonNetwork.LoadLevel("Lobby Scene");
     }
