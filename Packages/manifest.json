@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.microsoft.mixedreality.openxr": "file:MixedReality/com.microsoft.mixedreality.openxr-1.7.0.tgz",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "1.17.7",
     "com.unity.feature.development": "1.0.1",
