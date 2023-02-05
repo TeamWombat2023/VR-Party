@@ -4,10 +4,10 @@ public class SceneManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
-
-    private void OnTriggerEnter(Collider other) {
+    
+    private void OnTriggerExit(Collider other) {
         if (other.gameObject == player) {
-            Invoke("SpawnPlayer", 3f);
+            Invoke(nameof(SpawnPlayer), 3f);
         }
     }
     private void SpawnPlayer() {
