@@ -20,7 +20,6 @@ public class VRKeyboardManager : MonoBehaviour {
     private Quaternion _keyboardRotation;
     private readonly Quaternion _keyboardRotator = Quaternion.Euler(-45, 0, 0);
     private readonly Quaternion _angleRotator = Quaternion.Euler(20, 0, 0);
-    private bool _isKeyboardOn;
     private void Start() {
         _keyboard = keyboard.gameObject;
         _keyboardTransform = _keyboard.transform;
@@ -46,8 +45,7 @@ public class VRKeyboardManager : MonoBehaviour {
     }
     
     public void EnableVRKeyboard(int inputFieldNumber) {
-        _isKeyboardOn = true;
-        if ( _keyboard.activeSelf ) {
+        if ( _keyboard.activeSelf) {
             _keyboard.SetActive(false);
         }
         else {
@@ -58,13 +56,12 @@ public class VRKeyboardManager : MonoBehaviour {
         }
         
         _keyboard.SetActive(true);
-        
+
         _currentInputFieldNumber = inputFieldNumber;
         keyboard.inputField = inputFields[_currentInputFieldNumber];
     }
 
     public void DisableVRKeyboard() {
-        _isKeyboardOn = false;
         keyboard.typingArea.setLeftHandLaser(true);
         keyboard.typingArea.setRightHandLaser(true);
         
@@ -80,7 +77,7 @@ public class VRKeyboardManager : MonoBehaviour {
     }
 
     private void OpenCloseKeyboard(InputAction.CallbackContext obj) {
-        if (_isKeyboardOn) {
+        if (_keyboard.activeSelf) {
             DisableVRKeyboard();
         }
         else {
