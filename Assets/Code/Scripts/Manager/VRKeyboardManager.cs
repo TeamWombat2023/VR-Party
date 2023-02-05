@@ -68,7 +68,7 @@ public class VRKeyboardManager : MonoBehaviour {
     private void HandleUpdate(string text) {
         keyboard.HideValidationMessage();
         var inputField = inputFields[_currentInputFieldNumber];
-        inputField.text += text.Substring(text.Length - 1);
+        inputField.text = text;
         inputField.caretPosition = inputField.text.Length;
     }
 
