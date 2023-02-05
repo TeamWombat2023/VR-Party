@@ -23,24 +23,14 @@ public class LobbyManager : MonoBehaviour
         AnimateStartButton();
     }
 
-
-    public void StartButtonSelected()
-    {
-        debugText.text = "Buttona select yapildi.";
-        AnimateStartButton();
-    }
     
-    public void StartButtonSelectedSimple()
+    public void StartButtonSelected()
     {
         debugText.text = "Buttona select yapildi. Simple";
         AnimateStartButton();
         debugText.text += "debug calisti";
     }
     
-    public void StartButtonHovered()
-    {
-        debugText.text = "Hoverrr";
-    }
     
     public void AnimateStartButton()
     {
