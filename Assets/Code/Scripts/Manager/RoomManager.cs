@@ -28,7 +28,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private List<RoomElement> _roomElements;
     
     public void ConnectServer() {
-        PhotonNetwork.ConnectUsingSettings();
+        if(!PhotonNetwork.IsConnected)
+            PhotonNetwork.ConnectUsingSettings();
     }
     
 
@@ -47,12 +48,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
         PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-    
-    public string GetRoomInfo() {
-        Room currentRoom = PhotonNetwork.CurrentRoom;
-        return "Room name: " + currentRoom.Name + "\n" +
-                             "Players: " + currentRoom.PlayerCount + "/" + currentRoom.MaxPlayers;
     }
 
     public void DisconnectServer() {
