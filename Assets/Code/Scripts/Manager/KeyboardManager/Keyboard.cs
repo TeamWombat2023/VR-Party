@@ -9,16 +9,18 @@ public class Keyboard : MonoBehaviour {
     public bool caps = true;
     
     public void InsertChar(string c) {
+        if (inputField == null) return;
         inputField.text += c;
     }
     
     public void DeleteChar() {
-        if (inputField.text.Length > 0) {
+        if (inputField != null && inputField.text.Length > 0) {
             inputField.text = inputField.text.Substring(0, inputField.text.Length - 1);
         }
     }
     
     public void InsertSpace() {
+        if (inputField == null) return;
         inputField.text += " ";
     } 
     
@@ -31,6 +33,11 @@ public class Keyboard : MonoBehaviour {
     }
 
     public void Clear() {
+        if (inputField == null) return;
         inputField.text = "";
+    }
+
+    public void Enter() {
+        inputField = null;
     }
 }
