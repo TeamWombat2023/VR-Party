@@ -11,6 +11,12 @@
         "com.unity.xr.core-utils": "2.1.0"
       }
     },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.7",
       "depth": 0,
