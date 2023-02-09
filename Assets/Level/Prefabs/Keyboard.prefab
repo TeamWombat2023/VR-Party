@@ -1552,6 +1552,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1703347948473577778, guid: d0e2816fa50c24f59a3f30475cbaae56, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4830086489148020615, guid: d0e2816fa50c24f59a3f30475cbaae56, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2749,9 +2753,25 @@ PrefabInstance:
       value: Enter
       objectReference: {fileID: 0}
     - target: {fileID: 6478663676113661881, guid: 565488070a77346418fb0d1247704cf2, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478663676113661881, guid: 565488070a77346418fb0d1247704cf2, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478663676113661881, guid: 565488070a77346418fb0d1247704cf2, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3268812609436292732}
+    - target: {fileID: 6478663676113661881, guid: 565488070a77346418fb0d1247704cf2, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478663676113661881, guid: 565488070a77346418fb0d1247704cf2, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Keyboard, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 565488070a77346418fb0d1247704cf2, type: 3}
 --- !u!4 &6642484151798435667 stripped

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38845253, g: 0.26070893, b: 0.6503862, a: 1}
+  m_IndirectSpecularColor: {r: 0.38823798, g: 0.26087883, b: 0.65103805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3600,7 +3600,11 @@ MonoBehaviour:
   - {fileID: 1766037808}
   - {fileID: 1867803164}
   openCloseInput: {fileID: -3938187358392759615, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  menuGameObject: {fileID: 476366131457290755}
+  mainMenuPanel: {fileID: 476366131457290755}
+  playerCamera: {fileID: 880923656}
+  menuLerpSpeed: 0.05
+  menuDistance: 2
+  keyboardManager: {fileID: 1055727097}
 --- !u!1 &368955091
 GameObject:
   m_ObjectHideFlags: 0
@@ -12115,16 +12119,48 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3268812609436292732, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1055727097}
     - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: DisableVRKeyboard
       objectReference: {fileID: 0}
     - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Keyboard, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: VRKeyboardManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1198311806781128292, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1248352323622486464, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: m_Layer
@@ -17882,7 +17918,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      m_Calls: []
 --- !u!1 &1687499153
 GameObject:
   m_ObjectHideFlags: 0
