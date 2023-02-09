@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 85
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 131
+  controlID: 106
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 132
+  controlID: 107
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -268,14 +268,14 @@ MonoBehaviour:
     y: 914
     width: 1923
     height: 385
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -560,9 +560,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0.91, z: 1.45}
+    m_Target: {x: 0, y: 0, z: 0.5}
     speed: 2
-    m_Value: {x: 0, y: 0.91, z: 1.45}
+    m_Value: {x: 0, y: 0, z: 0.5}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -613,9 +613,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.094676375, y: 0.48009866, z: -0.052169472, w: 0.8705286}
   m_Size:
-    m_Target: 3.8025136
+    m_Target: 0.5025125
     speed: 2
-    m_Value: 3.8025136
+    m_Value: 0.5025125
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -673,18 +673,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 68f0ffff1ef1ffff40f1ffff26fbffff4a6a00005a6b0000306f0000
+      m_ExpandedIDs: b264ffff4e87ffff0293ffff98a3ffff1eb2ffff22b2ffff26b2ffff2ab2ffff36b2ffff3ab2ffffaab2ffffaeb2ffffb2b2ffffb6b2ffffc2b2ffffc6b2ffffe2b2ffff18bfffffc4c0ffffd8c2ffff14cfffffe6d2ffff40e4ffff26fbffff34af000072af0000c6af0000d4b500008eb90000c2c1000016c200002ec500009cc5000044c6000056c9000046f700009af70000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: MainMenu
-        m_OriginalName: MainMenu
+        m_Name: LeftHand Ray Interactor
+        m_OriginalName: LeftHand Ray Interactor
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 28464
+        m_UserData: 45038
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -830,22 +830,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Imports/TextMesh Pro/Resources/Fonts & Materials
+    - Assets/Level/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Imports/TextMesh Pro/Resources/Fonts & Materials
+  - Assets/Level/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\selin\Desktop\TobbEtu\Bil496\Bil496-Bitirme-Projesi
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 152}
-    m_SelectedIDs: dec30000
-    m_LastClickedID: 50142
-    m_ExpandedIDs: 00000000d47c00005a7d00005c7d0000647d0000727d00009684000098840000dcc3000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 4c880000
+    m_LastClickedID: 34892
+    m_ExpandedIDs: 00000000d47c0000e27c0000e87c0000ea7c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -898,8 +898,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 7c7e0000
+    m_LastClickedInstanceID: 32380
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000cc010000
     m_RenameOverlay:
