@@ -3,23 +3,35 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 public class MainMenuManager : MonoBehaviour {
-    private int _currentPanelNumber;
-    private bool _isMenuActive;
 
     public List<GameObject> panels;
 
     [SerializeField] private InputActionReference openCloseInput;
-
-    [SerializeField] private GameObject menuGameObject;
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private float menuLerpSpeed = 0.05f;
+    [SerializeField] private float menuDistance = 2f;
+    [SerializeField] private VRKeyboardManager keyboardManager;
+    
+    private int _currentPanelNumber;
+    private bool _isMenuActive;
 
     void Start() {
-        if (menuGameObject != null)
-            menuGameObject.SetActive(_isMenuActive);
-
+        mainMenuPanel.SetActive(_isMenuActive);
         SetupPanels();
     }
 
-    void SetupPanels() {
+    private void Update() {
+        if (!_isMenuActive || keyboardManager.IsKeyboardActive()) return;
+        
+        var mainMenuPosition = mainMenuPanel.transform.position;
+        mainMenuPosition = Vector3.Lerp(mainMenuPosition, playerCamera.transform.position + playerCamera.transform.forward * menuDistance, menuLerpSpeed);
+        mainMenuPanel.transform.rotation = Quaternion.Lerp(mainMenuPanel.transform.rotation, playerCamera.transform.rotation, menuLerpSpeed);
+        mainMenuPosition.y = mainMenuPosition.y < 0.5f ? 0.5f : mainMenuPosition.y;
+        mainMenuPanel.transform.position = mainMenuPosition;
+    }
+
+    private void SetupPanels() {
         foreach (var panel in panels) {
             panel.SetActive(false);
         }
@@ -48,11 +60,16 @@ public class MainMenuManager : MonoBehaviour {
     private void OpenCloseMenu(InputAction.CallbackContext obj) {
         if (!_isMenuActive) {
             _isMenuActive = true;
-            menuGameObject.SetActive(true);
+            mainMenuPanel.transform.position = playerCamera.transform.position + playerCamera.transform.forward * menuDistance;
+            var rotationVector = mainMenuPanel.transform.rotation.eulerAngles;
+            rotationVector.y = playerCamera.transform.rotation.eulerAngles.y;
+            mainMenuPanel.transform.rotation = Quaternion.Euler(rotationVector);
+            mainMenuPanel.SetActive(true);
         }
         else {
             _isMenuActive = false;
-            menuGameObject.SetActive(false);
+            mainMenuPanel.SetActive(false);
+            keyboardManager.EmptyKeyboardInputField();
         }
     }
 }
