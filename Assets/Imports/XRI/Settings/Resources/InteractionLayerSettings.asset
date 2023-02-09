@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LayerNames:
   - Default
-  - TransparentFX
-  - Ignore Raycast
-  - Grab Interactable
-  - Water
   - UI
+  - Ray Interactable
+  - Grab Interactable
   - 
   - 
   - 
@@ -44,4 +42,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  - Teleport
+  - 
+  - 
+  - 
