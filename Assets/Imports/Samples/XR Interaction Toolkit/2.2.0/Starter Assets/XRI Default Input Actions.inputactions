@@ -121,7 +121,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "First",
+                    "name": "first",
                     "id": "afdcfbff-e241-4fdd-a6d1-23b0bf273360",
                     "path": "<XRController>{LeftHand}/pointerRotation",
                     "interactions": "",
@@ -132,7 +132,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Second",
+                    "name": "second",
                     "id": "ed03d944-4c09-4c38-8b68-5c844e18ca7c",
                     "path": "<XRController>{LeftHand}/deviceRotation",
                     "interactions": "",
@@ -143,12 +143,12 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Third",
-                    "id": "e8bc9837-30c6-4447-adcf-be913780422c",
+                    "name": "third",
+                    "id": "c98fc8c8-7fc6-4909-89b6-c5b7568e7275",
                     "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -618,24 +618,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "b8b722bd-2430-4638-b5cf-fc13d3b12247",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Crawl",
-                    "type": "Button",
-                    "id": "a281998a-f77a-4d04-9284-44d6ea77b4b0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -746,28 +728,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Tracking State",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aa893fd2-d8d9-429c-a748-7da56952c96f",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f2345554-e8d9-40f6-8597-d4f8ee61fb73",
-                    "path": "<XRController>{RightHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crawl",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
