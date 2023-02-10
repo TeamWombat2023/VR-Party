@@ -5,8 +5,12 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using System.Collections.Generic;
 
-public class RoomManager : MonoBehaviourPunCallbacks
-{
+public class RoomManager : MonoBehaviourPunCallbacks {
+    
+    // Nickname
+    [SerializeField]
+    private TMP_InputField nicknameInputField;
+    
     // Create Room
     [SerializeField]
     private TMP_InputField newRoomNameInputField;
@@ -26,21 +30,36 @@ public class RoomManager : MonoBehaviourPunCallbacks
     private Transform content;
 
     private List<RoomElement> _roomElements;
-    
+
     public void ConnectServer() {
-        if(!PhotonNetwork.IsConnected)
+        PhotonNetwork.AutomaticallySyncScene = true;
+        if (!PhotonNetwork.IsConnectedAndReady) {
             PhotonNetwork.ConnectUsingSettings();
+        }
+        else {
+            PhotonNetwork.JoinLobby();
+        }
     }
     
+    public void DisconnectServer() {
+        PhotonNetwork.Disconnect();
+    }
+    
+    private void SetNickname() {
+        PhotonNetwork.NickName = nicknameInputField.text == "" ? "Player" + Random.Range(0, 1000) : nicknameInputField.text;
+    }
 
     public void CreateRoom() {
         if (newRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
+        SetNickname();
         RoomOptions roomOptions = new RoomOptions {
             MaxPlayers = byte.Parse(maxPlayersDropdown.options[maxPlayersDropdown.value].text),
-            IsVisible = !isPrivateToggle.isOn
+            IsVisible = isPrivateToggle.isOn
         };
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.JoinRoom(newRoomNameInputField.text);
+        
+    }
+    public override void OnCreatedRoom() {
         PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
@@ -48,10 +67,6 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
         PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-
-    public void DisconnectServer() {
-        PhotonNetwork.Disconnect();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList) {
