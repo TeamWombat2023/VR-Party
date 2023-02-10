@@ -28,8 +28,8 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     private RoomElement roomElementPrefab;
     [SerializeField] 
     private Transform content;
-
-    private List<RoomElement> _roomElements;
+    
+    private Dictionary<string, RoomElement> _cachedRoomList;
 
     public void ConnectServer() {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -57,31 +57,36 @@ public class RoomManager : MonoBehaviourPunCallbacks {
             IsVisible = isPrivateToggle.isOn
         };
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
-        
-    }
-    public override void OnCreatedRoom() {
-        PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
     public void JoinRoom() {
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
-        PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
+    public override void OnJoinedRoom() {
+        PhotonNetwork.LoadLevel("Lobby Scene");
+    }
+    
     public override void OnRoomListUpdate(List<RoomInfo> roomList) {
-        foreach (var room in roomList) {
-            if (room.RemovedFromList) {
-                var index = _roomElements.FindIndex(x => x.RoomInfo.Name == room.Name);
-                if (index == -1) continue;
-                Destroy(_roomElements[index].gameObject);
-                _roomElements.RemoveAt(index);
+        base.OnRoomListUpdate(roomList);
+        UpdateCachedRoomList(roomList);
+    }
+    
+    private void UpdateCachedRoomList(List<RoomInfo> roomList) {
+        foreach (var roomInfo in roomList) {
+            if (roomInfo.RemovedFromList) {
+                Destroy(_cachedRoomList[roomInfo.Name].gameObject);
+                _cachedRoomList.Remove(roomInfo.Name);
+            }
+            else if (_cachedRoomList.ContainsKey(roomInfo.Name)) {
+                _cachedRoomList[roomInfo.Name].SetRoomInfo(roomInfo);
             }
             else {
                 var roomElement = Instantiate(roomElementPrefab, content);
                 if (roomElement == null) continue;
-                roomElement.SetRoomInfo(room);
-                _roomElements.Add(roomElement);
+                roomElement.SetRoomInfo(roomInfo);
+                _cachedRoomList[roomInfo.Name] = roomElement;
             }
         }
     }
