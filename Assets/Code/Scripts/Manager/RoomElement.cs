@@ -6,7 +6,8 @@ public class RoomElement : MonoBehaviour {
     
     [SerializeField]
     private TMP_Text roomInfoText;
-    public RoomInfo RoomInfo { get; private set; }
+  
+    private RoomInfo RoomInfo { get; set; }
 
     public void SetRoomInfo(RoomInfo roomInfo) {
         RoomInfo = roomInfo;
