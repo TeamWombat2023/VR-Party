@@ -6,10 +6,15 @@ using UnityEngine;
 public class LobbyManager : MonoBehaviour
 {
     public GameObject startButtonHolder;
-    private Animator _startButtonHolderAnimator;
     public TMP_Text debugText;
 
-    private string START_BUTTON_ANIMATION = "isStartActivated";
+    
+    private Animator _startButtonHolderAnimator;
+    private string currentState;
+    private const string BUTTON_IDLE = "idle";
+    private const string BUTTON_PRESSED = "button_pressed";
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -34,18 +39,21 @@ public class LobbyManager : MonoBehaviour
     
     public void AnimateStartButton()
     {
-        
-        //_startButtonHolderAnimator.SetBool(START_BUTTON_ANIMATION, true);
-        _startButtonHolderAnimator.SetTrigger(START_BUTTON_ANIMATION);
-        //debugText.text = "Animation calisti.... Value:" + _startButtonHolderAnimator.parameters[0];
-        //_startButtonHolderAnimator.SetBool(START_BUTTON_ANIMATION, false);
-        //Invoke(nameof(ResetButton),0.1f);
+        ChangeAnimationState(BUTTON_PRESSED);
+        ChangeAnimationState(BUTTON_IDLE);
     }
 
-    private void ResetButton()
+    private void ChangeAnimationState(string newState)
     {
-        _startButtonHolderAnimator.SetBool(START_BUTTON_ANIMATION, false);
+        if (currentState == newState)
+        {
+            currentState = BUTTON_IDLE;
+        } ;
+        _startButtonHolderAnimator.Play(newState);
+        
+        currentState = newState;
     }
+
 
     // Update is called once per frame
     void Update()
