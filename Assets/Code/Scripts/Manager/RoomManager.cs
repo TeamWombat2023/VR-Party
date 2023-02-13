@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     private Transform content;
 
     private Dictionary<string, RoomElement> _cachedRoomList = new Dictionary<string, RoomElement>();
-
+    private RoomInfo _selectedRoomInfo;
     public void ConnectServer() {
         PhotonNetwork.AutomaticallySyncScene = true;
         if (!PhotonNetwork.IsConnectedAndReady) {
@@ -65,9 +65,18 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
     }
 
-    public void JoinRoom() {
+    public void JoinRoomWithName() {
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
+    }
+    
+    public void OnClickJoinRoom() {
+        if (_selectedRoomInfo == null) return;
+        PhotonNetwork.JoinRoom(_selectedRoomInfo.Name);
+    }
+    public void OnClickRoomElement(RoomInfo roomInfo) {
+        _selectedRoomInfo = roomInfo;
+        Debug.Log("Selected Room: " + roomInfo.Name);
     }
 
     public override void OnJoinedRoom() {
@@ -96,6 +105,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
                     var roomElement = Instantiate(roomElementPrefab, content);
                     if (roomElement == null) continue;
                     roomElement.SetRoomInfo(roomInfo);
+                    roomElement.SetRoomManager(this);
                     _cachedRoomList.Add(roomInfo.Name, roomElement);
                     break;
                 }
