@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using System.Collections.Generic;
+using ExitGames.Client.Photon;
 
 public class RoomManager : MonoBehaviourPunCallbacks {
     
@@ -18,8 +19,12 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     private TMP_Dropdown maxPlayersDropdown;
     [SerializeField]
     private Toggle isPrivateToggle;
+    [SerializeField]
+    private TMP_Dropdown regionDropdownCreateMenu;
 
     // Join Room
+    [SerializeField]
+    private TMP_Dropdown regionDropdownJoinMenu;
     [SerializeField]
     private TMP_InputField joinRoomNameInputField;
     
@@ -31,6 +36,16 @@ public class RoomManager : MonoBehaviourPunCallbacks {
 
     private Dictionary<string, RoomElement> _cachedRoomList = new Dictionary<string, RoomElement>();
     private RoomInfo _selectedRoomInfo;
+    
+    private void Start() {
+        regionDropdownCreateMenu.onValueChanged.AddListener(delegate {
+            ChangeRegion(regionDropdownCreateMenu);
+        });
+        regionDropdownJoinMenu.onValueChanged.AddListener(delegate {
+            ChangeRegion(regionDropdownJoinMenu);
+        });
+    }
+
     public void ConnectServer() {
         PhotonNetwork.AutomaticallySyncScene = true;
         if (!PhotonNetwork.IsConnectedAndReady) {
@@ -58,10 +73,16 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     public void CreateRoom() {
         if (newRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         SetNickname();
-        RoomOptions roomOptions = new RoomOptions {
-            MaxPlayers = byte.Parse(maxPlayersDropdown.options[maxPlayersDropdown.value].text),
-            IsVisible = isPrivateToggle.isOn
+        var customRoomProperties = new Hashtable {
+            {"Region", regionDropdownCreateMenu.options[regionDropdownCreateMenu.value].text}
         };
+        
+        var roomOptions = new RoomOptions {
+            MaxPlayers = byte.Parse(maxPlayersDropdown.options[maxPlayersDropdown.value].text),
+            IsVisible = isPrivateToggle.isOn,
+            CustomRoomProperties = customRoomProperties
+        };
+        
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
     }
 
@@ -76,7 +97,6 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
     public void OnClick_RoomElement(RoomInfo roomInfo) {
         _selectedRoomInfo = roomInfo;
-        Debug.Log("Selected Room: " + roomInfo.Name);
     }
 
     public override void OnJoinedRoom() {
@@ -108,5 +128,10 @@ public class RoomManager : MonoBehaviourPunCallbacks {
                 }
             }
         }
+    }
+    private void ChangeRegion(TMP_Dropdown region) {
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.ConnectUsingSettings();
     }
 }
