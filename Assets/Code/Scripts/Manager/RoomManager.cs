@@ -70,11 +70,11 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
     }
     
-    public void OnClickJoinRoom() {
+    public void OnClick_Join() {
         if (_selectedRoomInfo == null) return;
         PhotonNetwork.JoinRoom(_selectedRoomInfo.Name);
     }
-    public void OnClickRoomElement(RoomInfo roomInfo) {
+    public void OnClick_RoomElement(RoomInfo roomInfo) {
         _selectedRoomInfo = roomInfo;
         Debug.Log("Selected Room: " + roomInfo.Name);
     }
