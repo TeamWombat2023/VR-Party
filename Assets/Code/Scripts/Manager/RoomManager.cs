@@ -24,7 +24,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
 
     // Join Room
     [SerializeField]
-    private TMP_Dropdown regionDropdownJoinMenu;
+    private TMP_Dropdown regionDropdownJoinPrivateMenu;
     [SerializeField]
     private TMP_InputField joinRoomNameInputField;
     
@@ -33,6 +33,8 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     private RoomElement roomElementPrefab;
     [SerializeField] 
     private Transform content;
+    [SerializeField]
+    private TMP_Dropdown regionDropdownJoinPublicMenu;
 
     private Dictionary<string, RoomElement> _cachedRoomList = new Dictionary<string, RoomElement>();
     private RoomInfo _selectedRoomInfo;
@@ -41,8 +43,11 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         regionDropdownCreateMenu.onValueChanged.AddListener(delegate {
             ChangeRegion(regionDropdownCreateMenu);
         });
-        regionDropdownJoinMenu.onValueChanged.AddListener(delegate {
-            ChangeRegion(regionDropdownJoinMenu);
+        regionDropdownJoinPrivateMenu.onValueChanged.AddListener(delegate {
+            ChangeRegion(regionDropdownJoinPrivateMenu);
+        });
+        regionDropdownJoinPublicMenu.onValueChanged.AddListener(delegate {
+            ChangeRegion(regionDropdownJoinPublicMenu);
         });
     }
 
@@ -129,6 +134,29 @@ public class RoomManager : MonoBehaviourPunCallbacks {
             }
         }
     }
+    
+    private void Clear() {
+        foreach (var roomElement in _cachedRoomList.Values) {
+            Destroy(roomElement.gameObject);
+        }
+    }
+    
+    public void OnClick_Refresh() {
+        Clear();
+        var currentRegion = regionDropdownJoinPublicMenu.options[regionDropdownJoinPublicMenu.value].text;
+        foreach (var roomElement in _cachedRoomList.Values) {
+            if (currentRegion != roomElement.GetRoomRegion()) {
+                Destroy(roomElement.gameObject);
+            }
+            else {
+                var newRoomElement = Instantiate(roomElementPrefab, content);
+                if (newRoomElement == null) continue;
+                roomElement.SetRoomInfo(roomElement.GetRoomInfo());
+                roomElement.SetRoomManager(this);
+            }
+        }
+    }
+    
     private void ChangeRegion(TMP_Dropdown region) {
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
         PhotonNetwork.Disconnect();
