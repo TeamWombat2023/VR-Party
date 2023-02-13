@@ -89,10 +89,8 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
     
     private void UpdateCachedRoomList(List<RoomInfo> roomList) {
-        foreach (var roomInfo in roomList)
-        {
-            switch (_cachedRoomList.Count)
-            {
+        foreach (var roomInfo in roomList) {
+            switch (_cachedRoomList.Count) {
                 case > 0 when roomInfo.RemovedFromList:
                     Destroy(_cachedRoomList[roomInfo.Name].gameObject);
                     _cachedRoomList.Remove(roomInfo.Name);
@@ -100,8 +98,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
                 case > 0 when _cachedRoomList.ContainsKey(roomInfo.Name):
                     _cachedRoomList[roomInfo.Name].SetRoomInfo(roomInfo);
                     break;
-                default:
-                {
+                default: {
                     var roomElement = Instantiate(roomElementPrefab, content);
                     if (roomElement == null) continue;
                     roomElement.SetRoomInfo(roomInfo);
