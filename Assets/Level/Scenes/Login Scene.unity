@@ -6478,7 +6478,7 @@ MonoBehaviour:
   maxPlayersDropdown: {fileID: 256069698}
   isPrivateToggle: {fileID: 944362247}
   joinRoomNameInputField: {fileID: 1503140887}
-  roomElementPrefab: {fileID: 1512359190102881622, guid: a2d23960b493f42f3846471fd26334f4, type: 3}
+  roomElementPrefab: {fileID: 8520203558123812079, guid: a2d23960b493f42f3846471fd26334f4, type: 3}
   content: {fileID: 722598470}
 --- !u!1 &714832706
 GameObject:
