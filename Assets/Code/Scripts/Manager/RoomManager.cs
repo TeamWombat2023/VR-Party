@@ -41,24 +41,21 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     
     private void Start() {
         regionDropdownCreateMenu.onValueChanged.AddListener(delegate {
-            ChangeRegion(regionDropdownCreateMenu);
+            SetRegion(regionDropdownCreateMenu);
         });
         regionDropdownJoinPrivateMenu.onValueChanged.AddListener(delegate {
-            ChangeRegion(regionDropdownJoinPrivateMenu);
+            SetRegion(regionDropdownJoinPrivateMenu);
         });
         regionDropdownJoinPublicMenu.onValueChanged.AddListener(delegate {
-            ChangeRegion(regionDropdownJoinPublicMenu);
+            SetRegion(regionDropdownJoinPublicMenu);
         });
     }
 
     public void ConnectServer() {
         PhotonNetwork.AutomaticallySyncScene = true;
-        if (!PhotonNetwork.IsConnectedAndReady) {
-            PhotonNetwork.ConnectUsingSettings();
-        }
-        else {
-            PhotonNetwork.JoinLobby();
-        }
+        if (PhotonNetwork.IsConnectedAndReady) return;
+        PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
+        PhotonNetwork.ConnectUsingSettings();
     }
     
     public override void OnConnectedToMaster() {
@@ -135,29 +132,18 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         }
     }
     
-    private void Clear() {
-        foreach (var roomElement in _cachedRoomList.Values) {
-            Destroy(roomElement.gameObject);
-        }
-    }
     
     public void OnClick_Refresh() {
-        Clear();
         var currentRegion = regionDropdownJoinPublicMenu.options[regionDropdownJoinPublicMenu.value].text;
         foreach (var roomElement in _cachedRoomList.Values) {
             if (currentRegion != roomElement.GetRoomRegion()) {
                 Destroy(roomElement.gameObject);
-            }
-            else {
-                var newRoomElement = Instantiate(roomElementPrefab, content);
-                if (newRoomElement == null) continue;
-                roomElement.SetRoomInfo(roomElement.GetRoomInfo());
-                roomElement.SetRoomManager(this);
+                _cachedRoomList.Remove(roomElement.GetRoomInfo().Name);
             }
         }
     }
     
-    private void ChangeRegion(TMP_Dropdown region) {
+    private void SetRegion(TMP_Dropdown region) {
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
         PhotonNetwork.Disconnect();
         PhotonNetwork.ConnectUsingSettings();
