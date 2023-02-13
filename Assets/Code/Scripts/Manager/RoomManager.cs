@@ -22,6 +22,8 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     private Toggle isPrivateToggle;
     [SerializeField]
     private TMP_Dropdown regionDropdownCreateMenu;
+    // [SerializeField]
+    // private TMP_InputField passwordInputField;
 
     // Join Room
     [SerializeField]
@@ -79,7 +81,9 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         var customRoomProperties = new Hashtable {
             {"Region", regionDropdownCreateMenu.options[regionDropdownCreateMenu.value].text}
         };
-        
+        // if (passwordInputField.text != "" && isPrivateToggle.isOn) {
+        //     customRoomProperties.Add("Password", passwordInputField.text);
+        // }
         var roomOptions = new RoomOptions {
             MaxPlayers = byte.Parse(maxPlayersDropdown.options[maxPlayersDropdown.value].text),
             IsVisible = isPrivateToggle.isOn,
