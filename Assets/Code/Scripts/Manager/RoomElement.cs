@@ -17,8 +17,8 @@ public class RoomElement : MonoBehaviour {
     public void SetRoomManager(RoomManager roomManager) {
         RoomManager = roomManager;
     }
-    public void OnClick() {
+    public void OnClickButton() {
         Debug.Log("OnClick");
-        RoomManager.OnClickRoomElement(RoomInfo);
+        RoomManager.OnClick_RoomElement(RoomInfo);
     }
 }
