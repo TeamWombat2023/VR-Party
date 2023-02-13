@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
 using System.Collections.Generic;
+using System.Linq;
 using ExitGames.Client.Photon;
 
 public class RoomManager : MonoBehaviourPunCallbacks {
@@ -47,7 +48,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
             SetRegion(regionDropdownJoinPrivateMenu);
         });
         regionDropdownJoinPublicMenu.onValueChanged.AddListener(delegate {
-            SetRegion(regionDropdownJoinPublicMenu);
+            SetAndRefreshRegion(regionDropdownJoinPublicMenu);
         });
     }
 
@@ -131,21 +132,23 @@ public class RoomManager : MonoBehaviourPunCallbacks {
             }
         }
     }
-    
-    
-    public void OnClick_Refresh() {
-        var currentRegion = regionDropdownJoinPublicMenu.options[regionDropdownJoinPublicMenu.value].text;
+    public void ClearRoomList() {
         foreach (var roomElement in _cachedRoomList.Values) {
-            if (currentRegion != roomElement.GetRoomRegion()) {
-                Destroy(roomElement.gameObject);
-                _cachedRoomList.Remove(roomElement.GetRoomInfo().Name);
-            }
+            Destroy(roomElement.gameObject);
         }
+        _cachedRoomList.Clear();
     }
-    
     private void SetRegion(TMP_Dropdown region) {
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
         PhotonNetwork.Disconnect();
         PhotonNetwork.ConnectUsingSettings();
+    }
+    private void SetAndRefreshRegion(TMP_Dropdown region) {
+        SetRegion(region);
+        var currentRegion = region.options[region.value].text;
+        foreach (var roomElement in _cachedRoomList.Values.Where(roomElement => currentRegion != roomElement.GetRoomRegion())) {
+            Destroy(roomElement.gameObject);
+            _cachedRoomList.Remove(roomElement.GetRoomInfo().Name);
+        }
     }
 }
