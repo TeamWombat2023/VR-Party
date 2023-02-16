@@ -3,23 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Pickup
-  - HealPickup
-  - DamagePickup
-  - ScorePickup
-  - TrapPickup
-  - Wall
-  - Checkpoint
-  - Powerup
-  - Fruit
-  - Bomb
-  - Floor
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
   - Hands
@@ -28,8 +17,8 @@ TagManager:
   - Typing Hands
   - LocalAvatarHead
   - LocalAvatarBody
-  - Grab Interactable
-  - In Hand
+  - 
+  - 
   - 
   - 
   - 

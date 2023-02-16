@@ -1,23 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AvatarHolder : MonoBehaviour {
-    public Transform mainAvatar;
-    public Transform avatarHead;
-    public Transform avatarBody;
-    public Transform leftHand;
-    public Transform rightHand;
+
+    public Transform mainAvatarTransform;
+    public Transform headTransform;
+    public Transform bodyTransform;
+    public Transform handLeftTransform;
+    public Transform handRightTransform;
 
     private void Start() {
-        SetLayerRecursively(avatarHead.gameObject, LayerMask.NameToLayer("LocalAvatarHead"));
-        SetLayerRecursively(avatarBody.gameObject, LayerMask.NameToLayer("LocalAvatarBody"));
+        SetLayerRecursively(headTransform.gameObject, 10);
+        SetLayerRecursively(bodyTransform.gameObject, 11);
     }
 
-    private static void SetLayerRecursively(GameObject go, int newLayer) {
-        if (null == go) return;
-        go.layer = newLayer;
-        foreach (Transform child in go.transform) {
-            if (null == child) continue;
-            SetLayerRecursively(child.gameObject, newLayer);
+    private static void SetLayerRecursively(GameObject go, int layerNumber) {
+        if (go == null) return;
+        foreach (var trans in go.GetComponentsInChildren<Transform>(true)) {
+            trans.gameObject.layer = layerNumber;
         }
     }
 }
