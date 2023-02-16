@@ -4,23 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Checkpoint
-  - Powerup
+  - Pickup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
   - Hands
   - Interactive
   - Keyboard
   - Typing Hands
-  - LocalAvatarHead
-  - LocalAvatarBody
-  - Grab Interactable
-  - In Hand
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
