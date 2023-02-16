@@ -28,4 +28,22 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.Log(GameManager.gameManager._playerHealth.currentHealth);
     }
 
+    void OnTriggerEnter(Collider other) 
+    {
+        //if heal object
+        if (other.gameObject.CompareTag ("HealPickup"))
+        {
+            PlayerHeal(10);
+        }
+        //if damage object
+        else if (other.gameObject.CompareTag ("DamagePickup"))
+        {
+            PlayerTakeDmg(10);
+        }
+        //if score object
+
+        //destroy after pickup
+        other.gameObject.SetActive (false);
+        
+    }
 }
