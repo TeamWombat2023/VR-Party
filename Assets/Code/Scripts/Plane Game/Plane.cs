@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class Plane : MonoBehaviour
 {
@@ -18,6 +21,10 @@ public class Plane : MonoBehaviour
     [Header("Thrust")]
     public float thrust;
     public float maxThrust;
+
+
+    [Header("Drag")]
+    public float dragScalerCoefficient;
 
     [Header("Lift")]
     public float liftCoefficient;
@@ -56,10 +63,11 @@ public class Plane : MonoBehaviour
         CalculateAngleOfAttack();
         
         UpdateThrust();
+        UpdateDrag();
         UpdateLift();
         UpdateSteering(dt);
         
-        PrintInformation();
+        //PrintInformation();
     }
 
     private void CalculateLocalSpeed(float dt)
@@ -110,8 +118,15 @@ public class Plane : MonoBehaviour
 
     private void UpdateDrag()
     {
+        var lv = localVelocity;
+        var lv2 = lv.sqrMagnitude;
+
+        var dragCoefficient = Vector3.Scale(lv, new Vector3(1, 2, 2));
+
+        var drag = -lv.normalized * (dragCoefficient.magnitude * lv2 * dragScalerCoefficient);
+        Debug.Log("Drag: "+drag);
         
-        
+        rb.AddRelativeForce(drag);
     }
 
     private void UpdateLift()
