@@ -1012,6 +1012,7 @@ GameObject:
   - component: {fileID: 190021798}
   - component: {fileID: 190021797}
   - component: {fileID: 190021796}
+  - component: {fileID: 190021799}
   m_Layer: 0
   m_Name: Score Cube
   m_TagString: ScorePickup
@@ -1026,14 +1027,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190021794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.779281, y: -3.83, z: 1.5905372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: -8.779281, y: -4, z: 1.5905372}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1000299925}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
 --- !u!65 &190021796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1097,6 +1098,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190021794}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &190021799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190021794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76377c94f96d8b91b212d0c6e34d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &210891761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,8 +4366,8 @@ Transform:
   m_Children:
   - {fileID: 1031516539}
   - {fileID: 1598620814}
-  - {fileID: 1412012244}
   - {fileID: 190021795}
+  - {fileID: 1412012244}
   - {fileID: 210891762}
   - {fileID: 1323439964}
   m_Father: {fileID: 0}
@@ -4372,6 +4385,7 @@ GameObject:
   - component: {fileID: 1031516538}
   - component: {fileID: 1031516537}
   - component: {fileID: 1031516536}
+  - component: {fileID: 1031516540}
   m_Layer: 0
   m_Name: Health cube
   m_TagString: HealPickup
@@ -4449,14 +4463,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031516534}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2537985, y: -3.8390126, z: 1.8605372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: 1.2537985, y: -4, z: 1.8605372}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1000299925}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
+--- !u!114 &1031516540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031516534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76377c94f96d8b91b212d0c6e34d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1090174973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,6 +5500,7 @@ GameObject:
   - component: {fileID: 1412012243}
   - component: {fileID: 1412012242}
   - component: {fileID: 1412012241}
+  - component: {fileID: 1412012245}
   m_Layer: 0
   m_Name: 'Damage cube '
   m_TagString: DamagePickup
@@ -5551,14 +5578,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412012239}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2537985, y: -3.8390126, z: -5.6494627}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: 1.2537985, y: -4, z: -5.6494627}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1000299925}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
+--- !u!114 &1412012245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412012239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76377c94f96d8b91b212d0c6e34d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1499325284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109434732395284509, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
@@ -5820,6 +5859,7 @@ GameObject:
   - component: {fileID: 1598620817}
   - component: {fileID: 1598620816}
   - component: {fileID: 1598620815}
+  - component: {fileID: 1598620818}
   m_Layer: 0
   m_Name: Trap Cube
   m_TagString: TrapPickup
@@ -5834,14 +5874,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598620813}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.7, y: -3.79, z: 6.69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: -1.7, y: -4, z: 6.69}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1000299925}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
 --- !u!65 &1598620815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5905,6 +5945,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598620813}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1598620818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598620813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76377c94f96d8b91b212d0c6e34d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1646120346
 GameObject:
   m_ObjectHideFlags: 0
