@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8633452213062536950}
   - component: {fileID: 6256985714559346457}
   - component: {fileID: 9083058177776593758}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7934836039279491117}
   - component: {fileID: 5010995828300157808}
   - component: {fileID: 1774048184640765367}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7686800500755628313}
-  - component: {fileID: 8083786999566748639}
   m_Layer: 0
   m_Name: Avatar1
   m_TagString: Untagged
@@ -203,23 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8083786999566748639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698639957168452362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7f426e31fc36443990fd9fabcc9cdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainAvatarTransform: {fileID: 7686800500755628313}
-  headTransform: {fileID: 7934836039279491117}
-  bodyTransform: {fileID: 6948015380527318601}
-  handLeftTransform: {fileID: 3695594628789852190}
-  handRightTransform: {fileID: 8528894348753020833}
 --- !u!1 &6891889006077643999
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +213,7 @@ GameObject:
   - component: {fileID: 6948015380527318601}
   - component: {fileID: 4587087372629543828}
   - component: {fileID: 6126472892965340782}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
