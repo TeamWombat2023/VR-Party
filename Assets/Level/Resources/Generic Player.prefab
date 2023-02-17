@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 8151201677150211885}
 >>>>>>> Added Spawning players into lobby feature:Assets/Level/Resources/Generic Player.prefab
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
 <<<<<<< HEAD:Assets/Level/Resources/Minigame FPS Player.prefab
