@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Art/Models/Mirror.prefab.meta
+guid: ae44232f6e3506045a040c00016be33d
+=======
 guid: 8ca9dc673c0c7df419a781297c0db48d
+>>>>>>> Added Spawning players into lobby feature:Assets/Level/Resources/Generic Player.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

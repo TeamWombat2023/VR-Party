@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Code/Editor/Login/Core/SkyboxExtendedShaderGUI.cs.meta
 guid: 39b7f3695c062924983675fcef51f7f8
+=======
+guid: b2970bcf07a22f848937f86ebd80cbac
+>>>>>>> Added Spawning players into lobby feature:Assets/Code/Scripts/MultiplayerNetworkManager/PlayerNetworkSetup.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6256985714559346457}
   - component: {fileID: 9083058177776593758}
   m_Layer: 0
-  m_Name: Hair
+  m_Name: Hair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5010995828300157808}
   - component: {fileID: 1774048184640765367}
   m_Layer: 0
-  m_Name: Head
+  m_Name: Head1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,13 +109,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907895810234910805}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7943265, z: 0}
+  m_LocalPosition: {x: -0, y: 0.7943265, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8633452213062536950}
   m_Father: {fileID: 7686800500755628313}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5010995828300157808
 MeshFilter:
@@ -176,7 +176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7686800500755628313}
-  - component: {fileID: 2388242684502049427}
   m_Layer: 0
   m_Name: ManAvatar
   m_TagString: Untagged
@@ -196,30 +195,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7934836039279491117}
   - {fileID: 6948015380527318601}
+  - {fileID: 7934836039279491117}
   - {fileID: 3695594628789852190}
   - {fileID: 8528894348753020833}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2388242684502049427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6698639957168452362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 977d8b89fccd47b48bda3e61c1129cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainAvatar: {fileID: 7686800500755628313}
-  avatarHead: {fileID: 7934836039279491117}
-  avatarBody: {fileID: 6948015380527318601}
-  leftHand: {fileID: 3695594628789852190}
-  rightHand: {fileID: 8528894348753020833}
 --- !u!1 &6891889006077643999
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +214,7 @@ GameObject:
   - component: {fileID: 4587087372629543828}
   - component: {fileID: 6126472892965340782}
   m_Layer: 0
-  m_Name: Body
+  m_Name: Body1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +233,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7686800500755628313}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4587087372629543828
 MeshFilter:
@@ -310,10 +292,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7686800500755628313}
     m_Modifications:
-    - target: {fileID: 109434732388006827, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 109434732395284481, guid: 65847589f926b734d9eaed6e25f0046b, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -574,15 +552,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.035
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_LocalRotation.w
@@ -727,10 +705,6 @@ PrefabInstance:
     - target: {fileID: 5686134208185362934, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_Layer
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5686134208192617028, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6395379834673346466, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_Name
