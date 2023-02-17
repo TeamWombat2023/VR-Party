@@ -17,7 +17,7 @@ public class MainMenuManager : MonoBehaviour {
     private int _currentPanelNumber;
     private bool _isMenuActive;
 
-    void Start() {
+    private void Start() {
         mainMenuPanel.SetActive(_isMenuActive);
         SetupPanels();
     }

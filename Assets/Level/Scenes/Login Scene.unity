@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38845253, g: 0.26070893, b: 0.6503862, a: 1}
+  m_IndirectSpecularColor: {r: 0.38823798, g: 0.26087883, b: 0.65103805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9951,6 +9951,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984288934}
   m_CullTransparentMesh: 1
+--- !u!1 &996921529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6950594383816582545, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
+  m_PrefabInstance: {fileID: 1717331746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1005461884
 GameObject:
   m_ObjectHideFlags: 0
@@ -12447,11 +12452,11 @@ PrefabInstance:
     - target: {fileID: 3776179113177999981, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: leftTypingSphere
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1471503368}
     - target: {fileID: 3776179113177999981, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: rightTypingSphere
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 996921529}
     - target: {fileID: 3776179113177999981, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: leftHandController
       value: 
@@ -15724,6 +15729,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467321413}
   m_CullTransparentMesh: 1
+--- !u!1 &1471503368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 234122007922339232, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
+  m_PrefabInstance: {fileID: 1717331746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476525430
 GameObject:
   m_ObjectHideFlags: 0
