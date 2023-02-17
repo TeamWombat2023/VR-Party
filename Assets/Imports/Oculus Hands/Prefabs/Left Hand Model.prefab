@@ -1008,13 +1008,13 @@ GameObject:
   - component: {fileID: 3496011062914032803}
   - component: {fileID: 5139782954912449058}
   - component: {fileID: 3503824653484579326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TypingSphereLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &771876050123547833
 Transform:
   m_ObjectHideFlags: 0
