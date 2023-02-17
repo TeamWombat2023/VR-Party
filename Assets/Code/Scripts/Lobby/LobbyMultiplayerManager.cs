@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine;
 
 public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text playerNamesText;
     public TMP_Text lobbyInfoText;
-    public TMP_Text debugText;
-    
-    private List<string> _playerNames = new List<string>();
 
     public override void OnJoinedRoom() {
         ShowPlayers();
