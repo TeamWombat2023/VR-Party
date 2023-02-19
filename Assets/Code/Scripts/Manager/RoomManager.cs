@@ -55,7 +55,6 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
 
     public void ConnectServer() {
-        PhotonNetwork.AutomaticallySyncScene = true;
         if (PhotonNetwork.IsConnectedAndReady) return;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.ConnectUsingSettings();
@@ -64,6 +63,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     public override void OnConnectedToMaster() {
         if (!PhotonNetwork.InLobby) {
             PhotonNetwork.JoinLobby();
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     }
     

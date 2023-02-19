@@ -7,10 +7,12 @@ public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text playerNamesText;
     public TMP_Text lobbyInfoText;
+    public GameObject startTheGameButton;
 
     public override void OnJoinedRoom() {
         ShowPlayers();
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
+        startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     private void ShowPlayers() {
@@ -34,5 +36,9 @@ public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
     private void WriteLobbyInformation(Room room) {
         lobbyInfoText.text = "Lobby Name: " + room.Name +"\n";
         lobbyInfoText.text += "Players:" + room.PlayerCount + "/"+ room.MaxPlayers+ "\n";
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient) {
+        startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 }
