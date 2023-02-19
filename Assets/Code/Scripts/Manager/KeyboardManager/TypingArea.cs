@@ -19,28 +19,28 @@ public class TypingArea : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
 
         if (leftHandController == other.gameObject) {
-            setLeftHandLaser(false);
+            SetLeftHandLaser(false);
         }
         else if (rightHandController == other.gameObject) {
-            setRightHandLaser(false);
+            SetRightHandLaser(false);
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (leftHandController == other.gameObject) {
-            setLeftHandLaser(true);
+            SetLeftHandLaser(true);
         }
         else if (rightHandController == other.gameObject) {
-            setRightHandLaser(true);
+            SetRightHandLaser(true);
         }
     }
 
-    public void setLeftHandLaser(bool state) {
+    public void SetLeftHandLaser(bool state) {
         _leftHandInteractor.enabled = state;
         leftTypingSphere.gameObject.SetActive(!state);
     }
 
-    public void setRightHandLaser(bool state) {
+    public void SetRightHandLaser(bool state) {
         _rightHandInteractor.enabled = state;
         rightTypingSphere.gameObject.SetActive(!state);
     }

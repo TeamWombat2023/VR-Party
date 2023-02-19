@@ -13,6 +13,6 @@ public class SpawnManager : MonoBehaviour{
     }
     private void SpawnPlayer() {
         xrOrigin.SetActive(false);
-        genericPlayerPrefab = PhotonNetwork.Instantiate(genericPlayerPrefab.name, spawnPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(genericPlayerPrefab.name, spawnPosition, Quaternion.identity);
     }
 }
