@@ -12,11 +12,12 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private float menuLerpSpeed = 0.05f;
     [SerializeField] private float menuDistance = 2f;
     [SerializeField] private VRKeyboardManager keyboardManager;
+    [SerializeField] private GameObject avatarSelectionPlatform;
     
     private int _currentPanelNumber;
     private bool _isMenuActive;
 
-    void Start() {
+    private void Start() {
         mainMenuPanel.SetActive(_isMenuActive);
         SetupPanels();
     }
@@ -71,5 +72,11 @@ public class MainMenuManager : MonoBehaviour {
             mainMenuPanel.SetActive(false);
             keyboardManager.EmptyKeyboardInputField();
         }
+    }
+    public void EnableAvatarSelectionPlatform() {
+        avatarSelectionPlatform.SetActive(true);
+    }
+    public void DisableAvatarSelectionPlatform() {
+        avatarSelectionPlatform.SetActive(false);
     }
 }
