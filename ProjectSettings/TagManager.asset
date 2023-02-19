@@ -8,15 +8,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Hands
   - Interactive
   - Keyboard
   - Typing Hands
-  - 
-  - 
+  - LocalAvatarHead
+  - LocalAvatarBody
   - 
   - 
   - 
