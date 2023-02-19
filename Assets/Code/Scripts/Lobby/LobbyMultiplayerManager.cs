@@ -1,66 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine;
 
 public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text playerNamesText;
     public TMP_Text lobbyInfoText;
+    public GameObject startTheGameButton;
 
-    public TMP_Text debugText;
-
-
-    private Room room;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public override void OnJoinedRoom() {
+        ShowPlayers();
+        WriteLobbyInformation(PhotonNetwork.CurrentRoom);
+        startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
-
-    public override void OnJoinedLobby()
-    {
-        base.OnJoinedLobby();
-        debugText.text = "OnLobby is worked.";
-        WriteLobbyInformation();
-        Debug.Log("Joined the Lobby.");
+    private void ShowPlayers() {
+        var players = "";
+        foreach (var player in PhotonNetwork.PlayerList) {
+            players += player.NickName + "\n";
+        }
+        playerNamesText.text = players;
     }
 
-    public override void OnJoinedRoom()
-    {
-        room = PhotonNetwork.CurrentRoom;
-        debugText.text = "OnJoinedRoom is worked.";
-        WriteLobbyInformation();
-        AddUsernamesToList();
+    public override void OnPlayerEnteredRoom(Player newPlayer) {
+        ShowPlayers();
+        WriteLobbyInformation(PhotonNetwork.CurrentRoom);
     }
-    public override void OnJoinRoomFailed(short returnCode, string message)
-    {
-        base.OnJoinRoomFailed(returnCode, message);
-        debugText.text = "OnJoinedRoom failed. "+returnCode+" "+ message;
-        Debug.Log("Join the room failed.");
+
+    public override void OnPlayerLeftRoom(Player otherPlayer) {
+        ShowPlayers();
+        WriteLobbyInformation(PhotonNetwork.CurrentRoom);
     }
-    private void WriteLobbyInformation()
-    {
+
+    private void WriteLobbyInformation(Room room) {
         lobbyInfoText.text = "Lobby Name: " + room.Name +"\n";
         lobbyInfoText.text += "Players:" + room.PlayerCount + "/"+ room.MaxPlayers+ "\n";
     }
 
-    private void AddUsernamesToList()
-    {
-        foreach (var player in room.Players)
-        {
-            playerNamesText.text += player.ToString() + "\n";
-        }
-
-        playerNamesText.text += "completed\n";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void OnMasterClientSwitched(Player newMasterClient) {
+        startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 }
