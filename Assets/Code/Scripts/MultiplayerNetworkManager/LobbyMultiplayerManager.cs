@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
 {
@@ -21,7 +22,7 @@ public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
         startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
         xrOrigin.SetActive(false);
-        PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity); 
     }
 
     private void ShowPlayers() {
