@@ -1,16 +1,22 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     
     public GameObject localXROrigin;
     public GameObject avatarHead;
     public GameObject avatarBody;
+    public InputActionAsset inputActionAsset;
     private void Start() {
         if(photonView.IsMine) {
             // This is my player
             SetLayerRecursively(avatarHead, LayerMask.NameToLayer("LocalAvatarHead"));
             SetLayerRecursively(avatarBody, LayerMask.NameToLayer("LocalAvatarBody"));
+            var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
+            inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
             localXROrigin.SetActive(true);
         } else {
             // This is another player
