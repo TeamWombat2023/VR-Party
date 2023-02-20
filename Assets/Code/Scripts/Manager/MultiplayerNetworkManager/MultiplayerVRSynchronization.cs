@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
-public class MultiplayerVRSyncronization : MonoBehaviour, IPunObservable {
+public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable {
 
     private PhotonView m_PhotonView;
 
