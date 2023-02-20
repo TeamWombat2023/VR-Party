@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 443574188345112546}
   - component: {fileID: 443574188345112549}
   - component: {fileID: 8191165972011629526}
-  - component: {fileID: 4096218273188197289}
+  - component: {fileID: 2146943202988993062}
   m_Layer: 0
   m_Name: Generic Player
   m_TagString: Untagged
@@ -55,7 +55,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 0
   ObservedComponents:
-  - {fileID: 4096218273188197289}
+  - {fileID: 2146943202988993062}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   avatarHead: {fileID: 2044020147003926659}
   avatarBody: {fileID: 6450013207620135945}
   inputActionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &4096218273188197289
+--- !u!114 &2146943202988993062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -930,7 +930,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 13311
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1252,7 +1252,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 79
+    m_Bits: 8
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
@@ -2237,7 +2237,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 79
+    m_Bits: 8
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_StartingSelectedInteractable: {fileID: 0}
