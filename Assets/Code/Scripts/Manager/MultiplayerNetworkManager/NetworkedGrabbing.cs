@@ -38,7 +38,7 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
     }
 
 
-    public void OnSelectedExited() {
+    public void OnSelectExited() {
         m_photonView.RPC("StopNetworkGrabbing", RpcTarget.AllBuffered);
     }
 
