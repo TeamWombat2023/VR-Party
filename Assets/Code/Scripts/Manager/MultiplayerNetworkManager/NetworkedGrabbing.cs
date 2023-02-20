@@ -38,11 +38,7 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
     }
 
 
-<<<<<<< HEAD
     public void OnSelectExited() {
-=======
-    public void OnSelectedExited() {
->>>>>>> Added grabbing synchronization through network feature
         m_photonView.RPC("StopNetworkGrabbing", RpcTarget.AllBuffered);
     }
 
@@ -52,11 +48,7 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         m_photonView.TransferOwnership(requestingPlayer);
     }
 
-<<<<<<< HEAD
-    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner) {
-=======
     public void OnOwnershipTransferred(PhotonView targetView, Player previousOwner) {
->>>>>>> Added grabbing synchronization through network feature
     }
 
     public void OnOwnershipTransferFailed(PhotonView targetView, Player senderOfFailedRequest) {
