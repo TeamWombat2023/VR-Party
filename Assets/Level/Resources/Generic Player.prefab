@@ -96,7 +96,7 @@ MonoBehaviour:
   leftHandAnimator: {fileID: 3850164144370194206}
   rightHandAnimator: {fileID: 8105173552149260449}
   leftGrabAnimationAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Left Grab Animation
       m_Type: 0
@@ -106,9 +106,9 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftPinchAnimationAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Left Pinch Animation
       m_Type: 0
@@ -118,9 +118,9 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rightGrabAnimationAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Right Grab Animation
       m_Type: 0
@@ -130,9 +130,9 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rightPinchAnimationAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Right Pinch Animation
       m_Type: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &443574189243012113
 GameObject:
   m_ObjectHideFlags: 0
