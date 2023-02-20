@@ -55,7 +55,6 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
 
     public void ConnectServer() {
-        PhotonNetwork.AutomaticallySyncScene = true;
         if (PhotonNetwork.IsConnectedAndReady) return;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.ConnectUsingSettings();
@@ -64,20 +63,24 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     public override void OnConnectedToMaster() {
         if (!PhotonNetwork.InLobby) {
             PhotonNetwork.JoinLobby();
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     }
     
+    public override void OnJoinedLobby() {
+        PhotonNetwork.NickName = "Player" + Random.Range(0, 1000);
+    }
+
     public void DisconnectServer() {
         PhotonNetwork.Disconnect();
     }
-    
-    private void SetNickname() {
-        PhotonNetwork.NickName = nicknameInputField.text == "" ? "Player" + Random.Range(0, 1000) : nicknameInputField.text;
+
+    public void SetNickname() {
+        PhotonNetwork.NickName = nicknameInputField.text;
     }
 
     public void CreateRoom() {
         if (newRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
-        SetNickname();
         var customRoomProperties = new Hashtable {
             {"Region", regionDropdownCreateMenu.options[regionDropdownCreateMenu.value].text}
         };
@@ -91,25 +94,24 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         };
         
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
+        PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
     public void JoinRoomWithName() {
         if (joinRoomNameInputField.text == "" || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
+        PhotonNetwork.LoadLevel("Lobby Scene");
     }
     
     public void OnClick_Join() {
-        if (_selectedRoomInfo == null) return;
+        if (_selectedRoomInfo == null || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(_selectedRoomInfo.Name);
+        PhotonNetwork.LoadLevel("Lobby Scene");
     }
     public void OnClick_RoomElement(RoomInfo roomInfo) {
         _selectedRoomInfo = roomInfo;
     }
 
-    public override void OnJoinedRoom() {
-        PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-    
     public override void OnRoomListUpdate(List<RoomInfo> roomList) {
         base.OnRoomListUpdate(roomList);
         UpdateCachedRoomList(roomList);
