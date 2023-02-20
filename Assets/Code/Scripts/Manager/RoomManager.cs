@@ -104,7 +104,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
     
     public void OnClick_Join() {
-        if (_selectedRoomInfo == null) return;
+        if (_selectedRoomInfo == null || !PhotonNetwork.IsConnected) return;
         PhotonNetwork.JoinRoom(_selectedRoomInfo.Name);
         PhotonNetwork.LoadLevel("Lobby Scene");
     }
