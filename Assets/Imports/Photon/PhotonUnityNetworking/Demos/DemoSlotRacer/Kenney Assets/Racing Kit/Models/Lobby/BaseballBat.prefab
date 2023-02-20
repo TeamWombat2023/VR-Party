@@ -179,7 +179,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2785953673518938580}
         m_TargetAssemblyTypeName: NetworkedGrabbing, Assembly-CSharp
-        m_MethodName: OnSelectedExited
+        m_MethodName: OnSelectExited
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
