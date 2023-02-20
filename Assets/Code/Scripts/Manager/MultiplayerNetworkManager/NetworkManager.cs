@@ -3,8 +3,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviourPunCallbacks
-{
+public class NetworkManager : MonoBehaviourPunCallbacks {
     public TMP_Text playerNamesText;
     public TMP_Text lobbyInfoText;
     public GameObject startTheGameButton;
