@@ -3,7 +3,7 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public TMP_Text playerNamesText;
     public TMP_Text lobbyInfoText;
@@ -21,7 +21,15 @@ public class LobbyMultiplayerManager : MonoBehaviourPunCallbacks
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
         startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
         xrOrigin.SetActive(false);
-        PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
+        genericVRPlayerPrefab = PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
+    }
+    
+    public override void OnJoinRoomFailed(short returnCode, string message) {
+        PhotonNetwork.LoadLevel("Login Scene");
+    }
+    
+    public override void OnLeftRoom() {
+        PhotonNetwork.Destroy(genericVRPlayerPrefab);
     }
 
     private void ShowPlayers() {
