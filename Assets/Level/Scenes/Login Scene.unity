@@ -3723,7 +3723,6 @@ GameObject:
   - component: {fileID: 249164871}
   - component: {fileID: 249164882}
   - component: {fileID: 249164881}
-  - component: {fileID: 249164883}
   - component: {fileID: 249164884}
   m_Layer: 3
   m_Name: XR Origin
@@ -3914,14 +3913,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!81 &249164883
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249164870}
-  m_Enabled: 1
 --- !u!82 &249164884
 AudioSource:
   m_ObjectHideFlags: 0
