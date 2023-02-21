@@ -56,8 +56,8 @@ public class VRKeyboardManager : MonoBehaviour {
     }
 
     public void DisableVRKeyboard() {
-        keyboard.typingArea.setLeftHandLaser(true);
-        keyboard.typingArea.setRightHandLaser(true);
+        keyboard.typingArea.SetLeftHandLaser(true);
+        keyboard.typingArea.SetRightHandLaser(true);
         _keyboard.SetActive(false);
     }
     
