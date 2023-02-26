@@ -48,7 +48,8 @@ public class NetworkedGrabbing : MonoBehaviourPunCallbacks, IPunOwnershipCallbac
         m_photonView.TransferOwnership(requestingPlayer);
     }
 
-    public void OnOwnershipTransferred(PhotonView targetView, Player previousOwner) {
+    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner) {
+        throw new System.NotImplementedException();
     }
 
     public void OnOwnershipTransferFailed(PhotonView targetView, Player senderOfFailedRequest) {
