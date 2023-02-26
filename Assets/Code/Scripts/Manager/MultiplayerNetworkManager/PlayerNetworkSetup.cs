@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     public GameObject localXROrigin;
+    public GameObject mainAvatar;
     public GameObject avatarHead;
     public GameObject avatarBody;
     public InputActionAsset inputActionAsset;
@@ -14,22 +15,21 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     private void Start() {
         if (photonView.IsMine) {
             // This is my player
-            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Avatar", out var avatarNumber)) {
-                Debug.Log("Avatar Selection Number: " + avatarNumber);
+            localXROrigin.SetActive(true);
+            if (PhotonNetwork.LocalPlayer.CustomProperties.TryGetValue("Avatar", out var avatarNumber))
                 photonView.RPC("InitializeSelectedAvatarModel", RpcTarget.AllBuffered, (int)avatarNumber);
-            }
 
             SetLayerRecursively(avatarHead, LayerMask.NameToLayer("LocalAvatarHead"));
             SetLayerRecursively(avatarBody, LayerMask.NameToLayer("LocalAvatarBody"));
             var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
             inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
-            localXROrigin.SetActive(true);
+            mainAvatar.AddComponent<AudioListener>();
         }
         else {
             // This is another player
+            localXROrigin.SetActive(false);
             SetLayerRecursively(avatarHead, LayerMask.NameToLayer("Default"));
             SetLayerRecursively(avatarBody, LayerMask.NameToLayer("Default"));
-            localXROrigin.SetActive(false);
         }
     }
 
@@ -50,8 +50,8 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
         var avatarHolder = selectedAvatar.GetComponent<AvatarHolder>();
         SetUpAvatar(avatarHolder.avatarHead, avatarInputConverter.avatarHead);
         SetUpAvatar(avatarHolder.avatarBody, avatarInputConverter.avatarBody);
-        SetUpAvatar(avatarHolder.leftHand, avatarInputConverter.leftHandController);
-        SetUpAvatar(avatarHolder.rightHand, avatarInputConverter.rightHandController);
+        SetUpAvatar(avatarHolder.leftHand, avatarInputConverter.avatarLeftHand);
+        SetUpAvatar(avatarHolder.rightHand, avatarInputConverter.avatarRightHand);
     }
 
     private static void SetUpAvatar(Transform avatarModelTransform, Transform mainAvatarTransform) {
