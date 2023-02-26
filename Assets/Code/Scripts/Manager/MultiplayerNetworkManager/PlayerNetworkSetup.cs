@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
@@ -11,6 +12,7 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     public GameObject avatarBody;
     public InputActionAsset inputActionAsset;
     public GameObject[] avatarModelPrefabs;
+    public TMP_Text playerNameText;
 
     private void Start() {
         if (photonView.IsMine) {
@@ -31,6 +33,8 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
             SetLayerRecursively(avatarHead, LayerMask.NameToLayer("Default"));
             SetLayerRecursively(avatarBody, LayerMask.NameToLayer("Default"));
         }
+
+        if (playerNameText != null) playerNameText.text = photonView.Owner.NickName;
     }
 
     private static void SetLayerRecursively(GameObject obj, int newLayer) {
