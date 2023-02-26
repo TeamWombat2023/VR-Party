@@ -2623,15 +2623,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 63816309130574889, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 63816309130574889, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 63816309130574889, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 63816309130574889, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2279726314059952373, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
       propertyPath: m_PresetInfoIsWorld
