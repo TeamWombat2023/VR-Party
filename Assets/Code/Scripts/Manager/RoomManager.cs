@@ -43,7 +43,6 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
 
     public void ConnectServer() {
-        if(PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
         if (PhotonNetwork.IsConnectedAndReady) return;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.ConnectUsingSettings();
@@ -125,6 +124,8 @@ public class RoomManager : MonoBehaviourPunCallbacks {
                     _cachedRoomList[roomInfo.Name].SetRoomInfo(roomInfo);
                     break;
                 default: {
+                    if (roomInfo.MaxPlayers == 0)
+                        break;
                     var roomElement = Instantiate(roomElementPrefab, content);
                     if (roomElement == null) continue;
                     roomElement.SetRoomInfo(roomInfo);

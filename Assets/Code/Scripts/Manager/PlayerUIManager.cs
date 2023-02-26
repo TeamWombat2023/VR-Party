@@ -27,7 +27,7 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     }
 
     public void GoHome() {
-        PhotonNetwork.LoadLevel("Login Scene");
+        PhotonNetwork.LeaveRoom();
     }
 
     public void QuitGame() {
