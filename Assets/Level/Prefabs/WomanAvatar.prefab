@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4461066116962382336}
   - component: {fileID: 5503855457466840745}
   m_Layer: 0
-  m_Name: Hair3
+  m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3885404325656580678}
   - component: {fileID: 8598400358201330308}
   m_Layer: 0
-  m_Name: Head3
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,13 +109,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664420817280543926}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.6933942, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6933942, z: 0}
   m_LocalScale: {x: 0.9210408, y: 0.9210408, z: 0.9210408}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9096364766137470328}
   m_Father: {fileID: 2425143004602813640}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3885404325656580678
 MeshFilter:
@@ -176,6 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2425143004602813640}
+  - component: {fileID: 7138052941213513786}
   m_Layer: 0
   m_Name: WomanAvatar
   m_TagString: Untagged
@@ -195,13 +196,30 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8445006152622570174}
   - {fileID: 3042558497631670192}
+  - {fileID: 8445006152622570174}
   - {fileID: 3057691065364244482}
   - {fileID: 1313985907554486349}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7138052941213513786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728414061110574811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977d8b89fccd47b48bda3e61c1129cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainAvatar: {fileID: 2425143004602813640}
+  avatarHead: {fileID: 3042558497631670192}
+  avatarBody: {fileID: 8445006152622570174}
+  leftHand: {fileID: 3057691065364244482}
+  rightHand: {fileID: 1313985907554486349}
 --- !u!1 &5475587119410392136
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +232,7 @@ GameObject:
   - component: {fileID: 4226200657913936596}
   - component: {fileID: 5264758596329601777}
   m_Layer: 0
-  m_Name: Body3
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +251,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2425143004602813640}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4226200657913936596
 MeshFilter:
