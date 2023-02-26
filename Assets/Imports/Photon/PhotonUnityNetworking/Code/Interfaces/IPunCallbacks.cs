@@ -1,11 +1,14 @@
-﻿namespace Photon.Pun {
+﻿
+namespace Photon.Pun
+{
     using UnityEngine;
-    using Realtime;
+    using Photon.Realtime;
 
 
     /// <summary>Defines the OnPhotonSerializeView method to make it easy to implement correctly for observable scripts.</summary>
     /// \ingroup callbacks
-    public interface IPunObservable {
+    public interface IPunObservable
+    {
         /// <summary>
         /// Called by PUN several times per second, so that your script can write and read synchronization data for the PhotonView.
         /// </summary>
@@ -39,7 +42,8 @@
     /// Global Callback interface for ownership changes. These callbacks will fire for changes to ANY PhotonView that changes.
     /// Consider using IOnPhotonViewControllerChange for callbacks from a specific PhotonView.
     /// </summary>
-    public interface IPunOwnershipCallbacks {
+    public interface IPunOwnershipCallbacks
+    {
         /// <summary>
         /// Called when another player requests ownership of a PhotonView. 
         /// Called on all clients, so check if (targetView.IsMine) or (targetView.Owner == PhotonNetwork.LocalPlayer) 
@@ -71,8 +75,8 @@
         /// <example>void OnOwnershipTransfered(object[] viewAndPlayers) {} //</example>
         /// <param name="targetView">PhotonView for which ownership changed.</param>
         /// <param name="previousOwner">Player who was the previous owner (or null, if none).</param>
-        void OnOwnershipTransferred(PhotonView targetView, Player previousOwner);
-
+        void OnOwnershipTransfered(PhotonView targetView, Player previousOwner);
+        
         /// <summary>
         /// Called when an Ownership Request fails for objects with "takeover" setting.
         /// </summary>
@@ -86,7 +90,8 @@
     }
 
     /// \ingroup callbacks
-    public interface IPunInstantiateMagicCallback {
+    public interface IPunInstantiateMagicCallback
+    {
         void OnPhotonInstantiate(PhotonMessageInfo info);
     }
 
@@ -112,7 +117,8 @@
     /// PUN will optimize the instantiation and no longer looks up IPunInstantiateMagicCallback
     /// via GetComponents.
     /// </remarks>
-    public interface IPunPrefabPool {
+    public interface IPunPrefabPool
+    {
         /// <summary>
         /// Called to get an instance of a prefab. Must return valid, disabled GameObject with PhotonView.
         /// </summary>
