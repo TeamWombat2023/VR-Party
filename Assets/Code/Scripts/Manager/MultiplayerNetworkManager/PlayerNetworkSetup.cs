@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
@@ -52,6 +53,17 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
         SetUpAvatar(avatarHolder.avatarBody, avatarInputConverter.avatarBody);
         SetUpAvatar(avatarHolder.leftHand, avatarInputConverter.avatarLeftHand);
         SetUpAvatar(avatarHolder.rightHand, avatarInputConverter.avatarRightHand);
+        var animatorView = avatarHolder.leftHand.AddComponent<PhotonAnimatorView>();
+        animatorView.SetParameterSynchronized("IsGrabbing", PhotonAnimatorView.ParameterType.Bool,
+            PhotonAnimatorView.SynchronizeType.Continuous);
+        animatorView.SetParameterSynchronized("IsPinching", PhotonAnimatorView.ParameterType.Bool,
+            PhotonAnimatorView.SynchronizeType.Continuous);
+
+        animatorView = avatarHolder.rightHand.AddComponent<PhotonAnimatorView>();
+        animatorView.SetParameterSynchronized("IsGrabbing", PhotonAnimatorView.ParameterType.Bool,
+            PhotonAnimatorView.SynchronizeType.Continuous);
+        animatorView.SetParameterSynchronized("IsPinching", PhotonAnimatorView.ParameterType.Bool,
+            PhotonAnimatorView.SynchronizeType.Continuous);
     }
 
     private static void SetUpAvatar(Transform avatarModelTransform, Transform mainAvatarTransform) {
