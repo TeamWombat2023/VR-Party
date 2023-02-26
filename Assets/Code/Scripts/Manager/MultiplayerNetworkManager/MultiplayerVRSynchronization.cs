@@ -49,13 +49,6 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable {
     //Hands Sync
     [Header("Hands Transform Sync")] public Transform leftHandTransform;
     public Transform rightHandTransform;
-    public Animator leftHandAnimator;
-    public Animator rightHandAnimator;
-    public InputActionProperty leftGrabAnimationAction;
-    public InputActionProperty leftPinchAnimationAction;
-
-    public InputActionProperty rightGrabAnimationAction;
-    public InputActionProperty rightPinchAnimationAction;
 
     //Left Hand Sync
     //Position
@@ -117,18 +110,6 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable {
         m_firstTake = true;
     }
 
-    private void UpdateHandAnimations() {
-        var gripValue = leftGrabAnimationAction.action.ReadValue<float>();
-        leftHandAnimator.SetFloat("Grip", gripValue);
-        gripValue = rightGrabAnimationAction.action.ReadValue<float>();
-        rightHandAnimator.SetFloat("Grip", gripValue);
-
-        var pinchValue = leftPinchAnimationAction.action.ReadValue<float>();
-        leftHandAnimator.SetFloat("Pinch", pinchValue);
-        pinchValue = rightPinchAnimationAction.action.ReadValue<float>();
-        rightHandAnimator.SetFloat("Pinch", pinchValue);
-    }
-
     public void Update() {
         if (m_PhotonView.IsMine) return;
         generalVRPlayerTransform.position = Vector3.MoveTowards(generalVRPlayerTransform.position,
@@ -158,7 +139,6 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable {
             m_NetworkPosition_RightHand, m_Distance_RightHand * (1.0f / PhotonNetwork.SerializationRate));
         rightHandTransform.localRotation = Quaternion.RotateTowards(rightHandTransform.localRotation,
             m_NetworkRotation_RightHand, m_Angle_RightHand * (1.0f / PhotonNetwork.SerializationRate));
-        UpdateHandAnimations();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
