@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51851577590763806}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1494829700852705954}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &443574188345112548
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,56 +127,6 @@ MonoBehaviour:
   bodyTransform: {fileID: 1666355026134615211}
   leftHandTransform: {fileID: 5075410116550046309}
   rightHandTransform: {fileID: 1417883220295531264}
-  leftHandAnimator: {fileID: 9500000, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
-  rightHandAnimator: {fileID: 9500000, guid: d0c255d07fd68f14b94e55d388e7e6bb, type: 3}
-  leftGrabAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Grab Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 33478fcf-3299-48c2-ba2a-68f0e9f03680
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  leftPinchAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Pinch Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: db84d2bc-9a3f-4acb-ad0b-abbb3931c1af
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightGrabAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Grab Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 50073e60-942c-4363-9d95-50ae65af8330
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  rightPinchAnimationAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Pinch Animation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b6aacff7-9119-499a-acd2-f95d7bbeb41d
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &443574189243012113
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,8 +315,8 @@ MonoBehaviour:
   avatarLeftHand: {fileID: 5075410116550046309}
   avatarRightHand: {fileID: 1417883220295531264}
   mainCamera: {fileID: 8799458322665219063}
-  leftHandController: {fileID: 7564279809026116299}
-  rightHandController: {fileID: 59177797001906647}
+  leftHandController: {fileID: 1035726158891000188}
+  rightHandController: {fileID: 4821343089332101939}
   headPositionOffset: {x: 0, y: -0.9, z: 0}
 --- !u!1 &675579079449706854
 GameObject:
