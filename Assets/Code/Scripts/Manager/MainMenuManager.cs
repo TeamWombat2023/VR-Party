@@ -42,6 +42,7 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     public void GoToPanel(int newPanelNumber) {
+        if (keyboardManager.IsKeyboardActive()) keyboardManager.DisableVRKeyboard();
         panels[_currentPanelNumber].SetActive(false);
         _currentPanelNumber = newPanelNumber;
         panels[_currentPanelNumber].SetActive(true);
@@ -74,6 +75,7 @@ public class MainMenuManager : MonoBehaviour {
             _isMenuActive = false;
             mainMenuPanel.SetActive(false);
             keyboardManager.EmptyKeyboardInputField();
+            keyboardManager.DisableVRKeyboard();
             avatarSelectionPlatform.SetActive(false);
         }
     }

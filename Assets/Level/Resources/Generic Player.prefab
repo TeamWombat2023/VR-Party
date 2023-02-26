@@ -2611,7 +2611,7 @@ PrefabInstance:
       objectReference: {fileID: 5447807426558382052}
     - target: {fileID: 5800497361338092918, guid: 5c0c673362c564910b40dd6362d51843, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnLoginScene
+      value: GoHome
       objectReference: {fileID: 0}
     - target: {fileID: 5800497361338092918, guid: 5c0c673362c564910b40dd6362d51843, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2621,6 +2621,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5800497361338092918, guid: 5c0c673362c564910b40dd6362d51843, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5800497361532331657, guid: 5c0c673362c564910b40dd6362d51843, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 933144371372291159}
     - target: {fileID: 5800497361532331658, guid: 5c0c673362c564910b40dd6362d51843, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
