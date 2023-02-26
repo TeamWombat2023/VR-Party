@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
         startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
         xrOrigin.SetActive(false);
-        genericVRPlayerPrefab = PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
         lobbyCanvas.worldCamera = genericVRPlayerPrefab.GetComponentInChildren<Camera>();
         lobbyInfoCanvas.worldCamera = genericVRPlayerPrefab.GetComponentInChildren<Camera>();
     }
@@ -29,7 +29,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public override void OnLeftRoom() {
-        Destroy(genericVRPlayerPrefab);
+        PhotonNetwork.Disconnect();
+    }
+    
+    public override void OnDisconnected(DisconnectCause cause) {
         PhotonNetwork.LoadLevel("Login Scene");
     }
 
