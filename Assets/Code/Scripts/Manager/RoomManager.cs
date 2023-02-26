@@ -43,6 +43,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
     }
 
     public void ConnectServer() {
+        if(PhotonNetwork.InRoom) PhotonNetwork.LeaveRoom();
         if (PhotonNetwork.IsConnectedAndReady) return;
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "eu";
         PhotonNetwork.ConnectUsingSettings();
@@ -139,7 +140,7 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         _cachedRoomList.Clear();
     }
 
-    private void SetRegion(TMP_Dropdown region) {
+    private static void SetRegion(TMP_Dropdown region) {
         PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = region.options[region.value].text;
         PhotonNetwork.Disconnect();
         PhotonNetwork.ConnectUsingSettings();

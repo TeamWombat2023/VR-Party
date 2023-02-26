@@ -1,9 +1,8 @@
-using System;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerUIManager : MonoBehaviour {
+public class PlayerUIManager : MonoBehaviourPunCallbacks {
     private bool _isMenuActive;
     public GameObject playerUI;
     public GameObject playerCamera;
@@ -27,21 +26,19 @@ public class PlayerUIManager : MonoBehaviour {
         playerUI.transform.position = mainMenuPosition;
     }
 
-    public void ReturnLoginScene() {
-        PhotonNetwork.Disconnect();
-        PhotonNetwork.LoadLevel("LoginScene");
+    public void GoHome() {
+        PhotonNetwork.LoadLevel("Login Scene");
     }
 
     public void QuitGame() {
-        PhotonNetwork.Disconnect();
         Application.Quit();
     }
 
-    private void OnEnable() {
+    public override void OnEnable() {
         openCloseInput.action.performed += OpenCloseMenu;
     }
 
-    private void OnDisable() {
+    public override void OnDisable() {
         openCloseInput.action.performed -= OpenCloseMenu;
     }
 
