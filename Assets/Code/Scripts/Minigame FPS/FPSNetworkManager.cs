@@ -8,11 +8,11 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     [SerializeField] private GameObject fpsVRPlayerPrefab;
     [Space]
     [SerializeField] private Transform spawnPoint;
-    
-    private void Start() {
-        Debug.Log("JOINED MINIGAME");
-        GameObject _player = PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+
+    public override void OnJoinedRoom() {
+        PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
+        //lobbyCanvas.worldCamera = fpsVRPlayerPrefab.GetComponentInChildren<Camera>();
+        //lobbyInfoCanvas.worldCamera = fpsVRPlayerPrefab.GetComponentInChildren<Camera>();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
