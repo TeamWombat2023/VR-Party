@@ -34,13 +34,21 @@ public class Pilot : MonoBehaviour
     private void GetHandInput()
     {
         var currentRotation = rightHand.transform.rotation;
-        Quaternion relative = Quaternion.Inverse(startRotation) * currentRotation;
+        //var defaultRotation = airplane.transform.forward + airplane.transform.right + airplane.transform.up;
+        
+        //Quaternion relative = Quaternion.Inverse(startRotation) * currentRotation;
+        //difference between the plane and the right hand.
+        Quaternion relative = Quaternion.Inverse(airplane.transform.rotation) * currentRotation;
         debugText.text = relative.eulerAngles.ToString();
         //Debug.Log(relative.eulerAngles.ToString());
 
         airplane.GetComponent<Plane>().steeringInput = relative.eulerAngles;
    
         
+    }
+
+    private void PlacePilotToPlane()
+    {
     }
     
     
