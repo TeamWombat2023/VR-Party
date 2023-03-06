@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 478613603}
   - component: {fileID: 478613602}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: GroundIsLava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2317,7 +2317,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5c0810dfb1e18ea49bacd9fb91c26f2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2467,6 +2467,7 @@ GameObject:
   - component: {fileID: 2137095568}
   - component: {fileID: 2137095570}
   - component: {fileID: 2137095571}
+  - component: {fileID: 2137095572}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2767,3 +2768,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2137095572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137095560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ced7de633e26d1499fd7697b7ab523d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2137095571}
