@@ -8,7 +8,7 @@ public class ObstructionMovement : MonoBehaviour
     public Rigidbody rb;
     void Start()
     {
-        //rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
     }
 
     // Update is called once per frame
