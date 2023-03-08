@@ -9,7 +9,9 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     [Space]
     [SerializeField] private Transform spawnPoint;
 
+
     public override void OnJoinedRoom() {
+        Debug.Log("JOINED MINIGAME");
         PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
         //lobbyCanvas.worldCamera = fpsVRPlayerPrefab.GetComponentInChildren<Camera>();
         //lobbyInfoCanvas.worldCamera = fpsVRPlayerPrefab.GetComponentInChildren<Camera>();

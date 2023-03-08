@@ -87,21 +87,21 @@ public class RoomManager : MonoBehaviourPunCallbacks {
         };
 
         PhotonNetwork.JoinOrCreateRoom(newRoomNameInputField.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.LoadLevel("Lobby Scene");
+        PhotonNetwork.LoadLevel("Minigame FPS Scene");
     }
 
     public void JoinRoomWithName() {
         if (joinRoomNameInputField.text == "") return;
         if (!PhotonNetwork.IsConnected) Connect();
         PhotonNetwork.JoinRoom(joinRoomNameInputField.text);
-        PhotonNetwork.LoadLevel("Lobby Scene");
+        PhotonNetwork.LoadLevel("Minigame FPS Scene");
     }
 
     public void OnClick_Join() {
         if (_selectedRoomInfo == null) return;
         if (!PhotonNetwork.IsConnected) Connect();
         PhotonNetwork.JoinRoom(_selectedRoomInfo.Name);
-        PhotonNetwork.LoadLevel("Lobby Scene");
+        PhotonNetwork.LoadLevel("Minigame FPS Scene");
     }
 
     public void OnClick_RoomElement(RoomInfo roomInfo) {
