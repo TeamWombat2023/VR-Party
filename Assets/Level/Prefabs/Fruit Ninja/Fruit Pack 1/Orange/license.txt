@@ -1,0 +1,11 @@
+Model Information:
+* title:	Orange
+* source:	https://sketchfab.com/3d-models/orange-d86ab3f2c9934fb79bd82458fcd350a9
+* author:	RPSebb (https://sketchfab.com/RPSebb)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Orange" (https://sketchfab.com/3d-models/orange-d86ab3f2c9934fb79bd82458fcd350a9) by RPSebb (https://sketchfab.com/RPSebb) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

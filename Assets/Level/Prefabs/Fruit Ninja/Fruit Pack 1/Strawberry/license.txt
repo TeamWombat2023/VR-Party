@@ -1,0 +1,11 @@
+Model Information:
+* title:	Strawberry
+* source:	https://sketchfab.com/3d-models/strawberry-dd6a424807614544835c8cc4529d6f0d
+* author:	gelmi.com.br (https://sketchfab.com/rodrigogelmi)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Strawberry" (https://sketchfab.com/3d-models/strawberry-dd6a424807614544835c8cc4529d6f0d) by gelmi.com.br (https://sketchfab.com/rodrigogelmi) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
