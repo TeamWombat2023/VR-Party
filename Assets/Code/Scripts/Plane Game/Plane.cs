@@ -19,8 +19,10 @@ public class Plane : MonoBehaviour
     private Vector3 liftForce;
 
     [Header("Thrust")]
-    public float thrust;
     public float maxThrust;
+    
+    public float thrustInput;
+    
 
 
     [Header("Drag")]
@@ -113,7 +115,8 @@ public class Plane : MonoBehaviour
 
     private void UpdateThrust()
     {
-        rb.AddRelativeForce(thrust * maxThrust * Vector3.forward, ForceMode.Force);
+        Debug.Log("In airplane thrustInput: "+ thrustInput);
+        rb.AddRelativeForce(thrustInput * maxThrust * -1* Vector3.forward, ForceMode.Force);
     }
 
     private void UpdateDrag()
@@ -124,7 +127,7 @@ public class Plane : MonoBehaviour
         var dragCoefficient = Vector3.Scale(lv, new Vector3(1, 2, 2));
 
         var drag = -lv.normalized * (dragCoefficient.magnitude * lv2 * dragScalerCoefficient);
-        Debug.Log("Drag: "+drag);
+        //Debug.Log("Drag: "+drag);
         
         rb.AddRelativeForce(drag);
     }
