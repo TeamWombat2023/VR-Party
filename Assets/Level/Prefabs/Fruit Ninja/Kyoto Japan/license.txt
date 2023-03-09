@@ -1,0 +1,11 @@
+Model Information:
+* title:	Kyoto, Japan
+* source:	https://sketchfab.com/3d-models/kyoto-japan-9220dedd2a744ef9b2fbcae54e47ab70
+* author:	Matthias Seys (https://sketchfab.com/matthiasseys)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Kyoto, Japan" (https://sketchfab.com/3d-models/kyoto-japan-9220dedd2a744ef9b2fbcae54e47ab70) by Matthias Seys (https://sketchfab.com/matthiasseys) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
