@@ -48,6 +48,9 @@ public class Pilot : MonoBehaviour
     {
         isSteeringEnabled = true;
         debugText.text = "Grabbed";
+        
+        //todo steering anında elin kitlenmesi durumu yapilacak.
+        
     }
 
     public void DisableSteering()
