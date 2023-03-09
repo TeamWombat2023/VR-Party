@@ -33,7 +33,7 @@ public class MazeRenderer : MonoBehaviour
     {
 
         var floor = Instantiate(floorPrefab, transform);
-        floor.localScale = new Vector3(width, 1, height);
+        floor.localScale = new Vector3(width * size, 1, height * size);
 
         for (int i = 0; i < width; ++i)
         {

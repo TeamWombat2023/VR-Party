@@ -4252,7 +4252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1035876795}
   - component: {fileID: 1035876794}
-  - component: {fileID: 1035876796}
   m_Layer: 0
   m_Name: Maze Renderer
   m_TagString: Untagged
@@ -4272,9 +4271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93caf47cb73b136aacc1383f9ebfd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 17
-  height: 17
-  size: 1
+  width: 34
+  height: 34
+  size: 3
   wallPrefab: {fileID: 2042550943063071405, guid: c4ef7fa7536739f4e9ab34cda5accc49, type: 3}
   floorPrefab: {fileID: 2090040434775519370, guid: 33064a83b39200319b930e32a282c7f4, type: 3}
 --- !u!4 &1035876795
@@ -4292,21 +4291,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1035876796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035876793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c216fb2c1e25eca8e807954500aa76e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xScale: 2
-  yScale: 9
-  zScale: 1
 --- !u!1 &1090174973
 GameObject:
   m_ObjectHideFlags: 0
