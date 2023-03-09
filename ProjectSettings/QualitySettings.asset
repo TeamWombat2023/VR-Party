@@ -40,7 +40,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: a4903c136c6089d43b282f63581d3468, type: 2}
     excludedTargetPlatforms:
     - WebGL
     - Android
@@ -79,7 +79,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 989f93d60afd8ef4295fcf5c8687699a, type: 2}
     excludedTargetPlatforms:
     - Standalone
     - Server
@@ -119,7 +119,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 60f516221b9281b4f82de68cbbf5d416, type: 2}
     excludedTargetPlatforms:
     - WebGL
     - Server
@@ -159,7 +159,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 0f526253a8ef832469ef70e88bce21f8, type: 2}
     excludedTargetPlatforms:
     - Standalone
     - Server
@@ -198,7 +198,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 072394d6ca489cb41b89295712e9c0a8, type: 2}
     excludedTargetPlatforms:
     - WebGL
     - Android
@@ -238,7 +238,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: c69f2678d358a1648819806541a90af0, type: 2}
     excludedTargetPlatforms:
     - Server
     - Android
@@ -258,7 +258,7 @@ QualitySettings:
     skinWeights: 4
     textureQuality: 0
     anisotropicTextures: 1
-    antiAliasing: 4
+    antiAliasing: 0
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -277,7 +277,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 0}
+    customRenderPipeline: {fileID: 11400000, guid: 15bf8cea454c29549b344d8253f8291a, type: 2}
     excludedTargetPlatforms:
     - Standalone
     - Server
