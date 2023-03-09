@@ -17,4 +17,9 @@ public class PlaneGameManager : MonoBehaviour
     {
         
     }
+
+    public void FireTheGun()
+    {
+        Debug.Log("Gun is fired.");
+    }
 }
