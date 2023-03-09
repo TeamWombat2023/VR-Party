@@ -6806,6 +6806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919795494}
   - component: {fileID: 1919795493}
+  - component: {fileID: 1919795495}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -6890,6 +6891,26 @@ Transform:
   m_Father: {fileID: 1000299925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1919795495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919795492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1922833671
 GameObject:
   m_ObjectHideFlags: 0
@@ -8386,6 +8407,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3899237099683980935, guid: c4ef7fa7536739f4e9ab34cda5accc49, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dca905a1a84b08fe59d1e357d7f2502f, type: 2}
     - target: {fileID: 4447309573883686628, guid: c4ef7fa7536739f4e9ab34cda5accc49, type: 3}
       propertyPath: m_Name
       value: Maze Wall
