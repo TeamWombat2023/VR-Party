@@ -459,7 +459,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6fc6652ed834922468cdd63bb95f7fe2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 803260923}
   - component: {fileID: 803260922}
   - component: {fileID: 803260925}
+  - component: {fileID: 2139527322}
   m_Layer: 0
   m_Name: Minigame FPS Player
   m_TagString: Untagged
@@ -712,6 +713,19 @@ MonoBehaviour:
   XRorg: {fileID: 1225493729650617491}
   leftHand: {fileID: 1225493728631392589}
   rightHand: {fileID: 1225493729716329803}
+--- !u!114 &2139527322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225493729650617491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5ffe45aec9c6e4dab3e23ae9e915ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
 --- !u!1 &1225493729716329803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,11 +1049,19 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 28ebbcd7f4773384e867c255af2c669b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c74a47f0cff5c98498189b280dbb1732, type: 2}
+      objectReference: {fileID: 2100000, guid: b471ecc51321dd14aa10778a5c9b4c06, type: 2}
     - target: {fileID: -7511558181221131132, guid: 28ebbcd7f4773384e867c255af2c669b, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: b471ecc51321dd14aa10778a5c9b4c06, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 28ebbcd7f4773384e867c255af2c669b, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: c8e88f5156cc96540a5d9709301809fd, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 28ebbcd7f4773384e867c255af2c669b, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a247f4e235b3b24da117d3d4161fc37, type: 2}
     - target: {fileID: 919132149155446097, guid: 28ebbcd7f4773384e867c255af2c669b, type: 3}
       propertyPath: m_Name
       value: ScifiHandGun
