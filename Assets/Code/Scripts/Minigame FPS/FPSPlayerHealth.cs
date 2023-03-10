@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class FPSPlayerHealth : MonoBehaviour
 {
     public int health;
 
-    //[PunRPC]
+    [PunRPC]
     public void FPSDamageTake(int _damage){
         health -= _damage;
 
