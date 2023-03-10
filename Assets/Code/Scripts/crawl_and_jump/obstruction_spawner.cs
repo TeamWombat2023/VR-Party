@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class obstruction_spawner : MonoBehaviour
 {
     public GameObject obstructionPrefab;
-    public float random_number = 0f;
+    private float top_or_bottom = 0f;
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)){
             var clone = Instantiate(obstructionPrefab, transform.position, Quaternion.identity);
-            random_number = Random.Range(0,2);
-            if (random_number == 0)
+            top_or_bottom = Random.Range(0,2);
+            if(Random.Range(0,2) == 0){
+                clone.GetComponent<ObstructionMovement>().isRotating = true;
+            }
+            if (top_or_bottom == 0)
             {
                 clone.transform.position = clone.transform.position + new Vector3(0, 4, 0);
             }
-            Debug.Log(clone.transform.position);
-            Debug.Log(random_number);
         }
     }
 }
