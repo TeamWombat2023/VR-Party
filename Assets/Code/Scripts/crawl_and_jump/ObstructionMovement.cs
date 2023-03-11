@@ -21,5 +21,9 @@ public class ObstructionMovement : MonoBehaviour
         if(isRotating){
             transform.Rotate(0f, 1f, 0f, Space.Self);
         }
+
+        if(transform.position.x < -50){
+            Destroy(gameObject);
+        }
     }
 }
