@@ -15,7 +15,7 @@ public class obstruction_spawner : MonoBehaviour
             }
             if (top_or_bottom == 0)
             {
-                clone.transform.position = clone.transform.position + new Vector3(0, 4, 0);
+                clone.transform.position = clone.transform.position + new Vector3(0, 3, 0);
             }
         }
     }
