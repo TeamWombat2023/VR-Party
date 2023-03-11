@@ -28,15 +28,19 @@ public class TemporaryController : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Keypad0)){
+            player.GetComponent<CapsuleCollider>().height = 1.5f;
+            player.GetComponent<CapsuleCollider>().center = new Vector3(0, 0.75f, 0);
+        }
+        if(Input.GetKeyUp(KeyCode.Keypad0)){
             player.GetComponent<CapsuleCollider>().height = 2;
             player.GetComponent<CapsuleCollider>().center = new Vector3(0, 1, 0);
         }
-        if(Input.GetKeyUp(KeyCode.Keypad0)){
-            player.GetComponent<CapsuleCollider>().height = 4;
-            player.GetComponent<CapsuleCollider>().center = new Vector3(0, 2, 0);
-        }
         if(Input.GetKeyDown(KeyCode.Keypad1) & isGrounded){
             player.GetComponent<Rigidbody>().AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+        if(Input.GetKeyUp(KeyCode.Keypad1)){
+            isGrounded = false;
         }
 
     }
