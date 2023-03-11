@@ -9,6 +9,7 @@ TagManager:
   - DamagePickup
   - ScorePickup
   - TrapPickup
+  - Wall
   layers:
   - Default
   - TransparentFX
