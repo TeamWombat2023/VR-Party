@@ -22,6 +22,9 @@ public class MazeRenderer : MonoBehaviour
     [SerializeField]
     private Transform floorPrefab = null;
 
+    [SerializeField]
+    private Transform coinPrefab = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +35,8 @@ public class MazeRenderer : MonoBehaviour
     private void Draw(WallState[,] maze)
     {
 
-        var floor = Instantiate(floorPrefab, transform);
-        floor.localScale = new Vector3(width * size, 1, height * size);
+        //var floor = Instantiate(floorPrefab, transform);
+        //floor.localScale = new Vector3(width * width * size, 1, height * height * size);
 
         for (int i = 0; i < width; ++i)
         {
@@ -41,6 +44,10 @@ public class MazeRenderer : MonoBehaviour
             {
                 var cell = maze[i, j];
                 var position = new Vector3((-width / 2 + i) * size, 0, (-height / 2 + j) * size);
+                
+                //create coins 
+                var coin = Instantiate(coinPrefab, transform) as Transform;
+                coin.position = position + new Vector3(0, 0.5f, 0);
 
                 if (cell.HasFlag(WallState.UP))
                 {
