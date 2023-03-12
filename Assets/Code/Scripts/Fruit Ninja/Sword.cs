@@ -1,6 +1,12 @@
 using UnityEngine;
 
 public class Sword : MonoBehaviour {
+    private ScoreManager _scoreManager;
+
+    private void Awake() {
+        _scoreManager = FindObjectOfType<ScoreManager>();
+    }
+
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Fruit")) {
             var hitNormal = collision.contacts[0].normal;
@@ -13,9 +19,7 @@ public class Sword : MonoBehaviour {
                 var position = collision.transform.position;
                 const float force = 2f;
                 fruit.Slice(direction, position, force);
-            }
-            else {
-                Debug.Log("Hit the top");
+                _scoreManager.IncrementScore();
             }
         }
     }
