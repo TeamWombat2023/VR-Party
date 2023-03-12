@@ -12,18 +12,11 @@ public class FruitSpawner : MonoBehaviour {
     public float minAngle = -5f;
     public float maxAngle = 5f;
     public float maxLifetime = 5f;
-    public float gameDuration = 10f;
 
     private Collider _spawnArea;
-    private ScoreManager _scoreManager;
 
     private void Awake() {
         _spawnArea = GetComponent<Collider>();
-        _scoreManager = FindObjectOfType<ScoreManager>();
-    }
-
-    private void Start() {
-        Invoke(nameof(FinishGame), gameDuration);
     }
 
     private void OnEnable() {
@@ -55,10 +48,5 @@ public class FruitSpawner : MonoBehaviour {
             rb.AddForce(fruit.transform.up * Random.Range(minForce, maxForce), ForceMode.Impulse);
             yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
         }
-    }
-
-    private void FinishGame() {
-        transform.gameObject.SetActive(false);
-        _scoreManager.FinishGame();
     }
 }

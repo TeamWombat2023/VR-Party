@@ -11,9 +11,7 @@ public class Sword : MonoBehaviour {
         if (collision.gameObject.CompareTag("Fruit")) {
             var hitNormal = collision.contacts[0].normal;
             var angle = Vector3.Angle(hitNormal, Vector3.up);
-            Debug.Log("Angle: " + angle);
             if (angle < 45f || angle > 135f) {
-                Debug.Log("Hit the side");
                 var fruit = collision.gameObject.GetComponent<Fruit>();
                 var direction = (collision.transform.position - transform.position).normalized;
                 var position = collision.transform.position;
@@ -21,6 +19,9 @@ public class Sword : MonoBehaviour {
                 fruit.Slice(direction, position, force);
                 _scoreManager.IncrementScore();
             }
+        }
+        else if (collision.gameObject.CompareTag("Bomb")) {
+            _scoreManager.GameOver();
         }
     }
 }
