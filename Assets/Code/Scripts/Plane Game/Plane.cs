@@ -18,6 +18,10 @@ public class Plane : MonoBehaviour
 
     private Vector3 liftForce;
 
+
+    [Header("Game Manager")]
+    public PlaneGameManager planeGameManager;
+
     [Header("Thrust")]
     public float maxThrust;
     
@@ -115,7 +119,7 @@ public class Plane : MonoBehaviour
 
     private void UpdateThrust()
     {
-        Debug.Log("In airplane thrustInput: "+ thrustInput);
+        //Debug.Log("In airplane thrustInput: "+ thrustInput);
         rb.AddRelativeForce(thrustInput * maxThrust * -1* Vector3.forward, ForceMode.Force);
     }
 
@@ -182,5 +186,15 @@ public class Plane : MonoBehaviour
         return Mathf.Clamp(diff, -currentAcceleration, currentAcceleration);
     }
 
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Checkpoint"))
+        {
+            Debug.Log("Checkpoint took!!");
+            
+            planeGameManager.EnableNewCheckpoint();
+            
+        } 
+    }
 }
