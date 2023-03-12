@@ -194,7 +194,12 @@ public class Plane : MonoBehaviour
             Debug.Log("Checkpoint took!!");
             
             planeGameManager.EnableNewCheckpoint();
+        }
+        else if (other.CompareTag("Powerup"))
+        {
+            other.gameObject.SetActive(false);
             
-        } 
+            planeGameManager.StartPowerupRespawnTimer();
+        }
     }
 }
