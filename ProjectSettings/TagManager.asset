@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pickup
+  - HealPickup
+  - DamagePickup
+  - ScorePickup
+  - TrapPickup
+  - Wall
   layers:
   - Default
   - TransparentFX
