@@ -10,6 +10,9 @@ TagManager:
   - ScorePickup
   - TrapPickup
   - Wall
+  - Fruit
+  - Bomb
+  - Floor
   layers:
   - Default
   - TransparentFX
