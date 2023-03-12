@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chinese Traditional Pavilion
+* source:	https://sketchfab.com/3d-models/chinese-traditional-pavilion-d8c67e82302a4cd887d94a6b06bda0c9
+* author:	gozdemrl (https://sketchfab.com/gozdemrl)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chinese Traditional Pavilion" (https://sketchfab.com/3d-models/chinese-traditional-pavilion-d8c67e82302a4cd887d94a6b06bda0c9) by gozdemrl (https://sketchfab.com/gozdemrl) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
