@@ -2713,6 +2713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Highlighter
       objectReference: {fileID: 0}
+    - target: {fileID: 6604944898083473768, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
 --- !u!224 &3885059319461937818 stripped
