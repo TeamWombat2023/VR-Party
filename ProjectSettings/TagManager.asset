@@ -12,6 +12,9 @@ TagManager:
   - Wall
   - Checkpoint
   - Powerup
+  - Fruit
+  - Bomb
+  - Floor
   layers:
   - Default
   - TransparentFX

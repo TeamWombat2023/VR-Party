@@ -8,7 +8,6 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     [SerializeField] private GameObject fpsVRPlayerPrefab;
     [Space]
     [SerializeField] private Transform spawnPoint;
-
     
     private void Start() {
         Debug.Log("JOINED MINIGAME");
