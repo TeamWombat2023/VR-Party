@@ -45,6 +45,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - StartNetworkGrabbing
   - StopNetworkGrabbing
+  - TakeDamage
+  - FPSDamageTake
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
