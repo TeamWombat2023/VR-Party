@@ -108,6 +108,8 @@ public class Pilot : MonoBehaviour
 
         var difference = currentLeftHandPosition - leftHandPositionBeginning;
 
+        leftHandPositionBeginning = currentLeftHandPosition;
+
         var newThrust = airplane.thrustInput + thrustMappingCurve.Evaluate(difference);
         if (newThrust > 1)
         {
@@ -118,7 +120,7 @@ public class Pilot : MonoBehaviour
             newThrust = 0;
         }
         
-        airplane.thrustInput = airplane.thrustInput + thrustMappingCurve.Evaluate(difference);
+        airplane.thrustInput = newThrust;
     }
 
 
