@@ -4,6 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Pickup
+  - HealPickup
+  - DamagePickup
+  - ScorePickup
+  - TrapPickup
+  - Wall
   - Checkpoint
   - Powerup
   layers:

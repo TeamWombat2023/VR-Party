@@ -1,0 +1,11 @@
+Model Information:
+* title:	Japanese Restaurant
+* source:	https://sketchfab.com/3d-models/japanese-restaurant-9b3c5076541148fca229edeb1a1b07ef
+* author:	annzep (https://sketchfab.com/annzep)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Japanese Restaurant" (https://sketchfab.com/3d-models/japanese-restaurant-9b3c5076541148fca229edeb1a1b07ef) by annzep (https://sketchfab.com/annzep) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
