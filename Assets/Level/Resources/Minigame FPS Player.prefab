@@ -640,7 +640,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225493729650617491}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
   m_Name: 
@@ -1034,7 +1034,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   raycastOrigin: {fileID: 245438073}
-  hitVFX: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
+  hitVFX: {fileID: 7678273535724244450, guid: 08c9e2e8eaa8a2543855500f36be6b35, type: 3}
 --- !u!1 &1225493729837641927
 GameObject:
   m_ObjectHideFlags: 0

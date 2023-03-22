@@ -12,6 +12,7 @@ public class PlayerSetup : MonoBehaviour
     public void IsLocalPlayer(){
         camera.SetActive(true);
         (XRorg.GetComponent("InputActionManager") as MonoBehaviour).enabled = true;
+        (XRorg.GetComponent("LocomotionSystem") as MonoBehaviour).enabled = true;
         (leftHand.GetComponent("ActionBasedController") as MonoBehaviour).enabled = true;
         (rightHand.GetComponent("ActionBasedController") as MonoBehaviour).enabled = true;
     } 

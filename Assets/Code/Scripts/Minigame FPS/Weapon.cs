@@ -68,6 +68,11 @@ public class Weapon : MonoBehaviour
                     if(Physics.Raycast(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.forward),out hit ,Mathf.Infinity ,targetLayer)){
                         PhotonNetwork.Instantiate(hitVFX.name,hit.point, Quaternion.identity);
                         device.SendHapticImpulse(0,.7f,.25f);
+
+                        if(hit.transform.gameObject.GetComponent<FPSPlayerHealth>()){
+                            hit.transform.gameObject.GetComponent<PhotonView>().RPC("FPSDamageTake", RpcTarget.All, damage);
+                        }
+
                         nextFire = 1 / fireRate;
                         Debug.Log($"<color=green>Trigger button is {hit.transform.name} pressed</color>");
                     }
