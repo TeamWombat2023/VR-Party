@@ -15,5 +15,10 @@ public class PlayerSetup : MonoBehaviour
         //(XRorg.GetComponent("LocomotionSystem") as MonoBehaviour).enabled = true;
         (leftHand.GetComponent("ActionBasedController") as MonoBehaviour).enabled = true;
         (rightHand.GetComponent("ActionBasedController") as MonoBehaviour).enabled = true;
+        (rightHand.GetComponent("Weapon") as MonoBehaviour).enabled = false;
+    }
+
+    public void OpenWeapon(){
+        (rightHand.GetComponent("Weapon") as MonoBehaviour).enabled = true;
     } 
 }
