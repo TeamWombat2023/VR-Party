@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1006121, g: 0.124999665, b: 0.31769055, a: 1}
+  m_IndirectSpecularColor: {r: 0.10048169, g: 0.12486093, b: 0.31753215, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1338,7 +1338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868470043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3133,5 +3133,3 @@ MonoBehaviour:
   player: {fileID: 2137095560}
   jumpForce: 7
   gamePlane: {fileID: 1712705760}
-  jumpInput: {fileID: -8490557944613763107, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  crawlInput: {fileID: -7681978852276973768, guid: c348712bda248c246b8c49b3db54643f, type: 3}

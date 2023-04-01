@@ -7,21 +7,26 @@ public class TemporaryController : MonoBehaviour {
     public float jumpForce;
 
     private bool isGrounded;
-    private bool isCrawling;
+    //private bool isCrawling;
 
     public GameObject gamePlane;
 
+/*
     public InputActionReference jumpInput;
-    public InputActionReference crawlInput;
+    public InputActionReference crawlInput;*/
 
     private void Start() {
         jump = new Vector3(0.0f, 1.0f, 0.0f);
+        isGrounded = true;
     }
 
     private void OnCollisionStay(Collision target) {
-        if (target.transform.name == gamePlane.transform.name) isGrounded = true;
+        Debug.Log(target.transform.name);
+        if (target.transform.name == gamePlane.transform.name){
+            isGrounded = true;
+        }
     }
-
+    /*
     private void OnEnable() {
         jumpInput.action.performed += Jump;
         crawlInput.action.performed += Crawl;
@@ -49,7 +54,7 @@ public class TemporaryController : MonoBehaviour {
             player.GetComponent<CapsuleCollider>().center = new Vector3(0, 1, 0);
             isCrawling = false;
         }
-    }
+    }*/
 
     // Update is called once per frame
     private void Update() {
@@ -68,6 +73,8 @@ public class TemporaryController : MonoBehaviour {
             isGrounded = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.Keypad1)) isGrounded = false;
+        if (Input.GetKeyUp(KeyCode.Keypad1)){
+            isGrounded = false;
+        }
     }
 }
