@@ -6,7 +6,7 @@ using UnityEngine;
 public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
 
     [SerializeField] private GameObject genericPlayerPrefab;
-    [Space]
+    [Space] 
     [SerializeField] private Transform spawnPoint;
     
     private void Start() {
