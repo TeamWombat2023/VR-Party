@@ -14040,7 +14040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planePrefab: {fileID: 7024079130551851680, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 1765559662}
   spawnPoints:
   - {fileID: 0}
 --- !u!1 &1394320145
@@ -18402,13 +18402,29 @@ PrefabInstance:
       propertyPath: planeGameManager
       value: 
       objectReference: {fileID: 455720484}
+    - target: {fileID: 1038430673264367856, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038430673264367857, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7024079130551851680, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
       propertyPath: m_Name
       value: Airplane (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7024079130551851680, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306808307264561338, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7651996668500852762, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7651996668500852762, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18455,6 +18471,11 @@ PrefabInstance:
 --- !u!4 &1765559661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7651996668500852762, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
+  m_PrefabInstance: {fileID: 1765559660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1765559662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 54584091, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
   m_PrefabInstance: {fileID: 1765559660}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1795027359
@@ -18564,7 +18585,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_LocalPosition.x

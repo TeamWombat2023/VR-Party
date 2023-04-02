@@ -7,14 +7,13 @@ using UnityEngine;
 public class PlaneGameNetworkManager : MonoBehaviourPunCallbacks
 {
    [SerializeField] private GameObject planePrefab;
+   [SerializeField] private GameObject genericVRPrefab;
     [Space]
     [SerializeField] private Transform spawnPoint;
 
-    [SerializeField] private Transform[] spawnPoints;
-    
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        GameObject _player = PhotonNetwork.Instantiate(planePrefab.name, spawnPoint.position, Quaternion.identity);
+        GameObject _player = PhotonNetwork.Instantiate(genericVRPrefab.name, spawnPoint.position, Quaternion.identity);
         _player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
 
