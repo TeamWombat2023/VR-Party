@@ -1529,7 +1529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &649952845
 Transform:
   m_ObjectHideFlags: 0
@@ -1669,6 +1669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2984527601408182164}
+  gameDuration: 60
 --- !u!1 &763006838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8528894348753189825, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
@@ -4873,7 +4874,6 @@ MonoBehaviour:
   minAngle: -10
   maxAngle: 10
   maxLifetime: 5
-  gameDuration: 60
 --- !u!65 &2113411446
 BoxCollider:
   m_ObjectHideFlags: 0
