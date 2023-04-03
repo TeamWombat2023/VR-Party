@@ -791,6 +791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  isLocalPlayer: 0
+  isImmortal: 0
 --- !u!1 &1225493729716329803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,12 +1030,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2641fab1881087347b003d1eb5bd7087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  fireRate: 1
+  damage: 25
+  fireRate: 4
   targetLayer:
     serializedVersion: 2
     m_Bits: 2147483647
   raycastOrigin: {fileID: 245438073}
+  hitVFX: {fileID: 7678273535724244450, guid: 08c9e2e8eaa8a2543855500f36be6b35, type: 3}
 --- !u!1 &1225493729837641927
 GameObject:
   m_ObjectHideFlags: 0
