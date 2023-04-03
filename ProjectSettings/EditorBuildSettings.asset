@@ -14,16 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/FPS Scene.unity
     guid: fca863912daa59743aa17fe7267b5878
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/Fruit Ninja.unity
     guid: 4e1dc4c024bddcd4689e1a7a77715637
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/Labyrinth Scene.unity
     guid: fcc0bf5a72706f901b3900c816333940
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/Crawl and Jump.unity
     guid: 92afac7875e78d843a27df14dcea7ee7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/PlaneGameScene.unity
     guid: f6887c0727a517b2a806139f8fc92784
   m_configObjects:
