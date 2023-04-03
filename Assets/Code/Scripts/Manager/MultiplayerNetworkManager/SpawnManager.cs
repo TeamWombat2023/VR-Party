@@ -29,4 +29,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks {
     public override void OnJoinedRoom() {
         PhotonNetwork.Instantiate(GenericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
     }
+    
+    
+    
 }
