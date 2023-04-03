@@ -6,14 +6,22 @@ using Photon.Realtime;
 
 public class FPSPlayerHealth : MonoBehaviour
 {
-    public int health;
+    [SerializeField] public int health;
+    public bool isLocalPlayer;
+    public bool isImmortal = false;
 
     [PunRPC]
     public void FPSDamageTake(int _damage){
-        health -= _damage;
+        if(!isImmortal){
+            health -= _damage;
 
-        if(health <= 0){
-            Destroy(gameObject);
+            if(health <= 0){
+
+                if(isLocalPlayer)
+                    FPSNetworkManager.instance.SpawnPlayerWithDelay();
+
+                Destroy(gameObject);
+            }
         }
     }
 }

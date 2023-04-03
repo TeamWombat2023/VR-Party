@@ -5,5 +5,8 @@ public class MultiplayerGameManager : MonoBehaviour {
     public void LoadMinigame(string minigameName) {
         Debug.Log("Loading minigame: " + minigameName);
         PhotonNetwork.LoadLevel(minigameName);
+        
+        PhotonNetwork.AutomaticallySyncScene = true;
+        
     }
 }
