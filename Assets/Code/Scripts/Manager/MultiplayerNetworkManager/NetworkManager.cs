@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -13,6 +14,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     [SerializeField] private Vector3 spawnPosition;
     public Canvas lobbyCanvas;
     public Canvas lobbyInfoCanvas;
+
+
+    
 
     public override void OnJoinedRoom() {
         ShowPlayers();
