@@ -46,28 +46,20 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public void RespawnPlayer(){
         roomCam.SetActive(false);
         GameObject _player = PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-        _player.GetComponent<FPSPlayerHealth>().isLocalPlayer = true;
-        _player.GetComponent<FPSPlayerHealth>().isImmortal = true;
-        
-        //var loadingMethod = this.GetType().GetMethod("MakePlayerMortal");
-        //var arguments = new GameObject[] { _player };
-        //loadingMethod.Invoke(this, arguments);
-        StartCoroutine(MyCoroutine(_player));
-        //Invoke("MakePlayerMortal", 5, _player);
+        // StartCoroutine(MyCoroutine(_player));
 
     }
 
-    public void MakePlayerMortal(GameObject _player){
-        Debug.Log("MORTAL YAPTI");
-        _player.GetComponent<PlayerSetup>().OpenWeapon();
-        _player.GetComponent<FPSPlayerHealth>().isImmortal = false;
-    }
-
-    IEnumerator MyCoroutine(GameObject _player)
-    {
-        yield return new WaitForSeconds(5.0f);
-        MakePlayerMortal(_player);
-    }
+    // public void MakePlayerMortal(GameObject _player){
+    //     Debug.Log("MORTAL YAPTI");
+    //     _player.GetComponent<PlayerSetup>().OpenWeapon();
+    //     _player.GetComponent<FPSPlayerHealth>().isImmortal = false;
+    // }
+    //
+    // IEnumerator MyCoroutine(GameObject _player)
+    // {
+    //     yield return new WaitForSeconds(5.0f);
+    //     MakePlayerMortal(_player);
+    // }
 
 }
