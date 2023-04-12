@@ -14,7 +14,12 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     public GameObject[] avatarModelPrefabs;
     public TMP_Text playerNameText;
 
+    public PhotonView photonView;
+
     private void Start() {
+        
+        photonView = GetComponent<PhotonView>();
+            
         if (photonView.IsMine) {
             // This is my player
             localXROrigin.SetActive(true);

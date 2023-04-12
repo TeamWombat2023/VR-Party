@@ -46,7 +46,7 @@ public class Plane : MonoBehaviour
     public Vector3 turnAccelerationConstant;
     
     //Steering power normally determines with sigmoid(speed)
-    public float steeringPower;
+    public AnimationCurve steeringCurve;
     
     // Start is called before the first frame update
     void Start()
@@ -158,6 +158,9 @@ public class Plane : MonoBehaviour
 
     private void UpdateSteering(float dt)
     {
+        var speed = Mathf.Max(0, -localVelocity.z);
+        var steeringPower =  steeringCurve.Evaluate(speed);
+        Debug.Log("Steering power is: " + steeringPower);
         var targetAngularVelocity = Vector3.Scale(steeringInput, turnSpeedConstant * steeringPower);
 
         var currentAngularVelocity = localAngularVelocity * Mathf.Rad2Deg;

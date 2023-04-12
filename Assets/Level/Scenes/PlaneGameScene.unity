@@ -12318,8 +12318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40df3809c1bd9055954b73e042333ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planePrefab: {fileID: 7024079130551851680, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
-  genericVRPrefab: {fileID: 443574188345112548, guid: 8ca9dc673c0c7df419a781297c0db48d, type: 3}
+  planePrefab: {fileID: 0}
+  genericVRPrefab: {fileID: 0}
   spawnPoint: {fileID: 1765559662}
 --- !u!1 &1401208218
 GameObject:
@@ -16196,7 +16196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651996668500852762, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651996668500852762, guid: 34f3fe6832d7e2b25bcb920d38846b54, type: 3}
       propertyPath: m_LocalScale.x
@@ -18840,6 +18840,62 @@ PrefabInstance:
     - target: {fileID: 4458762082192781791, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
       propertyPath: sceneViewId
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: turnAccelerationConstant.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: turnAccelerationConstant.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].time
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019875679113965573, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].weightedMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
