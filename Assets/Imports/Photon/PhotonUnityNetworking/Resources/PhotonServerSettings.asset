@@ -47,6 +47,7 @@ MonoBehaviour:
   - StopNetworkGrabbing
   - TakeDamage
   - FPSDamageTake
+  - Draw
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
