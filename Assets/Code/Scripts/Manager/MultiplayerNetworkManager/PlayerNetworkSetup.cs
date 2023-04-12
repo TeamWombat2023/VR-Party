@@ -23,8 +23,8 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
 
             SetLayerRecursively(avatarHead, LayerMask.NameToLayer("LocalAvatarHead"));
             SetLayerRecursively(avatarBody, LayerMask.NameToLayer("LocalAvatarBody"));
-            // var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
-            // inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
+            var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
+            inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
             mainAvatar.AddComponent<AudioListener>();
         }
         else {

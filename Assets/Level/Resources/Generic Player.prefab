@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 443574188345112546}
   - component: {fileID: 443574188345112549}
   - component: {fileID: 8191165972011629526}
-  - component: {fileID: 2146943202988993062}
   - component: {fileID: 5663211131276184493}
   - component: {fileID: 2111021637114778672}
   - component: {fileID: 6290816056069663282}
@@ -87,9 +86,9 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
+  observableSearch: 1
   ObservedComponents:
-  - {fileID: 2146943202988993062}
+  - {fileID: 2111021637114778672}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -114,24 +113,6 @@ MonoBehaviour:
   - {fileID: 6698639957168452362, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
   - {fileID: 1728414061110574811, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
   playerNameText: {fileID: 4567967796689294335}
---- !u!114 &2146943202988993062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443574188345112548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8588786dc653d4884686a91ac8b031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generalVRPlayerTransform: {fileID: 443574188345112546}
-  mainAvatarTransform: {fileID: 1494829700852705954}
-  headTransform: {fileID: 681543740082364004}
-  bodyTransform: {fileID: 1666355026134615211}
-  leftHandTransform: {fileID: 5075410116550046309}
-  rightHandTransform: {fileID: 1417883220295531264}
 --- !u!114 &5663211131276184493
 MonoBehaviour:
   m_ObjectHideFlags: 0
