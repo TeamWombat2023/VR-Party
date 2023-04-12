@@ -200,6 +200,7 @@ Transform:
   - {fileID: 6948015380527318601}
   - {fileID: 3695594628789852190}
   - {fileID: 8528894348753020833}
+  - {fileID: 7564683882969726636}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -219,7 +220,7 @@ MonoBehaviour:
   avatarHead: {fileID: 7934836039279491117}
   avatarBody: {fileID: 6948015380527318601}
   leftHand: {fileID: 3695594628789852190}
-  rightHand: {fileID: 8528894348753020833}
+  rightHand: {fileID: 7564683882969726636}
 --- !u!1 &6891889006077643999
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +304,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &512784106337622981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7686800500755628313}
+    m_Modifications:
+    - target: {fileID: 2885479921247016445, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_Name
+      value: RightHand Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.87426
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8217998
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+--- !u!4 &7564683882969726636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8063380140076311913, guid: 0e8f0caaa721db44db80b20a6530f173, type: 3}
+  m_PrefabInstance: {fileID: 512784106337622981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3660768934142479459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -719,6 +782,10 @@ PrefabInstance:
     - target: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5686134208185362932, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: m_Layer
