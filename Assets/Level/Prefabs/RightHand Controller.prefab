@@ -243,7 +243,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   raycastOrigin: {fileID: 3664855634097699775}
-  shootGunTrigger: {fileID: 0}
+  shootGunTrigger: {fileID: -7548394411151802269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   hitVFX: {fileID: 7678273535724244450, guid: 08c9e2e8eaa8a2543855500f36be6b35, type: 3}
 --- !u!1 &3408649317417827048
 GameObject:
