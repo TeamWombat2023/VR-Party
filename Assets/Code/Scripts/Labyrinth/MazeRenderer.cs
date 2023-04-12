@@ -131,7 +131,7 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false  && PhotonNetwork.IsMasterClient) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
@@ -148,23 +148,23 @@ public class MazeRenderer : MonoBehaviour {
             }
         }
 
-        if (generate_maze == true) {
+        if (generate_maze == true && PhotonNetwork.IsMasterClient) {
             GameObject[] obj;
 
             if (generate_maze_first_run == true) {
-                if(PhotonNetwork.IsMasterClient){
-                    Debug.Log("Generating new maze for master");
-                    maze = MazeGenerator.Generate(width, height);
-                    Draw(maze, false);
-                    string maze_json = JsonUtility.ToJson(wallList);
-                    myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
-                    Debug.Log("New maze Generated and sent to clients");
-                }
+                
+                Debug.Log("Generating new maze for master");
+                maze = MazeGenerator.Generate(width, height);
+                Draw(maze, false);
+                string maze_json = JsonUtility.ToJson(wallList);
+                myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
+                Debug.Log("New maze Generated and sent to clients");
+                
                 obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
-            }
-
+            
+            
             //animate going up
             obj = GameObject.FindGameObjectsWithTag("Wall");
             for (var i = 0; i < obj.Length; i++)
@@ -176,6 +176,9 @@ public class MazeRenderer : MonoBehaviour {
                 generate_maze_first_run = true;
                 genTime = PhotonNetwork.ServerTimestamp;
             }
+            
+            }
+
         }
     }
 }
