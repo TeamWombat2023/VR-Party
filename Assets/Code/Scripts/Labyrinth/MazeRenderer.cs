@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MazeRenderer : MonoBehaviour {
+
+    [SerializeField] private PhotonView myPV;
     [SerializeField] [Range(1, 50)] private int width = 10;
-
     [SerializeField] [Range(1, 50)] private int height = 10;
-
     [SerializeField] private float size = 1f;
-
     [SerializeField] private Transform wallPrefab = null;
     //
     // [SerializeField]
@@ -29,9 +29,11 @@ public class MazeRenderer : MonoBehaviour {
         genTime = startTime;
 
         //generate and draw the maze
-        var maze = MazeGenerator.Generate(width, height);
-        Draw(maze, true);
-
+        if(PhotonNetwork.IsMasterClient) {
+            var maze = MazeGenerator.Generate(width, height);
+            Draw(maze, true);
+            myPV.RPC("Draw", RpcTarget.OthersBuffered, maze);
+        }
         generate_maze = false;
     }
 
@@ -116,8 +118,11 @@ public class MazeRenderer : MonoBehaviour {
             GameObject[] obj;
 
             if (generate_maze_first_run == true) {
-                var maze = MazeGenerator.Generate(width, height);
-                Draw(maze, false);
+                if(PhotonNetwork.IsMasterClient){
+                    var maze = MazeGenerator.Generate(width, height);
+                    Draw(maze, false);
+                    myPV.RPC("Draw", RpcTarget.OthersBuffered, maze);
+                }
                 obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
