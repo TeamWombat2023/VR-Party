@@ -13,7 +13,7 @@ public class GrabAnimateHandOnInput : MonoBehaviourPunCallbacks {
 
     // Update is called once per frame
     private void Update() {
-        if (PhotonNetwork.IsConnected && photonView.IsMine) {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
             var gripValue = grabAnimationAction.action.ReadValue<float>();
             handAnimator.SetFloat("Grip", gripValue);
         }

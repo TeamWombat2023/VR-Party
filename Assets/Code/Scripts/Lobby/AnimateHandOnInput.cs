@@ -13,7 +13,7 @@ public class AnimateHandOnInput : MonoBehaviourPunCallbacks {
 
     // Update is called once per frame
     private void Update() {
-        if (PhotonNetwork.IsConnected && photonView.IsMine) {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
             var triggerValue = pinchAnimationAction.action.ReadValue<float>();
             handAnimator.SetFloat("Trigger", triggerValue);
         }
