@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AnimateHandOnInput : MonoBehaviour
-{
+public class AnimateHandOnInput : MonoBehaviourPunCallbacks {
     public InputActionProperty pinchAnimationAction;
+
     public Animator handAnimator;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Start() {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float triggerValue = pinchAnimationAction.action.ReadValue<float>();
-        handAnimator.SetFloat("Trigger",triggerValue);
+    private void Update() {
+        if (photonView.IsMine) {
+            var triggerValue = pinchAnimationAction.action.ReadValue<float>();
+            handAnimator.SetFloat("Trigger", triggerValue);
+        }
     }
 }
