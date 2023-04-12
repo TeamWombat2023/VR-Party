@@ -29,7 +29,7 @@ public class MazeRenderer : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         //start a game timer 
-        startTime = Time.time;
+        startTime = PhotonNetwork.ServerTimestamp;
         genTime = startTime;
 
         Debug.Log("Is master client: " + PhotonNetwork.IsMasterClient);
@@ -55,8 +55,8 @@ public class MazeRenderer : MonoBehaviour {
         Debug.Log(wallList.list.Count);
         for (int i = 0; i < wallList.list.Count; i++) {
             var wall = Instantiate(wallPrefab, transform) as Transform;
-            wall.position = wallList.list[i];
-            wall.localScale = new Vector3(size, size, size);
+            wall.position = wallList.list[i].position;
+            wall.eulerAngles = wallList.list[i].eulerAngles;            
         }
     }
 
@@ -68,7 +68,7 @@ public class MazeRenderer : MonoBehaviour {
         //maze = JsonUtility.FromJson<WallState[,]>(maze_json);
 
         wallList= new WallList();
-        wallList.list = new List<Vector3>();
+        wallList.list = new List<Transform>();
 
         for (var i = 0; i < width; ++i)
         for (var j = 0; j < height; ++j) {
@@ -88,7 +88,7 @@ public class MazeRenderer : MonoBehaviour {
                     topWall.position = position + new Vector3(0, 0, size / 2);
                 else
                     topWall.position = position + new Vector3(0, -10, size / 2);
-                wallList.list.Add(topWall.position);
+                wallList.list.Add(topWall);
             }
 
             if (cell.HasFlag(WallState.LEFT)) {
@@ -99,7 +99,7 @@ public class MazeRenderer : MonoBehaviour {
                     leftWall.position = position + new Vector3(-size / 2, 0, 0);
                 else
                     leftWall.position = position + new Vector3(-size / 2, -10, 0);
-                wallList.list.Add(leftWall.position);
+                wallList.list.Add(leftWall);
             }
 
             if (i == width - 1)
@@ -111,7 +111,7 @@ public class MazeRenderer : MonoBehaviour {
                         rightWall.position = position + new Vector3(size / 2, 0, 0);
                     else
                         rightWall.position = position + new Vector3(size / 2, -10, 0);
-                    wallList.list.Add(rightWall.position);
+                    wallList.list.Add(rightWall);
 
                 }
 
@@ -123,7 +123,7 @@ public class MazeRenderer : MonoBehaviour {
                         bottomWall.position = position + new Vector3(0, 0, -size / 2);
                     else
                         bottomWall.position = position + new Vector3(0, -10, -size / 2);
-                    wallList.list.Add(bottomWall.position);
+                    wallList.list.Add(bottomWall);
                 }
         }
     }
@@ -131,7 +131,7 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (Time.time - genTime > 10 && generate_maze == false) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
@@ -174,12 +174,12 @@ public class MazeRenderer : MonoBehaviour {
             if (final_wall_pos.y <= obj[0].transform.position.y) {
                 generate_maze = false;
                 generate_maze_first_run = true;
-                genTime = Time.time;
+                genTime = PhotonNetwork.ServerTimestamp;
             }
         }
     }
 }
 
 class WallList {
-    public List<Vector3> list;
+    public List<Transform> list;
 }
