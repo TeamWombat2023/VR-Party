@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine.InputSystem;
 using InputDevice = UnityEngine.XR.InputDevice;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : MonoBehaviourPunCallbacks {
     public int damage;
     public float fireRate;
     private float _nextFire;
@@ -20,17 +20,23 @@ public class Weapon : MonoBehaviour {
     [Header("VFX")] public GameObject hitVFX;
 
     private void Awake() {
-        device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+            device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        }
     }
 
     // Update is called once per frame
     private void Update() {
-        if (device == null || !device.isValid) device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        if (_nextFire > 0) _nextFire -= Time.deltaTime;
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+            if (device == null || !device.isValid) device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+            if (_nextFire > 0) _nextFire -= Time.deltaTime;
+        }
     }
 
     private void OnEnable() {
-        shootGunTrigger.action.performed += ShootGun;
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+            shootGunTrigger.action.performed += ShootGun;
+        }
     }
 
     private void ShootGun(InputAction.CallbackContext context) {
