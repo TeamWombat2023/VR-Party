@@ -15,7 +15,6 @@ public class Pilot : MonoBehaviour
     private bool isSteeringEnabled;
     public AnimationCurve steeringXCurve;
     public AnimationCurve steeringZCurve;
-    public AnimationCurve planeStabilizationCurve;
     
     private bool isSpeedAdjustmentEnabled;
     private float leftHandPositionBeginning;

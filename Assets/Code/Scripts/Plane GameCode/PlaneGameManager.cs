@@ -8,7 +8,6 @@ public class PlaneGameManager : MonoBehaviour
     [Header("Powerup respawn time")]
     public int powerupRespawnTime;
 
-    
     [Header("Trigger Holders")]
     public GameObject checkPointsHolder;
     public GameObject powerupHolder;
@@ -25,6 +24,8 @@ public class PlaneGameManager : MonoBehaviour
     {
         _checkpoints= checkPointsHolder.GetComponentsInChildren<Checkpoint>();
         _currentCheckpoint = 0;
+        
+        
         
         _powerups = powerupHolder.GetComponentsInChildren<Powerup>();
         EnableNewCheckpoint();
