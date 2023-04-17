@@ -15,6 +15,7 @@ public class Pilot : MonoBehaviour
     private bool isSteeringEnabled;
     public AnimationCurve steeringXCurve;
     public AnimationCurve steeringZCurve;
+    public AnimationCurve planeStabilizationCurve;
     
     private bool isSpeedAdjustmentEnabled;
     private float leftHandPositionBeginning;
@@ -36,6 +37,10 @@ public class Pilot : MonoBehaviour
        if (isSteeringEnabled)
        {
            GetHandInput();
+       }
+       else
+       {
+           SendStabilizationSignalToPlane();
        }
 
        if (isSpeedAdjustmentEnabled)
@@ -121,6 +126,14 @@ public class Pilot : MonoBehaviour
         }
         
         airplane.thrustInput = newThrust;
+    }
+
+
+    private void SendStabilizationSignalToPlane()
+    {
+        var stabilizedPosition = new Vector3(0,0,0);
+
+        airplane.steeringInput = stabilizedPosition;
     }
 
 
