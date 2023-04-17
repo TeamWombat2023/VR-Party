@@ -42,6 +42,7 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     private IEnumerator SetPositionOfPlayer(GameObject player) {
         yield return new WaitForSeconds(0.5f);
         player.transform.position = spawnPoint.position;
+        player.transform.rotation = spawnPoint.rotation;
     }
 
     public void RespawnPlayer() {
