@@ -13,6 +13,9 @@ TagManager:
   - Fruit
   - Bomb
   - Floor
+  - Powerup
+  - Checkpoint
+  - Ground
   layers:
   - Default
   - TransparentFX

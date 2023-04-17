@@ -18,6 +18,8 @@ public class Plane : MonoBehaviour
 
     private Vector3 liftForce;
 
+    private Transform respawnPoint;
+
 
     [Header("Game Manager")]
     public PlaneGameManager planeGameManager;
@@ -41,26 +43,17 @@ public class Plane : MonoBehaviour
     //Steering input from the player
     public Vector3 steeringInput;
     
-    
     public Vector3 turnSpeedConstant;
     public Vector3 turnAccelerationConstant;
-    
-    //Steering power normally determines with sigmoid(speed)
     public AnimationCurve steeringCurve;
     
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-
+        StartCoroutine(SetRestartPoint());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {
@@ -160,7 +153,7 @@ public class Plane : MonoBehaviour
     {
         var speed = Mathf.Max(0, -localVelocity.z);
         var steeringPower =  steeringCurve.Evaluate(speed);
-        Debug.Log("Steering power is: " + steeringPower);
+        //Debug.Log("Steering power is: " + steeringPower);
         var targetAngularVelocity = Vector3.Scale(steeringInput, turnSpeedConstant * steeringPower);
 
         var currentAngularVelocity = localAngularVelocity * Mathf.Rad2Deg;
@@ -176,7 +169,6 @@ public class Plane : MonoBehaviour
 
         rb.AddRelativeTorque(requiredVelocityChange* Mathf.Deg2Rad,ForceMode.VelocityChange);
     }
-
     
 
 
@@ -203,6 +195,37 @@ public class Plane : MonoBehaviour
             other.gameObject.SetActive(false);
             
             planeGameManager.StartPowerupRespawnTimer();
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("Crashed");
+
+            
+            var respawnPosition = collision.transform.position 
+                                  + new Vector3(0,500,0);
+
+            var planeTransform = this.transform;
+            planeTransform.position = respawnPosition;
+            planeTransform.rotation = Quaternion.identity;
+
+            this.rb.velocity = Vector3.zero;
+            this.rb.angularVelocity = Vector3.zero;
+        }
+        
+    }
+
+    public IEnumerator SetRestartPoint()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+
+            respawnPoint = this.transform;
         }
     }
 }
