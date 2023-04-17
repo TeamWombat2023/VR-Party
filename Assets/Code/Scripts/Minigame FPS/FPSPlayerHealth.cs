@@ -4,21 +4,19 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class FPSPlayerHealth : MonoBehaviour
-{
+public class FPSPlayerHealth : MonoBehaviour {
     [SerializeField] public int health;
     public bool isLocalPlayer;
     public bool isImmortal = false;
 
     [PunRPC]
-    public void FPSDamageTake(int _damage){
-        if(!isImmortal){
+    public void FPSDamageTake(int _damage) {
+        if (!isImmortal) {
             health -= _damage;
 
-            if(health <= 0){
-
-                if(isLocalPlayer)
-                    FPSNetworkManager.instance.SpawnPlayerWithDelay();
+            if (health <= 0) {
+                if (isLocalPlayer)
+                    FPSNetworkManager.instance.SpawnPlayersWithDelay();
 
                 Destroy(gameObject);
             }

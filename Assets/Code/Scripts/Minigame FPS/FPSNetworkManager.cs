@@ -17,7 +17,7 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
 
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        SpawnPlayerWithDelay();
+        SpawnPlayersWithDelay();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
@@ -33,10 +33,15 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     }
 
 
-    public void SpawnPlayerWithDelay() {
-        var players = GameManager.gameManager.players;
-        foreach (var player in players) player.transform.position = Vector3.zero;
+    public void SpawnPlayersWithDelay() {
         Invoke("RespawnPlayer", 5);
+        var players = GameManager.gameManager.players;
+        foreach (var player in players) StartCoroutine(SetPositionOfPlayer(player));
+    }
+
+    private IEnumerator SetPositionOfPlayer(GameObject player) {
+        yield return new WaitForSeconds(0.5f);
+        player.transform.position = spawnPoint.position;
     }
 
     public void RespawnPlayer() {
