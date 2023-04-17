@@ -33,8 +33,8 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
 
 
     public void SpawnPlayersWithDelay() {
-        PlayerManager.LocalPlayerInstance.transform.position = Vector3.zero;
-        PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
+        PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
+        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         Invoke("RespawnPlayer", 5);
     }
 

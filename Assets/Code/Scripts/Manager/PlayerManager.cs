@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks {
     public static GameObject LocalPlayerInstance;
+    public static GameObject LocalXROrigin;
 
     private void Awake() {
-        if (photonView.IsMine) LocalPlayerInstance = gameObject;
+        if (photonView.IsMine) {
+            LocalPlayerInstance = gameObject;
+            LocalXROrigin = transform.GetChild(0).gameObject;
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 }
