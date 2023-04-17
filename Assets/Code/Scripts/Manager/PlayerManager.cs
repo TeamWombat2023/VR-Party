@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks {
     public static GameObject LocalPlayerInstance { get; set; }
-
+    public int health = 100;
+    public bool isImmortal = false;
     public static GameObject LocalXROrigin;
 
     private void Awake() {
@@ -13,5 +14,19 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+
+
+    [PunRPC]
+    public void FPSDamageTake(int _damage) {
+        if (!isImmortal) {
+            health -= _damage;
+
+            if (health <= 0) {
+                gameObject.SetActive(false);
+                FPSNetworkManager.instance.RespawnWithDelay(gameObject);
+            }
+        }
     }
 }

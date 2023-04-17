@@ -51,7 +51,7 @@ public class Weapon : MonoBehaviourPunCallbacks {
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
             device.SendHapticImpulse(0, .7f, .25f);
 
-            if (hit.transform.gameObject.GetComponent<FPSPlayerHealth>())
+            if (hit.transform.gameObject.GetComponent<PlayerManager>())
                 hit.transform.gameObject.GetComponent<PhotonView>().RPC("FPSDamageTake", RpcTarget.All, damage);
 
             _nextFire = 1 / fireRate;
