@@ -35,10 +35,12 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public void SpawnPlayersWithDelay() {
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+        PlayerManager.LocalPlayerInstance.SetActive(false);
         Invoke("RespawnPlayer", 5);
     }
 
     public void RespawnPlayer() {
+        PlayerManager.LocalPlayerInstance.SetActive(true);
         roomCam.SetActive(false);
         // StartCoroutine(MyCoroutine(_player));
     }

@@ -2,7 +2,8 @@ using Photon.Pun;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks {
-    public static GameObject LocalPlayerInstance;
+    public static GameObject LocalPlayerInstance { get; set; }
+
     public static GameObject LocalXROrigin;
 
     private void Awake() {
