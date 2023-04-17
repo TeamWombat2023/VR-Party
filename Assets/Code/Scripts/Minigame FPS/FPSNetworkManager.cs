@@ -20,9 +20,7 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
 
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        
-        //roomCam.SetActive(false);
-       // SpawnPlayerWithDelay();
+        var players = GameManager.gameManager.players;
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
@@ -39,7 +37,6 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
 
 
     public void SpawnPlayerWithDelay(){
-        roomCam.SetActive(true);
         Invoke("RespawnPlayer", 5);
     }
 
