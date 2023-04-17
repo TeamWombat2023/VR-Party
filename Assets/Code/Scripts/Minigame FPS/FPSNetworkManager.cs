@@ -5,22 +5,19 @@ using UnityEngine;
 using System.Collections;
 
 public class FPSNetworkManager : MonoBehaviourPunCallbacks {
-
     public static FPSNetworkManager instance;
 
     [SerializeField] private GameObject fpsVRPlayerPrefab;
-    [Space]
-    [SerializeField] private Transform spawnPoint;
-    [Space]
-    [SerializeField] public GameObject roomCam;
+    [Space] [SerializeField] private Transform spawnPoint;
+    [Space] [SerializeField] public GameObject roomCam;
 
-    void Awake(){
+    private void Awake() {
         instance = this;
     }
 
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        var players = GameManager.gameManager.players;
+        SpawnPlayerWithDelay();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
@@ -30,21 +27,21 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public override void OnLeftRoom() {
         PhotonNetwork.Disconnect();
     }
-    
+
     public override void OnDisconnected(DisconnectCause cause) {
         PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
 
-    public void SpawnPlayerWithDelay(){
+    public void SpawnPlayerWithDelay() {
+        var players = GameManager.gameManager.players;
+        foreach (var player in players) player.transform.position = Vector3.zero;
         Invoke("RespawnPlayer", 5);
     }
 
-    public void RespawnPlayer(){
+    public void RespawnPlayer() {
         roomCam.SetActive(false);
-        GameObject _player = PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
         // StartCoroutine(MyCoroutine(_player));
-
     }
 
     // public void MakePlayerMortal(GameObject _player){
@@ -58,5 +55,4 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     //     yield return new WaitForSeconds(5.0f);
     //     MakePlayerMortal(_player);
     // }
-
 }
