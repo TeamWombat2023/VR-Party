@@ -8,7 +8,6 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public static FPSNetworkManager instance;
 
     [SerializeField] private GameObject fpsVRPlayerPrefab;
-    [Space] [SerializeField] private Transform spawnPoint;
     [Space] [SerializeField] public GameObject roomCam;
 
     private void Awake() {
@@ -36,13 +35,8 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public void SpawnPlayersWithDelay() {
         Invoke("RespawnPlayer", 5);
         var players = GameManager.gameManager.players;
-        foreach (var player in players) StartCoroutine(SetPositionOfPlayer(player));
-    }
-
-    private IEnumerator SetPositionOfPlayer(GameObject player) {
-        yield return new WaitForSeconds(0.5f);
-        player.transform.position = spawnPoint.position;
-        player.transform.rotation = spawnPoint.rotation;
+        PlayerManager.LocalPlayerInstance.transform.position = Vector3.zero;
+        PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
     }
 
     public void RespawnPlayer() {
