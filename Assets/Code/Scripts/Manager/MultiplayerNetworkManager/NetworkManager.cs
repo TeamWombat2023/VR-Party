@@ -48,6 +48,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer) {
+        GameManager.gameManager.RemovePlayer(GameManager.gameManager.GetPlayer(otherPlayer.NickName));
         ShowPlayers();
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
     }

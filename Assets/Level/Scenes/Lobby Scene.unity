@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10033351, g: 0.124849945, b: 0.31725666, a: 1}
+  m_IndirectSpecularColor: {r: 0.10062522, g: 0.12500674, b: 0.31766632, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2468,8 +2468,6 @@ MonoBehaviour:
   lobbyInfoText: {fileID: 67686207}
   startTheGameButton: {fileID: 5084486866701743973}
   xrOrigin: {fileID: 196896204}
-  genericVRPlayerPrefab: {fileID: 443574188345112548, guid: 8ca9dc673c0c7df419a781297c0db48d, type: 3}
-  spawnPosition: {x: 0, y: 0, z: 0}
   lobbyCanvas: {fileID: 1326234977}
   lobbyInfoCanvas: {fileID: 44263354}
 --- !u!4 &1546716939
