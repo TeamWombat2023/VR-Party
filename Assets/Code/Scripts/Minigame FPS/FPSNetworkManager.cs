@@ -45,7 +45,7 @@ public class FPSNetworkManager : MonoBehaviour {
     private IEnumerator MakePlayerMortal(GameObject _player) {
         yield return new WaitForSeconds(5.0f);
         Debug.Log("MORTAL YAPTI");
-        _player.GetComponent<PlayerSetup>().OpenWeapon();
+        // _player.GetComponent<PlayerSetup>().OpenWeapon();
         _player.GetComponent<PlayerManager>().isImmortal = false;
     }
 }

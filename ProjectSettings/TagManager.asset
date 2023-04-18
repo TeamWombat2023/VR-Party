@@ -13,6 +13,9 @@ TagManager:
   - Fruit
   - Bomb
   - Floor
+  - FxTemporaire
+  - Body
+  - Head
   layers:
   - Default
   - TransparentFX

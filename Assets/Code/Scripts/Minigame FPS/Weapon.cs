@@ -20,9 +20,8 @@ public class Weapon : MonoBehaviourPunCallbacks {
     [Header("VFX")] public GameObject hitVFX;
 
     private void Awake() {
-        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine)
             device = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        }
     }
 
     // Update is called once per frame
@@ -34,9 +33,8 @@ public class Weapon : MonoBehaviourPunCallbacks {
     }
 
     private void OnEnable() {
-        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine)
             shootGunTrigger.action.performed += ShootGun;
-        }
     }
 
     private void ShootGun(InputAction.CallbackContext context) {
@@ -51,8 +49,8 @@ public class Weapon : MonoBehaviourPunCallbacks {
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
             device.SendHapticImpulse(0, .7f, .25f);
 
-            if (hit.transform.gameObject.GetComponent<PlayerManager>())
-                hit.transform.gameObject.GetComponent<PhotonView>().RPC("FPSDamageTake", RpcTarget.All, damage);
+            if (hit.collider.CompareTag("Body") || hit.collider.CompareTag("Head"))
+                hit.transform.gameObject.GetComponentInParent<PhotonView>().RPC("FPSDamageTake", RpcTarget.All, damage);
 
             _nextFire = 1 / fireRate;
             Debug.Log($"<color=green>Trigger button is {hit.transform.name} pressed</color>");
