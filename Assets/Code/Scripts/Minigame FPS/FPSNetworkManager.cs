@@ -1,10 +1,7 @@
-using Photon.Pun;
-using Photon.Realtime;
-using TMPro;
 using UnityEngine;
 using System.Collections;
 
-public class FPSNetworkManager : MonoBehaviourPunCallbacks {
+public class FPSNetworkManager : MonoBehaviour {
     public static FPSNetworkManager instance;
 
     [SerializeField] private GameObject fpsVRPlayerPrefab;
@@ -19,19 +16,6 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
         SpawnPlayersWithDelay();
     }
 
-    public override void OnJoinRoomFailed(short returnCode, string message) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-
-    public override void OnLeftRoom() {
-        PhotonNetwork.Disconnect();
-    }
-
-    public override void OnDisconnected(DisconnectCause cause) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-
-
     public void SpawnPlayersWithDelay() {
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
@@ -42,7 +26,6 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
     public void SpawnPlayer() {
         PlayerManager.LocalPlayerInstance.SetActive(true);
         roomCam.SetActive(false);
-        // StartCoroutine(MyCoroutine(_player));
     }
 
 
@@ -50,7 +33,7 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
         StartCoroutine(RespawnPlayer(_player));
     }
 
-    IEnumerator RespawnPlayer(GameObject _player) {
+    private IEnumerator RespawnPlayer(GameObject _player) {
         yield return new WaitForSeconds(3.0f);
         _player.transform.GetChild(0).gameObject.transform.position = Vector3.zero;
         _player.transform.GetChild(0).gameObject.transform.rotation = Quaternion.identity;
@@ -58,11 +41,11 @@ public class FPSNetworkManager : MonoBehaviourPunCallbacks {
         _player.SetActive(true);
         //StartCoroutine(MakePlayerMortal(_player));
     }
-    IEnumerator MakePlayerMortal(GameObject _player){
+
+    private IEnumerator MakePlayerMortal(GameObject _player) {
         yield return new WaitForSeconds(5.0f);
         Debug.Log("MORTAL YAPTI");
         _player.GetComponent<PlayerSetup>().OpenWeapon();
         _player.GetComponent<PlayerManager>().isImmortal = false;
     }
-    
 }
