@@ -145,7 +145,7 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 1000 && generate_maze == false) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
