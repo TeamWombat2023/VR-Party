@@ -42,15 +42,15 @@ public class MazeRenderer : MonoBehaviour {
             Draw(maze, true);
             Debug.Log(wallList.list);
             maze_json = JsonUtility.ToJson(wallList);
-            myPV.RPC("Sync_trees", RpcTarget.Others, maze_json, true);
+            myPV.RPC("Sync_walls", RpcTarget.Others, maze_json, true);
             Debug.Log("First maze Generated and sent to clients");
         }
         generate_maze = false;
     }
 
     [PunRPC]
-    private void Sync_trees(string maze_json, bool initial) {
-        Debug.Log("Syncing trees");
+    private void Sync_walls(string maze_json, bool initial) {
+        Debug.Log("Syncing walls");
         wallList = JsonUtility.FromJson<WallList>(maze_json);
         Debug.Log(wallList.list.Count);
         for (int i = 0; i < wallList.list.Count; i++) {

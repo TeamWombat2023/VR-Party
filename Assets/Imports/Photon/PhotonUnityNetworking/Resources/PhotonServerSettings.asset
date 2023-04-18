@@ -49,6 +49,8 @@ MonoBehaviour:
   - FPSDamageTake
   - Draw
   - Sync_trees
+  - sync_down
+  - sync_up
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
