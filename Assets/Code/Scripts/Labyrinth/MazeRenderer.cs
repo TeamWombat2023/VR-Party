@@ -65,6 +65,14 @@ public class MazeRenderer : MonoBehaviour {
         }
     }
 
+    [PunRPC]
+    private void sync_up(){
+        var obj = GameObject.FindGameObjectsWithTag("Wall");
+        Debug.Log("Animating going up. Found: " + obj.Length + " walls");
+        for (var i = 0; i < obj.Length; i++)
+            obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
+    }
+
 
     private void Draw(WallState[,] maze, bool initial) {
         //var floor = Instantiate(floorPrefab, transform);
@@ -182,22 +190,37 @@ public class MazeRenderer : MonoBehaviour {
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
             }
+
+            else if (generate_maze == true){
+                //animate going up
+                var obj = GameObject.FindGameObjectsWithTag("Wall");
+                Debug.Log("Animating going up. Found: " + obj.Length + " walls");
+                for (var i = 0; i < obj.Length; i++)
+                    obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
+                myPV.RPC("sync_up", RpcTarget.OthersBuffered);
+
+                if (final_wall_pos.y <= obj[0].transform.position.y) {
+                    generate_maze = false;
+                    generate_maze_first_run = true;
+                    genTime = PhotonNetwork.ServerTimestamp;
+                }
+            }
         }
         
-        if(generate_maze == true){
-            //animate going up
-            var obj = GameObject.FindGameObjectsWithTag("Wall");
-            Debug.Log("Animating going up. Found: " + obj.Length + " walls");
-            for (var i = 0; i < obj.Length; i++)
-                obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
-
-            if (final_wall_pos.y <= obj[0].transform.position.y) {
-                generate_maze = false;
-                generate_maze_first_run = true;
-                genTime = PhotonNetwork.ServerTimestamp;
-            }
-            
-        }
+        //if(generate_maze == true){
+        //    //animate going up
+        //    var obj = GameObject.FindGameObjectsWithTag("Wall");
+        //    Debug.Log("Animating going up. Found: " + obj.Length + " walls");
+        //    for (var i = 0; i < obj.Length; i++)
+        //        obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
+//
+        //    if (final_wall_pos.y <= obj[0].transform.position.y) {
+        //        generate_maze = false;
+        //        generate_maze_first_run = true;
+        //        genTime = PhotonNetwork.ServerTimestamp;
+        //    }
+        //    
+        //}
     }
 }
 
