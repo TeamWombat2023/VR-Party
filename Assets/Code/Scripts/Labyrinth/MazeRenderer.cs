@@ -57,10 +57,10 @@ public class MazeRenderer : MonoBehaviour {
             var wall = Instantiate(wallPrefab, transform) as Transform;
             wall.position = wallList.list[i];
             if (wallList.sidewall[i] == true) {
+                Debug.Log("Sidewall");
                 wall.eulerAngles = new Vector3(0, 90, 0);
             }
             Debug.Log("Created wall at position:" + wall.position);
-            //wall.eulerAngles = wallList.list[i].eulerAngles;            
         }
     }
 
@@ -139,7 +139,7 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false  && PhotonNetwork.IsMasterClient) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 10 && generate_maze == false) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
@@ -177,7 +177,7 @@ public class MazeRenderer : MonoBehaviour {
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
             }
-            else {
+            else if(generate_maze == true){
             
                 //animate going up
                 obj = GameObject.FindGameObjectsWithTag("Wall");
