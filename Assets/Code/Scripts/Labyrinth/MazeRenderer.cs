@@ -168,7 +168,6 @@ public class MazeRenderer : MonoBehaviour {
         }
 
         else if (generate_maze == true && PhotonNetwork.IsMasterClient) {
-            GameObject[] obj;
 
             if (generate_maze_first_run == true) {
                 
@@ -179,18 +178,17 @@ public class MazeRenderer : MonoBehaviour {
                 myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
                 Debug.Log("New maze Generated and sent to clients");
                 
-                obj = GameObject.FindGameObjectsWithTag("Wall");
+                var obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
             }
         }
-        else if(generate_maze == true){
-            
+        
+        if(generate_maze == true){
             //animate going up
-            obj = GameObject.FindGameObjectsWithTag("Wall");
+            var obj = GameObject.FindGameObjectsWithTag("Wall");
             for (var i = 0; i < obj.Length; i++)
-            //animate the new walls up
-            obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
+                obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
 
             if (final_wall_pos.y <= obj[0].transform.position.y) {
                 generate_maze = false;
