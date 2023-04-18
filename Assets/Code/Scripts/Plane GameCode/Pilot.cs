@@ -131,7 +131,6 @@ public class Pilot : MonoBehaviour
     private void SendStabilizationSignalToPlane()
     {
         var stabilizedPosition = new Vector3(0,0,0);
-
         airplane.steeringInput = stabilizedPosition;
     }
 

@@ -204,7 +204,6 @@ public class Plane : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Crashed");
-
             
             var respawnPosition = collision.transform.position 
                                   + new Vector3(0,500,0);
