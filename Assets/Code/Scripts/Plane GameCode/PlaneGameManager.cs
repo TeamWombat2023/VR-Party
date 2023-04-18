@@ -25,15 +25,23 @@ public class PlaneGameManager : MonoBehaviour
         _checkpoints= checkPointsHolder.GetComponentsInChildren<Checkpoint>();
         _currentCheckpoint = 0;
         
-        
-        
         _powerups = powerupHolder.GetComponentsInChildren<Powerup>();
         EnableNewCheckpoint();
+
+        StartCoroutine(GameEndEvent());
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator GameEndEvent()
     {
+        yield return new WaitForSeconds(25);
+        Debug.Log("Game has 75 seconds.");
+        yield return new WaitForSeconds(25);
+        Debug.Log("Game has 50 seconds.");
+        yield return new WaitForSeconds(25);
+        Debug.Log("Game has 25 seconds.");
+        yield return new WaitForSeconds(25);
+        Debug.Log("Game has 0 seconds.");
+        
     }
 
 

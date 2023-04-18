@@ -20,6 +20,8 @@ public class Plane : MonoBehaviour
 
     private Transform respawnPoint;
 
+    private int point = 500;
+
 
     [Header("Game Manager")]
     public PlaneGameManager planeGameManager;
@@ -204,6 +206,7 @@ public class Plane : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Crashed");
+            point -= 50;
             
             var respawnPosition = collision.transform.position 
                                   + new Vector3(0,500,0);
