@@ -11,7 +11,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     private void Awake() {
         if (photonView.IsMine) {
             LocalPlayerInstance = gameObject;
+            LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
             LocalXROrigin = transform.GetChild(0).gameObject;
+            foreach (var componentsInChild in LocalPlayerInstance.GetComponentsInChildren<Collider>())
+                componentsInChild.isTrigger = false;
             LocalPlayerPhotonView = photonView;
         }
 
