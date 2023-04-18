@@ -136,8 +136,13 @@ public class MazeRenderer : MonoBehaviour {
             //RemoveMaze();
 
             var obj = GameObject.FindGameObjectsWithTag("Wall");
+            Debug.Log("Found " + obj.Length + " walls");
 
-            if (obj.Length == 0) generate_maze = true;
+            if (obj.Length == 0){
+                generate_maze = true;
+                Debug.Log("generate_maze set to true");
+            }
+
 
             for (var i = 0; i < obj.Length; i++) {
                 //animate while moving
@@ -148,7 +153,7 @@ public class MazeRenderer : MonoBehaviour {
             }
         }
 
-        if (generate_maze == true && PhotonNetwork.IsMasterClient) {
+        elif (generate_maze == true && PhotonNetwork.IsMasterClient) {
             GameObject[] obj;
 
             if (generate_maze_first_run == true) {
@@ -156,14 +161,15 @@ public class MazeRenderer : MonoBehaviour {
                 Debug.Log("Generating new maze for master");
                 maze = MazeGenerator.Generate(width, height);
                 Draw(maze, false);
-                string maze_json = JsonUtility.ToJson(wallList);
-                myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
-                Debug.Log("New maze Generated and sent to clients");
+                //string maze_json = JsonUtility.ToJson(wallList);
+                //myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
+                //Debug.Log("New maze Generated and sent to clients");
                 
                 obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
-            
+            }
+            else {
             
             //animate going up
             obj = GameObject.FindGameObjectsWithTag("Wall");
