@@ -161,9 +161,9 @@ public class MazeRenderer : MonoBehaviour {
                 Debug.Log("Generating new maze for master");
                 maze = MazeGenerator.Generate(width, height);
                 Draw(maze, false);
-                //string maze_json = JsonUtility.ToJson(wallList);
-                //myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
-                //Debug.Log("New maze Generated and sent to clients");
+                string maze_json = JsonUtility.ToJson(wallList);
+                myPV.RPC("Sync_trees", RpcTarget.OthersBuffered, maze_json, false);
+                Debug.Log("New maze Generated and sent to clients");
                 
                 obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
