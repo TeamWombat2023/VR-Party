@@ -153,7 +153,7 @@ public class MazeRenderer : MonoBehaviour {
             }
         }
 
-        elif (generate_maze == true && PhotonNetwork.IsMasterClient) {
+        else if (generate_maze == true && PhotonNetwork.IsMasterClient) {
             GameObject[] obj;
 
             if (generate_maze_first_run == true) {
@@ -171,17 +171,17 @@ public class MazeRenderer : MonoBehaviour {
             }
             else {
             
-            //animate going up
-            obj = GameObject.FindGameObjectsWithTag("Wall");
-            for (var i = 0; i < obj.Length; i++)
-                //animate the new walls up
-                obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
+                //animate going up
+                obj = GameObject.FindGameObjectsWithTag("Wall");
+                for (var i = 0; i < obj.Length; i++)
+                    //animate the new walls up
+                    obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
 
-            if (final_wall_pos.y <= obj[0].transform.position.y) {
-                generate_maze = false;
-                generate_maze_first_run = true;
-                genTime = PhotonNetwork.ServerTimestamp;
-            }
+                if (final_wall_pos.y <= obj[0].transform.position.y) {
+                    generate_maze = false;
+                    generate_maze_first_run = true;
+                    genTime = PhotonNetwork.ServerTimestamp;
+                }
             
             }
 
