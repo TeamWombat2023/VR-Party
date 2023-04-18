@@ -198,7 +198,7 @@ public class MazeRenderer : MonoBehaviour {
                 maze = MazeGenerator.Generate(width, height);
                 Draw(maze, false);
                 string maze_json = JsonUtility.ToJson(wallList);
-                myPV.RPC("Sync_trees", RpcTarget.Others, maze_json, false);
+                myPV.RPC("Sync_walls", RpcTarget.Others, maze_json, false);
                 Debug.Log("New maze Generated and sent to clients");
                 
                 var obj = GameObject.FindGameObjectsWithTag("Wall");
