@@ -60,6 +60,7 @@ public class MazeRenderer : MonoBehaviour {
                 Debug.Log("Sidewall");
                 wall.eulerAngles = new Vector3(0, 90, 0);
             }
+            wall.localScale = wallList.localScale[i];
             Debug.Log("Created wall at position:" + wall.position);
         }
     }
@@ -73,6 +74,7 @@ public class MazeRenderer : MonoBehaviour {
 
         wallList= new WallList();
         wallList.list = new List<Vector3>();
+        wallList.localScale = new List<Vector3>();
         wallList.sidewall = new List<bool>();
 
         for (var i = 0; i < width; ++i)
@@ -94,6 +96,7 @@ public class MazeRenderer : MonoBehaviour {
                 else
                     topWall.position = position + new Vector3(0, -10, size / 2);
                 wallList.list.Add(topWall.position);
+                wallList.localScale.Add(topWall.localScale);
                 wallList.sidewall.Add(false);
             }
 
@@ -106,6 +109,7 @@ public class MazeRenderer : MonoBehaviour {
                 else
                     leftWall.position = position + new Vector3(-size / 2, -10, 0);
                 wallList.list.Add(leftWall.position);
+                wallList.localScale.Add(leftWall.localScale);
                 wallList.sidewall.Add(true);
             }
 
@@ -119,6 +123,7 @@ public class MazeRenderer : MonoBehaviour {
                     else
                         rightWall.position = position + new Vector3(size / 2, -10, 0);
                     wallList.list.Add(rightWall.position);
+                    wallList.localScale.Add(rightWall.localScale);
                     wallList.sidewall.Add(true);
                 }
 
@@ -131,6 +136,7 @@ public class MazeRenderer : MonoBehaviour {
                     else
                         bottomWall.position = position + new Vector3(0, -10, -size / 2);
                     wallList.list.Add(bottomWall.position);
+                    wallList.localScale.Add(bottomWall.localScale);
                     wallList.sidewall.Add(false);
                 }
         }
@@ -199,5 +205,6 @@ public class MazeRenderer : MonoBehaviour {
 
 class WallList {
     public List<Vector3> list;
+    public List<Vector3> localScale;
     public List<bool> sidewall;
 }
