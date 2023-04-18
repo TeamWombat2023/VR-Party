@@ -10,7 +10,6 @@ public class CrawlAndJumpManager : MonoBehaviour {
 
     private void GenericPlayerModifier() {
         roomCam.SetActive(false);
-        PlayerManager.LocalXROrigin.GetComponent<CharacterController>().enabled = false;
         PlayerManager.LocalPlayerInstance.SetActive(true);
     }
 }
