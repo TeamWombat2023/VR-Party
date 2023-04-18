@@ -73,6 +73,18 @@ public class MazeRenderer : MonoBehaviour {
             obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
     }
 
+    [PunRPC]
+    private void sync_down(){
+        var obj = GameObject.FindGameObjectsWithTag("Wall");
+        for (var i = 0; i < obj.Length; i++) {
+            //animate while moving
+            obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
+            obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
+            //destroy the wall
+            Destroy(obj[i], 1);
+        }
+    }
+
 
     private void Draw(WallState[,] maze, bool initial) {
         //var floor = Instantiate(floorPrefab, transform);
@@ -153,7 +165,7 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (PhotonNetwork.ServerTimestamp - genTime > 1000 && generate_maze == false) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 1000 && generate_maze == false ) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
@@ -165,14 +177,17 @@ public class MazeRenderer : MonoBehaviour {
                 Debug.Log("generate_maze set to true");
             }
 
-
-            for (var i = 0; i < obj.Length; i++) {
-                //animate while moving
-                obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
+            if (PhotonNetwork.IsMasterClient){
+                myPV.RPC("sync_down", RpcTarget.OthersBuffered);
+                for (var i = 0; i < obj.Length; i++) {
+                    //animate while moving
+                    obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
                     obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
-                //destroy the wall
-                Destroy(obj[i], 1);
+                    //destroy the wall
+                    Destroy(obj[i], 1);
+                }
             }
+
         }
 
         else if (generate_maze == true && PhotonNetwork.IsMasterClient) {
