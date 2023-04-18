@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 public class FPSNetworkManager : MonoBehaviour {
     public static FPSNetworkManager instance;
@@ -30,7 +31,7 @@ public class FPSNetworkManager : MonoBehaviour {
 
 
     public void RespawnWithDelay(GameObject _player) {
-        if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerInstance.GetComponent<PhotonView>().Owner.NickName)
+        if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerPhotonView.Owner.NickName)
             roomCam.SetActive(true);
         StartCoroutine(RespawnPlayer(_player));
     }
@@ -41,7 +42,8 @@ public class FPSNetworkManager : MonoBehaviour {
         _player.transform.GetChild(0).gameObject.transform.rotation = Quaternion.identity;
         _player.GetComponent<PlayerManager>().health = 100;
         _player.SetActive(true);
-        if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerInstance.GetComponent<PhotonView>().Owner.NickName)
+        if (_player.GetComponent<PhotonView>().Owner.NickName ==
+            PlayerManager.LocalPlayerInstance.GetComponent<PhotonView>().Owner.NickName)
             roomCam.SetActive(false);
         //StartCoroutine(MakePlayerMortal(_player));
     }

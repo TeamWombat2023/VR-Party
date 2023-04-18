@@ -6,16 +6,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     public int health = 100;
     public bool isImmortal = false;
     public static GameObject LocalXROrigin;
+    public static PhotonView LocalPlayerPhotonView;
 
     private void Awake() {
         if (photonView.IsMine) {
             LocalPlayerInstance = gameObject;
             LocalXROrigin = transform.GetChild(0).gameObject;
+            LocalPlayerPhotonView = photonView;
         }
 
         DontDestroyOnLoad(gameObject);
     }
-
 
 
     [PunRPC]
