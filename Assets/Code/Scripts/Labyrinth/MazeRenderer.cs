@@ -55,9 +55,9 @@ public class MazeRenderer : MonoBehaviour {
         Debug.Log(wallList.list.Count);
         for (int i = 0; i < wallList.list.Count; i++) {
             var wall = Instantiate(wallPrefab, transform) as Transform;
-            wall.position = wallList.list[i].position;
+            wall.position = wallList.list[i];
             Debug.Log("Created wall at position:" + wall.position);
-            wall.eulerAngles = wallList.list[i].eulerAngles;            
+            //wall.eulerAngles = wallList.list[i].eulerAngles;            
         }
     }
 
@@ -89,7 +89,7 @@ public class MazeRenderer : MonoBehaviour {
                     topWall.position = position + new Vector3(0, 0, size / 2);
                 else
                     topWall.position = position + new Vector3(0, -10, size / 2);
-                wallList.list.Add(topWall);
+                wallList.list.Add(topWall.position);
             }
 
             if (cell.HasFlag(WallState.LEFT)) {
@@ -100,7 +100,7 @@ public class MazeRenderer : MonoBehaviour {
                     leftWall.position = position + new Vector3(-size / 2, 0, 0);
                 else
                     leftWall.position = position + new Vector3(-size / 2, -10, 0);
-                wallList.list.Add(leftWall);
+                wallList.list.Add(leftWall.position);
             }
 
             if (i == width - 1)
@@ -112,7 +112,7 @@ public class MazeRenderer : MonoBehaviour {
                         rightWall.position = position + new Vector3(size / 2, 0, 0);
                     else
                         rightWall.position = position + new Vector3(size / 2, -10, 0);
-                    wallList.list.Add(rightWall);
+                    wallList.list.Add(rightWall.position);
 
                 }
 
@@ -124,7 +124,7 @@ public class MazeRenderer : MonoBehaviour {
                         bottomWall.position = position + new Vector3(0, 0, -size / 2);
                     else
                         bottomWall.position = position + new Vector3(0, -10, -size / 2);
-                    wallList.list.Add(bottomWall);
+                    wallList.list.Add(bottomWall.position);
                 }
         }
     }
