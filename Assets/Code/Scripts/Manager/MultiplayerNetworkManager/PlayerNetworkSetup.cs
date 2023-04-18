@@ -29,6 +29,9 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
             var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
             inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
             mainAvatar.AddComponent<AudioListener>();
+            foreach (var componentsInChild in mainAvatar.GetComponentsInChildren<Collider>())
+                if (componentsInChild.CompareTag("Body") || componentsInChild.CompareTag("Head"))
+                    componentsInChild.isTrigger = false;
         }
         else {
             // This is another player

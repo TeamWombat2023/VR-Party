@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class AvatarHolder : MonoBehaviour {
@@ -20,9 +19,5 @@ public class AvatarHolder : MonoBehaviour {
             if (null == child) continue;
             SetLayerRecursively(child.gameObject, newLayer);
         }
-    }
-
-    private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Collision with " + collision.gameObject.name);
     }
 }

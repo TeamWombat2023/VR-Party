@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using UnityEngine;
 
@@ -11,13 +12,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     private void Awake() {
         if (photonView.IsMine) {
             LocalPlayerInstance = gameObject;
+            LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
             LocalXROrigin = transform.GetChild(0).gameObject;
             LocalPlayerPhotonView = photonView;
         }
 
         DontDestroyOnLoad(gameObject);
     }
-
 
     [PunRPC]
     public void FPSDamageTake(int _damage) {
