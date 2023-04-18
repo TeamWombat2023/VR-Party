@@ -187,6 +187,7 @@ public class MazeRenderer : MonoBehaviour {
         if(generate_maze == true){
             //animate going up
             var obj = GameObject.FindGameObjectsWithTag("Wall");
+            Debug.Log("Animating going up. Found: " + obj.Length + " walls");
             for (var i = 0; i < obj.Length; i++)
                 obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
 
