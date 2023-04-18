@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class obstruction_spawner : MonoBehaviour
+using Photon.Pun;
+public class obstruction_spawner : MonoBehaviourPunCallbacks
 {
     public GameObject obstructionPrefab;
     private float top_or_bottom = 0f;
@@ -24,6 +24,7 @@ public class obstruction_spawner : MonoBehaviour
         InvokeRepeating("obstruction_spawn", 5f, 3f);
     }
     void obstruction_spawn(){
+        if(PhotonNetwork.IsMasterClient){
         var clone = Instantiate(obstructionPrefab, transform.position, Quaternion.identity);
         top_or_bottom = Random.Range(0,2);
         if(Random.Range(0,2) == 0){
@@ -32,6 +33,7 @@ public class obstruction_spawner : MonoBehaviour
         if (top_or_bottom == 0)
         {
             clone.transform.position = clone.transform.position + new Vector3(0, 1.75f, 0);
+        }
         }
     }
 }
