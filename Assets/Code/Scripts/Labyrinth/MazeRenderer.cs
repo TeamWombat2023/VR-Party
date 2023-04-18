@@ -56,6 +56,9 @@ public class MazeRenderer : MonoBehaviour {
         for (int i = 0; i < wallList.list.Count; i++) {
             var wall = Instantiate(wallPrefab, transform) as Transform;
             wall.position = wallList.list[i];
+            if (wallList.sidewall[i] == true) {
+                wall.eulerAngles = new Vector3(0, 90, 0);
+            }
             Debug.Log("Created wall at position:" + wall.position);
             //wall.eulerAngles = wallList.list[i].eulerAngles;            
         }
@@ -69,7 +72,8 @@ public class MazeRenderer : MonoBehaviour {
         //maze = JsonUtility.FromJson<WallState[,]>(maze_json);
 
         wallList= new WallList();
-        wallList.list = new List<Transform>();
+        wallList.list = new List<Vector3>();
+        wallList.sidewall = new List<bool>();
 
         for (var i = 0; i < width; ++i)
         for (var j = 0; j < height; ++j) {
@@ -90,6 +94,7 @@ public class MazeRenderer : MonoBehaviour {
                 else
                     topWall.position = position + new Vector3(0, -10, size / 2);
                 wallList.list.Add(topWall.position);
+                wallList.sidewall.Add(false);
             }
 
             if (cell.HasFlag(WallState.LEFT)) {
@@ -101,6 +106,7 @@ public class MazeRenderer : MonoBehaviour {
                 else
                     leftWall.position = position + new Vector3(-size / 2, -10, 0);
                 wallList.list.Add(leftWall.position);
+                wallList.sidewall.Add(true);
             }
 
             if (i == width - 1)
@@ -113,7 +119,7 @@ public class MazeRenderer : MonoBehaviour {
                     else
                         rightWall.position = position + new Vector3(size / 2, -10, 0);
                     wallList.list.Add(rightWall.position);
-
+                    wallList.sidewall.Add(true);
                 }
 
             if (j == 0)
@@ -125,6 +131,7 @@ public class MazeRenderer : MonoBehaviour {
                     else
                         bottomWall.position = position + new Vector3(0, -10, -size / 2);
                     wallList.list.Add(bottomWall.position);
+                    wallList.sidewall.Add(false);
                 }
         }
     }
@@ -191,5 +198,6 @@ public class MazeRenderer : MonoBehaviour {
 }
 
 class WallList {
-    public List<Transform> list;
+    public List<Vector3> list;
+    public List<bool> sidewall;
 }
