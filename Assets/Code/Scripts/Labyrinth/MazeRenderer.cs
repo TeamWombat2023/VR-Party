@@ -56,6 +56,7 @@ public class MazeRenderer : MonoBehaviour {
         for (int i = 0; i < wallList.list.Count; i++) {
             var wall = Instantiate(wallPrefab, transform) as Transform;
             wall.position = wallList.list[i].position;
+            Debug.Log("Created wall at position:" + wall.position);
             wall.eulerAngles = wallList.list[i].eulerAngles;            
         }
     }
