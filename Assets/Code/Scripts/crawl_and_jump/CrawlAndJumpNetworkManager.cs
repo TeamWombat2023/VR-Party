@@ -12,7 +12,7 @@ public class CrawlAndJumpNetworkManager : MonoBehaviourPunCallbacks {
     private void Start() {
         Debug.Log("JOINED MINIGAME");
         GameObject _player = PhotonNetwork.Instantiate(genericPlayer.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        //_player.GetComponent<PlayerSetup>().IsLocalPlayer();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
