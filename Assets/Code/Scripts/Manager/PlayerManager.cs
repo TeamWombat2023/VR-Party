@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks {
     public static GameObject LocalPlayerInstance { get; set; }
     public int health = 100;
+    public int score = 0;
     public bool isImmortal = false;
     public static GameObject LocalXROrigin;
     public static PhotonView LocalPlayerPhotonView;
@@ -30,4 +31,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("ScorePickup")){
+            other.gameObject.SetActive(false);
+            score += 10;
+            Debug.Log("Score: " + score);
+        }
+
+    }
+
 }
