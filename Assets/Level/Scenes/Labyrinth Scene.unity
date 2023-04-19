@@ -2600,8 +2600,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPV: {fileID: 1035876796}
-  width: 19
-  height: 19
+  width: 10
+  height: 10
   size: 3
   wallPrefab: {fileID: 2042550943063071405, guid: c4ef7fa7536739f4e9ab34cda5accc49, type: 3}
   coinPrefab: {fileID: 7335100467381024932, guid: f15c8794a79500113b706d87eedea45b, type: 3}
