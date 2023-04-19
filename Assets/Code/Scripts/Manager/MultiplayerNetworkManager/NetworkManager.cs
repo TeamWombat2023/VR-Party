@@ -10,22 +10,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     public GameObject startTheGameButton;
 
     [SerializeField] private GameObject xrOrigin;
-    [SerializeField] private GameObject genericVRPlayerPrefab;
-    [SerializeField] private Vector3 spawnPosition;
     public Canvas lobbyCanvas;
     public Canvas lobbyInfoCanvas;
 
-
-    
 
     public override void OnJoinedRoom() {
         ShowPlayers();
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
         startTheGameButton.SetActive(PhotonNetwork.IsMasterClient);
         xrOrigin.SetActive(false);
-        PhotonNetwork.Instantiate(genericVRPlayerPrefab.name, spawnPosition, Quaternion.identity);
-        lobbyCanvas.worldCamera = genericVRPlayerPrefab.GetComponentInChildren<Camera>();
-        lobbyInfoCanvas.worldCamera = genericVRPlayerPrefab.GetComponentInChildren<Camera>();
+        var player = GameManager.gameManager.CreatePlayer();
+        lobbyCanvas.worldCamera = player.GetComponentInChildren<Camera>();
+        lobbyInfoCanvas.worldCamera = player.GetComponentInChildren<Camera>();
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
@@ -35,7 +31,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     public override void OnLeftRoom() {
         PhotonNetwork.Disconnect();
     }
-    
+
     public override void OnDisconnected(DisconnectCause cause) {
         PhotonNetwork.LoadLevel("Login Scene");
     }
@@ -52,6 +48,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer) {
+        GameManager.gameManager.RemovePlayer(GameManager.gameManager.GetPlayer(otherPlayer.NickName));
         ShowPlayers();
         WriteLobbyInformation(PhotonNetwork.CurrentRoom);
     }

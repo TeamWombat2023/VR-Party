@@ -1,73 +1,56 @@
-using Photon.Pun;
-using Photon.Realtime;
-using TMPro;
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
-public class FPSNetworkManager : MonoBehaviourPunCallbacks {
-
+public class FPSNetworkManager : MonoBehaviour {
     public static FPSNetworkManager instance;
 
-    [SerializeField] private GameObject fpsVRPlayerPrefab;
-    [Space]
-    [SerializeField] private Transform spawnPoint;
-    [Space]
-    [SerializeField] public GameObject roomCam;
+    [Space] [SerializeField] public GameObject roomCam;
 
-    void Awake(){
+    private void Awake() {
         instance = this;
     }
 
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        
+        SpawnPlayersWithDelay();
+    }
+
+    public void SpawnPlayersWithDelay() {
+        PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
+        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+        PlayerManager.LocalPlayerInstance.SetActive(false);
+        Invoke("SpawnPlayer", 5);
+    }
+
+    public void SpawnPlayer() {
+        PlayerManager.LocalPlayerInstance.SetActive(true);
         roomCam.SetActive(false);
-        SpawnPlayerWithDelay();
-    }
-
-    public override void OnJoinRoomFailed(short returnCode, string message) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-
-    public override void OnLeftRoom() {
-        PhotonNetwork.Disconnect();
-    }
-    
-    public override void OnDisconnected(DisconnectCause cause) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
     }
 
 
-    public void SpawnPlayerWithDelay(){
-        roomCam.SetActive(true);
-        Invoke("RespawnPlayer", 5);
+    public void RespawnWithDelay(GameObject _player) {
+        if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerPhotonView.Owner.NickName)
+            roomCam.SetActive(true);
+        StartCoroutine(RespawnPlayer(_player));
     }
 
-    public void RespawnPlayer(){
-        roomCam.SetActive(false);
-        GameObject _player = PhotonNetwork.Instantiate(fpsVRPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-        _player.GetComponent<FPSPlayerHealth>().isLocalPlayer = true;
-        _player.GetComponent<FPSPlayerHealth>().isImmortal = true;
-        
-        //var loadingMethod = this.GetType().GetMethod("MakePlayerMortal");
-        //var arguments = new GameObject[] { _player };
-        //loadingMethod.Invoke(this, arguments);
-        StartCoroutine(MyCoroutine(_player));
-        //Invoke("MakePlayerMortal", 5, _player);
-
+    private IEnumerator RespawnPlayer(GameObject _player) {
+        yield return new WaitForSeconds(3.0f);
+        _player.transform.GetChild(0).gameObject.transform.position = Vector3.zero;
+        _player.transform.GetChild(0).gameObject.transform.rotation = Quaternion.identity;
+        _player.GetComponent<PlayerManager>().health = 100;
+        _player.SetActive(true);
+        if (_player.GetComponent<PhotonView>().Owner.NickName ==
+            PlayerManager.LocalPlayerInstance.GetComponent<PhotonView>().Owner.NickName)
+            roomCam.SetActive(false);
+        //StartCoroutine(MakePlayerMortal(_player));
     }
 
-    public void MakePlayerMortal(GameObject _player){
-        Debug.Log("MORTAL YAPTI");
-        _player.GetComponent<PlayerSetup>().OpenWeapon();
-        _player.GetComponent<FPSPlayerHealth>().isImmortal = false;
-    }
-
-    IEnumerator MyCoroutine(GameObject _player)
-    {
+    private IEnumerator MakePlayerMortal(GameObject _player) {
         yield return new WaitForSeconds(5.0f);
-        MakePlayerMortal(_player);
+        Debug.Log("MORTAL YAPTI");
+        // _player.GetComponent<PlayerSetup>().OpenWeapon();
+        _player.GetComponent<PlayerManager>().isImmortal = false;
     }
-
 }
