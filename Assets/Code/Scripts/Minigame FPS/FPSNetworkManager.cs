@@ -5,7 +5,6 @@ using Photon.Pun;
 public class FPSNetworkManager : MonoBehaviour {
     public static FPSNetworkManager instance;
 
-    [SerializeField] private GameObject fpsVRPlayerPrefab;
     [Space] [SerializeField] public GameObject roomCam;
 
     private void Awake() {
