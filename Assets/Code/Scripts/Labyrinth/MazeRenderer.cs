@@ -14,7 +14,7 @@ public class MazeRenderer : MonoBehaviour {
     // [SerializeField]
     // private Transform floorPrefab = null;
 
-    [SerializeField] private Transform coinPrefab = null;
+        [SerializeField] private Transform coinPrefab = null;
 
     private bool generate_maze;
     private bool generate_maze_first_run = true;
@@ -104,7 +104,7 @@ public class MazeRenderer : MonoBehaviour {
 
             //draw the coins
             if (initial) {
-                var coin =  PhotonNetwork.Instantiate("ScorePickup",  new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
+                var coin =  PhotonNetwork.Instantiate("ScorePickup",  position + new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
             }
 
             if (cell.HasFlag(WallState.UP)) {
