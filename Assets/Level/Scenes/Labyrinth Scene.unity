@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08033919, g: 0.09973541, b: 0.301144, a: 1}
+  m_IndirectSpecularColor: {r: 0.10070386, g: 0.12507325, b: 0.31761062, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -468,7 +468,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 468081056}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &146506180
 MonoBehaviour:
@@ -546,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
@@ -894,6 +894,8 @@ Transform:
   - {fileID: 1928379368}
   - {fileID: 1922833673}
   - {fileID: 543213831}
+  - {fileID: 848788880}
+  - {fileID: 146506179}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2142,7 +2144,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 468081056}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &560672411
 PrefabInstance:
@@ -2404,7 +2406,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 468081056}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &848788881
 MonoBehaviour:
@@ -2577,6 +2579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035876795}
   - component: {fileID: 1035876794}
+  - component: {fileID: 1035876796}
   m_Layer: 0
   m_Name: Maze Renderer
   m_TagString: Untagged
@@ -2596,8 +2599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93caf47cb73b136aacc1383f9ebfd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 19
-  height: 19
+  myPV: {fileID: 1035876796}
+  width: 10
+  height: 10
   size: 3
   wallPrefab: {fileID: 2042550943063071405, guid: c4ef7fa7536739f4e9ab34cda5accc49, type: 3}
   coinPrefab: {fileID: 7335100467381024932, guid: f15c8794a79500113b706d87eedea45b, type: 3}
@@ -2616,6 +2620,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1035876796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035876793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1110554025
 GameObject:
   m_ObjectHideFlags: 0
@@ -3553,7 +3579,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 468081056}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1928379367
 GameObject:
