@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         if(other.gameObject.CompareTag("ScorePickup")){
             other.gameObject.SetActive(false);
             score += 10;
-            Debug.Log("Score: " + score);
+            Debug.Log("Player " + LocalPlayerPhotonView.Owner.NickName + " score:" + score);
         }
 
     }
