@@ -104,8 +104,7 @@ public class MazeRenderer : MonoBehaviour {
 
             //draw the coins
             if (initial) {
-                var coin = Instantiate(coinPrefab, transform) as Transform;
-                coin.position = position + new Vector3(0, 0.5f, 0);
+                var coin =  PhotonNetwork.Instantiate("ScorePickup",  new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
             }
 
             if (cell.HasFlag(WallState.UP)) {
