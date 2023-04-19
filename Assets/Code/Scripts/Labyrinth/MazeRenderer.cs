@@ -108,13 +108,16 @@ public class MazeRenderer : MonoBehaviour {
             }
 
             if (cell.HasFlag(WallState.UP)) {
-                Transform topWall = PhotonNetwork.Instantiate("Wall Prefab", new Vector3(0, 0, 0), Quaternion.identity, 0).transform;
-                topWall.localScale = new Vector3(size, topWall.localScale.y, topWall.localScale.z);
+                Vector3 topWall_position;
+
                 if (initial)
-                    topWall.position = position + new Vector3(0, 0, size / 2);
+                    topWall_position = position + new Vector3(0, 0, size / 2);
                 else
-                    topWall.position = position + new Vector3(0, -10, size / 2);
-                    
+                    topWall_position = position + new Vector3(0, -10, size / 2);
+
+                GameObject topWall = PhotonNetwork.Instantiate("Wall Prefab", topWall_position, Quaternion.identity, 0);
+                topWall.transform.localScale = new Vector3(size, topWall.transform.localScale.y, topWall.transform.localScale.z);
+
                 //wallList.list.Add(topWall.position);
                 //wallList.localScale.Add(topWall.localScale);
                 //wallList.sidewall.Add(false);
