@@ -16,6 +16,9 @@ TagManager:
   - FxTemporaire
   - Body
   - Head
+  - Powerup
+  - Checkpoint
+  - Ground
   layers:
   - Default
   - TransparentFX

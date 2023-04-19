@@ -37,6 +37,10 @@ public class Pilot : MonoBehaviour
        {
            GetHandInput();
        }
+       else
+       {
+           SendStabilizationSignalToPlane();
+       }
 
        if (isSpeedAdjustmentEnabled)
        {
@@ -121,6 +125,13 @@ public class Pilot : MonoBehaviour
         }
         
         airplane.thrustInput = newThrust;
+    }
+
+
+    private void SendStabilizationSignalToPlane()
+    {
+        var stabilizedPosition = new Vector3(0,0,0);
+        airplane.steeringInput = stabilizedPosition;
     }
 
 
