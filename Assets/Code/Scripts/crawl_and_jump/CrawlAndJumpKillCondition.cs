@@ -1,17 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CrawlAndJumpKillCondition : MonoBehaviour
-{
-    private void OnTriggerEnter(Collider other)
-    {
-
-        //other.gameObject.GetParent.transform.GetChild(0).gameObject.transform.position = Vector3.zero;
-        //other.gameObject.GetParent.transform.GetChild(0).gameObject.transform.rotation = Quaternion.identity;
-        if(other.name == "Body"){
+public class CrawlAndJumpKillCondition : MonoBehaviour {
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Body") && other.gameObject.transform.parent.parent.parent.gameObject ==
+            PlayerManager.LocalPlayerInstance)
             PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
-            PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-        }
+        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
     }
 }
