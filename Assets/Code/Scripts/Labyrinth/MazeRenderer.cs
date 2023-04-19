@@ -35,16 +35,16 @@ public class MazeRenderer : MonoBehaviour {
         Debug.Log("Is master client: " + PhotonNetwork.IsMasterClient);
 
         //generate and draw the maze
-        if(PhotonNetwork.IsMasterClient) {
-            maze = MazeGenerator.Generate(width, height);
+//        if(PhotonNetwork.IsMasterClient) {
+        maze = MazeGenerator.Generate(width, height);
             //maze_json = JsonUtility.ToJson(maze);
             //Debug.Log("Createde json: " + maze_json);
-            Draw(maze, true);
-            Debug.Log(wallList.list);
+        Draw(maze, true);
+        Debug.Log(wallList.list);
             //maze_json = JsonUtility.ToJson(wallList);
             //myPV.RPC("Sync_walls", RpcTarget.Others, maze_json, true);
             //Debug.Log("First maze Generated and sent to clients");
-        }
+ //       }
         generate_maze = false;
     }
 
@@ -191,7 +191,7 @@ public class MazeRenderer : MonoBehaviour {
 
         }
 
-        else if (generate_maze == true && PhotonNetwork.IsMasterClient) {
+        else if (generate_maze == true ) {
 
             if (generate_maze_first_run == true) {
                 
