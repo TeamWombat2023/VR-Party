@@ -80,7 +80,7 @@ public class MazeRenderer : MonoBehaviour {
             obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
             obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
             //destroy the wall
-            Destroy(obj[i], 1);
+            Destroy(obj[i]);
         }
     }
 
@@ -184,7 +184,7 @@ public class MazeRenderer : MonoBehaviour {
                     obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
                     obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
                     //destroy the wall
-                    PhotonNetwork.Destroy(obj[i], 1);
+                    PhotonNetwork.Destroy(obj[i]);
                 }
             }
 
