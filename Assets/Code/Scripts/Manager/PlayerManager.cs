@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("ScorePickup")){
-            other.gameObject.SetActive(false);
+            PhotonNetwork.Destroy(other.gameObject);    
             score += 10;
             Debug.Log("Player " + LocalPlayerPhotonView.Owner.NickName + " score:" + score);
         }

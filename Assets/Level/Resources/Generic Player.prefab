@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  score: 0
   isImmortal: 0
 --- !u!1 &443574189243012113
 GameObject:
