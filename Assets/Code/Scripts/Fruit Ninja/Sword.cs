@@ -21,7 +21,7 @@ public class Sword : MonoBehaviour {
             }
         }
         else if (collision.gameObject.CompareTag("Bomb")) {
-            manager.GameOver();
+            manager.DecreaseScore();
         }
     }
 }

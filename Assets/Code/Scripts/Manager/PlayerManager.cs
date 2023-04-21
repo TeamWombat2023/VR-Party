@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks {
@@ -51,10 +52,24 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         }
     }
 
+    public static void AddScore(int amount) {
+        if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.AddScore(amount);
+    }
+
+    public static int GetScore() {
+        if (LocalPlayerPhotonView.IsMine) return LocalPlayerPhotonView.Owner.GetScore();
+
+        return -1;
+    }
+
+    public static void SetScore(int amount) {
+        if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.SetScore(amount);
+    }
+
     [PunRPC]
-    public void FPSDamageTake(int _damage) {
+    public void FPSDamageTake(int damage) {
         if (!isImmortal) {
-            health -= _damage;
+            health -= damage;
 
             if (health <= 0) {
                 gameObject.SetActive(false);
