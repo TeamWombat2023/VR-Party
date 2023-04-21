@@ -13,12 +13,10 @@ public class FruitNinjaManager : MonoBehaviour {
 
     private void SpawnPlayersWithDelay() {
         PlayerManager.ActivateHands("Fruit Ninja");
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
-            GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
+        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left * GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         if (PlayerManager.LocalPlayerPhotonView.IsMine)
-            Instantiate(fruitSpawner,
-                PlayerManager.LocalXROrigin.transform.position + Vector3.forward * 5, Quaternion.identity);
+            Instantiate(fruitSpawner, PlayerManager.LocalXROrigin.transform.position + Vector3.forward, Quaternion.identity);
         PlayerManager.LocalPlayerInstance.SetActive(false);
         Invoke("SpawnPlayer", 5);
     }
