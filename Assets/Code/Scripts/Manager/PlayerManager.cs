@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     public static GameObject LocalPlayerInstance { get; set; }
     public int health = 100;
     public bool isImmortal = false;
+    private static PlayerUIManager _playerUIManager;
     public static GameObject LocalXROrigin;
     public static PhotonView LocalPlayerPhotonView;
     public static GameObject LocalAvatar;
@@ -24,6 +25,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
             LocalAvatarLeftHand = LocalAvatar.transform.GetChild(2).gameObject;
             LocalAvatarRightHand = LocalAvatar.transform.GetChild(3).gameObject;
             LocalPlayerPhotonView = photonView;
+            _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
         }
 
         DontDestroyOnLoad(gameObject);
@@ -65,6 +67,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     public static void SetScore(int amount) {
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.SetScore(amount);
     }
+
+    public static void OpenScoreboard() {
+        if (LocalPlayerPhotonView.IsMine) _playerUIManager.OpenScoreBoard();
+    }
+
 
     [PunRPC]
     public void FPSDamageTake(int damage) {

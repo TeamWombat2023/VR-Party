@@ -43,7 +43,13 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return player;
     }
 
-    public Player[] GetPlayers() {
+    public string[] GetPlayerNames() {
+        var playerNames = new string[PhotonNetwork.PlayerList.Length];
+        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) playerNames[i] = PhotonNetwork.PlayerList[i].NickName;
+        return playerNames;
+    }
+
+    public static Player[] GetPlayers() {
         return PhotonNetwork.PlayerList;
     }
 
@@ -64,18 +70,23 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public void StartMinigame(Minigame minigame) {
         switch (minigame) {
             case Minigame.PlaneGame:
+                _isPlayed[0] = true;
                 LoadScene("PlaneGameScene");
                 break;
             case Minigame.FruitNinja:
+                _isPlayed[1] = true;
                 LoadScene("Fruit Ninja");
                 break;
             case Minigame.FPS:
+                _isPlayed[2] = true;
                 LoadScene("FPS Scene");
                 break;
             case Minigame.Labyrinth:
+                _isPlayed[3] = true;
                 LoadScene("Labyrinth Scene");
                 break;
             case Minigame.CrawlAndJump:
+                _isPlayed[4] = true;
                 LoadScene("Crawl and Jump");
                 break;
             default:
@@ -83,6 +94,10 @@ public class GameManager : MonoBehaviourPunCallbacks {
                 LoadScene("Lobby Scene");
                 break;
         }
+    }
+
+    public void StartNextGame() {
+        StartMinigame(GetRandomMinigame());
     }
 
     public void ResetMinigame() {
