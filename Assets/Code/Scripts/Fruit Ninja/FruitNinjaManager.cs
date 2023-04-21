@@ -33,15 +33,15 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     public void IncrementScore() {
-        PlayerManager.AddScore(1);
+        PlayerManager.AddScoreToMiniGame("Fruit Ninja", 1);
     }
 
     public void DecreaseScore() {
-        PlayerManager.AddScore(-2);
+        PlayerManager.AddScoreToMiniGame("Fruit Ninja", -2);
     }
 
     public void FinishGame() {
-        GameManager.gameManager.OrderPlayersAndSetNewScores();
+        GameManager.gameManager.OrderPlayersAndSetNewScores("Fruit Ninja");
         PlayerManager.ActivateHands("");
         PlayerManager.OpenScoreboard();
     }

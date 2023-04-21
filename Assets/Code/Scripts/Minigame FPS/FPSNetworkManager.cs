@@ -6,6 +6,7 @@ public class FPSNetworkManager : MonoBehaviour {
     public static FPSNetworkManager instance;
 
     [Space] [SerializeField] public GameObject roomCam;
+    public float gameDuration = 60f;
 
     private void Awake() {
         instance = this;
@@ -13,11 +14,12 @@ public class FPSNetworkManager : MonoBehaviour {
 
     private void Start() {
         Debug.Log("JOINED MINIGAME");
+        Invoke(nameof(FinishGame), gameDuration);
         SpawnPlayersWithDelay();
     }
 
     public void SpawnPlayersWithDelay() {
-        PlayerManager.ActivateHands("FPS");
+        PlayerManager.SetWeapon(false);
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.SetActive(false);
@@ -26,7 +28,11 @@ public class FPSNetworkManager : MonoBehaviour {
 
     public void SpawnPlayer() {
         PlayerManager.LocalPlayerInstance.SetActive(true);
+        PlayerManager.LocalPlayerPhotonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+            { "IsImmortal", true }
+        });
         roomCam.SetActive(false);
+        StartCoroutine(MakePlayerMortal(PlayerManager.LocalPlayerInstance));
     }
 
 
@@ -40,18 +46,35 @@ public class FPSNetworkManager : MonoBehaviour {
         yield return new WaitForSeconds(3.0f);
         _player.transform.GetChild(0).gameObject.transform.position = Vector3.zero;
         _player.transform.GetChild(0).gameObject.transform.rotation = Quaternion.identity;
-        _player.GetComponent<PlayerManager>().health = 100;
+        var _playerManager = _player.GetComponent<PlayerManager>();
+        _playerManager.health = 100;
         _player.SetActive(true);
-        if (_player.GetComponent<PhotonView>().Owner.NickName ==
-            PlayerManager.LocalPlayerInstance.GetComponent<PhotonView>().Owner.NickName)
+
+        if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerPhotonView.Owner.NickName) {
             roomCam.SetActive(false);
-        //StartCoroutine(MakePlayerMortal(_player));
+            PlayerManager.SetWeapon(false);
+            PlayerManager.ActivateHands("");
+            _player.GetComponent<PhotonView>().Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+                { "IsImmortal", true }
+            });
+            StartCoroutine(MakePlayerMortal(_player));
+        }
     }
 
     private IEnumerator MakePlayerMortal(GameObject _player) {
         yield return new WaitForSeconds(5.0f);
         Debug.Log("MORTAL YAPTI");
-        // _player.GetComponent<PlayerSetup>().OpenWeapon();
-        _player.GetComponent<PlayerManager>().isImmortal = false;
+        PlayerManager.SetWeapon(true);
+        PlayerManager.ActivateHands("FPS");
+        _player.GetComponent<PhotonView>().Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+            { "IsImmortal", false }
+        });
+    }
+
+    public void FinishGame() {
+        PlayerManager.LocalPlayerPhotonView.RPC("EnableAllPlayers", RpcTarget.All);
+        GameManager.gameManager.OrderPlayersAndSetNewScores("FPS");
+        PlayerManager.ActivateHands("");
+        PlayerManager.OpenScoreboard();
     }
 }

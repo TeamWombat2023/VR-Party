@@ -48,8 +48,22 @@ public class Weapon : MonoBehaviour {
             PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.identity);
             device.SendHapticImpulse(0, .7f, .25f);
 
-            if (hit.collider.CompareTag("Body") || hit.collider.CompareTag("Head"))
-                hit.transform.gameObject.GetComponentInParent<PhotonView>().RPC("FPSDamageTake", RpcTarget.All, damage);
+            if (hit.collider.CompareTag("Body")) {
+                var playerPhotonView = hit.transform.gameObject.GetComponentInParent<PhotonView>();
+                if (playerPhotonView.Owner.CustomProperties.TryGetValue("IsImmortal", out var isImmortal) &&
+                    !(bool)isImmortal) {
+                    playerPhotonView.RPC("FPSDamageTake", RpcTarget.All, damage);
+                    PlayerManager.AddScoreToMiniGame("FPS", 1);
+                }
+            }
+            else if (hit.collider.CompareTag("Head")) {
+                var playerPhotonView = hit.transform.gameObject.GetComponentInParent<PhotonView>();
+                if (playerPhotonView.Owner.CustomProperties.TryGetValue("IsImmortal", out var isImmortal) &&
+                    !(bool)isImmortal) {
+                    playerPhotonView.RPC("FPSDamageTake", RpcTarget.All, damage * 2);
+                    PlayerManager.AddScoreToMiniGame("FPS", 2);
+                }
+            }
 
             _nextFire = 1 / fireRate;
             Debug.Log($"<color=green>Trigger button is {hit.transform.name} pressed</color>");

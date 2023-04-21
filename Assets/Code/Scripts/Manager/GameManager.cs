@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return playerNames;
     }
 
-    public static Player[] GetPlayers() {
+    public Player[] GetPlayers() {
         return PhotonNetwork.PlayerList;
     }
 
@@ -117,28 +119,24 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return -1;
     }
 
-    public void OrderPlayersAndSetNewScores() {
-        var scores = GetScores();
-        var players = PhotonNetwork.PlayerList;
+    public Dictionary<double, string> GetScoresFor(string miniGameName) {
+        var scores = new Dictionary<double, string>();
+        foreach (var player in PhotonNetwork.PlayerList)
+            if (player.CustomProperties.ContainsKey(miniGameName))
+                scores.Add((double)player.CustomProperties[miniGameName], player.NickName);
 
-        for (var i = 0; i < scores.Length; i++)
-        for (var j = 0; j < scores.Length - 1; j++)
-            if (scores[j] < scores[j + 1]) {
-                (scores[j], scores[j + 1]) = (scores[j + 1], scores[j]);
-                (players[j], players[j + 1]) = (players[j + 1], players[j]);
-            }
+        return scores;
+    }
 
-        int k = players.Length;
-        int l = 0;
-        for (int i = 0; i < players.Length; i++) {
-            if (i > 0 && scores[i] != scores[i - 1]) {
-                l++;
-                players[i].SetScore(k - i);
-            }
-            else {
-                k--;
-                players[i].SetScore(k - i - l);
-                l = 0;
+    public void OrderPlayersAndSetNewScores(string miniGameName) {
+        var scores = GetScoresFor(miniGameName);
+        var sortedDict = from entry in scores orderby entry.Value ascending select entry;
+        var i = 1;
+        foreach (var item in sortedDict) {
+            var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Value)];
+            if (player != null) {
+                player.AddScore(i);
+                i++;
             }
         }
     }

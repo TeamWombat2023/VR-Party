@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
@@ -5,7 +6,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviourPunCallbacks {
     public static GameObject LocalPlayerInstance { get; set; }
     public int health = 100;
-    public bool isImmortal = false;
     private static PlayerUIManager _playerUIManager;
     public static GameObject LocalXROrigin;
     public static PhotonView LocalPlayerPhotonView;
@@ -68,6 +68,19 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         return -1;
     }
 
+    public static void AddScoreToMiniGame(string miniGame, double score) {
+        if (LocalPlayerPhotonView.IsMine) {
+            if (LocalPlayerPhotonView.Owner.CustomProperties.TryGetValue(miniGame, out var miniGameScore))
+                LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
+                    { miniGame, (double)miniGameScore + score }
+                });
+            else
+                LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
+                    { miniGame, score }
+                });
+        }
+    }
+
     public static void SetScore(int amount) {
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.SetScore(amount);
     }
@@ -79,13 +92,16 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
 
     [PunRPC]
     public void FPSDamageTake(int damage) {
-        if (!isImmortal) {
-            health -= damage;
+        health -= damage;
 
-            if (health <= 0) {
-                gameObject.SetActive(false);
-                FPSNetworkManager.instance.RespawnWithDelay(gameObject);
-            }
+        if (health <= 0) {
+            gameObject.SetActive(false);
+            FPSNetworkManager.instance.RespawnWithDelay(gameObject);
         }
+    }
+
+    [PunRPC]
+    public void EnableAllPlayers() {
+        gameObject.SetActive(true);
     }
 }
