@@ -17,6 +17,7 @@ public class FPSNetworkManager : MonoBehaviour {
     }
 
     public void SpawnPlayersWithDelay() {
+        PlayerManager.ActivateHands("FPS");
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.SetActive(false);
