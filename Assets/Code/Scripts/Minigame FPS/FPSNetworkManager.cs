@@ -53,7 +53,7 @@ public class FPSNetworkManager : MonoBehaviour {
         if (_player.GetComponent<PhotonView>().Owner.NickName == PlayerManager.LocalPlayerPhotonView.Owner.NickName) {
             roomCam.SetActive(false);
             PlayerManager.SetWeapon(false);
-            PlayerManager.ActivateHands("");
+            PlayerManager.LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, "");
             _player.GetComponent<PhotonView>().Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
                 { "IsImmortal", true }
             });
@@ -65,7 +65,7 @@ public class FPSNetworkManager : MonoBehaviour {
         yield return new WaitForSeconds(5.0f);
         Debug.Log("MORTAL YAPTI");
         PlayerManager.SetWeapon(true);
-        PlayerManager.ActivateHands("FPS");
+        PlayerManager.LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, "FPS");
         _player.GetComponent<PhotonView>().Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
             { "IsImmortal", false }
         });
@@ -75,7 +75,7 @@ public class FPSNetworkManager : MonoBehaviour {
         PlayerManager.LocalPlayerPhotonView.RPC("EnableAllPlayers", RpcTarget.All);
         GameManager.gameManager.OrderPlayersAndSetNewScores("FPS");
         PlayerManager.SetWeapon(false);
-        PlayerManager.ActivateHands("");
+        PlayerManager.LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, "");
         PlayerManager.OpenScoreboard();
     }
 }
