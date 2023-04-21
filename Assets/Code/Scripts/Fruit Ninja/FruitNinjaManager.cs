@@ -1,22 +1,20 @@
-using Photon.Pun.UtilityScripts;
-using TMPro;
 using UnityEngine;
 
 public class FruitNinjaManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
 
-    private FruitSpawner _fruitSpawner;
+    public GameObject fruitSpawner;
     public float gameDuration = 60f;
 
     private void Start() {
-        _fruitSpawner = FindObjectOfType<FruitSpawner>();
         Invoke(nameof(FinishGame), gameDuration);
         SpawnPlayersWithDelay();
     }
 
     private void SpawnPlayersWithDelay() {
         PlayerManager.ActivateHands("Fruit Ninja");
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
+        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
+            GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.SetActive(false);
         Invoke("SpawnPlayer", 5);
@@ -25,6 +23,9 @@ public class FruitNinjaManager : MonoBehaviour {
     public void SpawnPlayer() {
         PlayerManager.LocalPlayerInstance.SetActive(true);
         roomCam.SetActive(false);
+        if (PlayerManager.LocalPlayerPhotonView.IsMine)
+            fruitSpawner = Instantiate(fruitSpawner,
+                PlayerManager.LocalXROrigin.transform.position + Vector3.forward * 5, Quaternion.identity);
     }
 
     public void IncrementScore() {
@@ -38,9 +39,5 @@ public class FruitNinjaManager : MonoBehaviour {
     public void FinishGame() {
         var scores = GameManager.gameManager.GetScores();
         for (var i = 0; i < scores.Length; i++) Debug.Log(scores[i]);
-    }
-
-    public void GameOver() {
-        _fruitSpawner.gameObject.SetActive(false);
     }
 }

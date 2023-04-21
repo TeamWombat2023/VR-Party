@@ -43,13 +43,6 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return player;
     }
 
-    public Player GetPlayer(string playerName) {
-        foreach (var player in PhotonNetwork.PlayerList)
-            if (player.NickName == playerName)
-                return player;
-        return null;
-    }
-
     public Player[] GetPlayers() {
         return PhotonNetwork.PlayerList;
     }
@@ -96,7 +89,6 @@ public class GameManager : MonoBehaviourPunCallbacks {
         for (var i = 0; i < _isPlayed.Length; i++) _isPlayed[i] = false;
     }
 
-    // return all scores of all players
     public int[] GetScores() {
         var scores = new int[PhotonNetwork.PlayerList.Length];
         for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) scores[i] = PhotonNetwork.PlayerList[i].GetScore();
@@ -104,6 +96,12 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return scores;
     }
 
+    public int GetPlayerIndex(string playerName) {
+        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            if (PhotonNetwork.PlayerList[i].NickName == playerName)
+                return i;
+        return -1;
+    }
 
     public enum Minigame {
         PlaneGame,

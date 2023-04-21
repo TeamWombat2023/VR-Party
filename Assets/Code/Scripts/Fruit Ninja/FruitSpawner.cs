@@ -29,7 +29,7 @@ public class FruitSpawner : MonoBehaviour {
     }
 
     private IEnumerator SpawnFruit() {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         while (enabled) {
             var randomFruit = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
 
