@@ -672,6 +672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f10aa0555b0fa246bb99800efcde118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleport_transform: {x: 0, y: 0, z: 0}
+  kaybedenler_klubu: {fileID: 195278370}
 --- !u!65 &478613607
 BoxCollider:
   m_ObjectHideFlags: 0
