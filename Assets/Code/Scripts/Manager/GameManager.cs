@@ -1,6 +1,6 @@
-using System;
-using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public static GameManager gameManager { get; private set; }
     [SerializeField] private GameObject playerPrefab;
 
-    public List<GameObject> players = new();
+    public static bool IsGameFinished = false;
     private int _playerCount;
     private bool[] _isPlayed;
 
@@ -40,29 +40,32 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public GameObject CreatePlayer() {
         var player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         DontDestroyOnLoad(player);
-        players.Add(player);
-        _playerCount++;
         return player;
     }
 
-    public void RemovePlayer(GameObject player) {
-        players.Remove(player);
-        _playerCount--;
-    }
-
-    // get player by name
-    public GameObject GetPlayer(string playerName) {
-        foreach (var player in players)
-            if (player.GetComponent<PhotonView>().Owner.NickName == playerName)
+    public Player GetPlayer(string playerName) {
+        foreach (var player in PhotonNetwork.PlayerList)
+            if (player.NickName == playerName)
                 return player;
         return null;
     }
 
+    public Player[] GetPlayers() {
+        return PhotonNetwork.PlayerList;
+    }
+
     public Minigame GetRandomMinigame() {
         var random = Random.Range(0, 5);
-        while (_isPlayed[random]) random = Random.Range(0, 5);
-        _isPlayed[random] = true;
-        return (Minigame)random;
+        int i, j;
+        for (i = random, j = 0; _isPlayed[i] && j < 5; i++, j++) {
+        }
+
+        if (j < 5) {
+            _isPlayed[i] = true;
+            return (Minigame)random;
+        }
+
+        return Minigame.Lobby;
     }
 
     public void StartMinigame(Minigame minigame) {
@@ -83,8 +86,22 @@ public class GameManager : MonoBehaviourPunCallbacks {
                 LoadScene("Crawl and Jump");
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(minigame), minigame, null);
+                IsGameFinished = true;
+                LoadScene("Lobby Scene");
+                break;
         }
+    }
+
+    public void ResetMinigame() {
+        for (var i = 0; i < _isPlayed.Length; i++) _isPlayed[i] = false;
+    }
+
+    // return all scores of all players
+    public int[] GetScores() {
+        var scores = new int[PhotonNetwork.PlayerList.Length];
+        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) scores[i] = PhotonNetwork.PlayerList[i].GetScore();
+
+        return scores;
     }
 
 
@@ -93,6 +110,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         FruitNinja,
         FPS,
         Labyrinth,
-        CrawlAndJump
+        CrawlAndJump,
+        Lobby
     }
 }

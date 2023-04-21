@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class Sword : MonoBehaviour {
-    private ScoreManager _scoreManager;
+    private FruitNinjaManager manager;
 
     private void Awake() {
-        _scoreManager = FindObjectOfType<ScoreManager>();
+        manager = FindObjectOfType<FruitNinjaManager>();
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -17,11 +17,11 @@ public class Sword : MonoBehaviour {
                 var position = collision.transform.position;
                 const float force = 2f;
                 fruit.Slice(direction, position, force);
-                _scoreManager.IncrementScore();
+                manager.IncrementScore();
             }
         }
         else if (collision.gameObject.CompareTag("Bomb")) {
-            _scoreManager.GameOver();
+            manager.GameOver();
         }
     }
 }
