@@ -44,10 +44,11 @@ public class FruitSpawner : MonoBehaviour {
 
             var fruit = PhotonNetwork.Instantiate(randomFruit.name, position, rotation);
             Destroy(fruit, maxLifetime);
-
-            var rb = fruit.GetComponent<Rigidbody>();
-            rb.AddForce(fruit.transform.up * Random.Range(minForce, maxForce), ForceMode.Impulse);
-            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            if (fruit) {
+                var rb = fruit.GetComponent<Rigidbody>();
+                rb.AddForce(fruit.transform.up * Random.Range(minForce, maxForce), ForceMode.Impulse);
+                yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            }
         }
     }
 }
