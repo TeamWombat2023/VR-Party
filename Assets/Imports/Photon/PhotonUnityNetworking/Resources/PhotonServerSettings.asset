@@ -52,6 +52,7 @@ MonoBehaviour:
   - sync_down
   - sync_up
   - Sync_walls
+  - EnableAllPlayers
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

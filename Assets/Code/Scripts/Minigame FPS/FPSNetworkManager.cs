@@ -62,7 +62,7 @@ public class FPSNetworkManager : MonoBehaviour {
     }
 
     private IEnumerator MakePlayerMortal(GameObject _player) {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(15.0f);
         Debug.Log("MORTAL YAPTI");
         PlayerManager.SetWeapon(true);
         PlayerManager.ActivateHands("FPS");
@@ -74,6 +74,7 @@ public class FPSNetworkManager : MonoBehaviour {
     public void FinishGame() {
         PlayerManager.LocalPlayerPhotonView.RPC("EnableAllPlayers", RpcTarget.All);
         GameManager.gameManager.OrderPlayersAndSetNewScores("FPS");
+        PlayerManager.SetWeapon(false);
         PlayerManager.ActivateHands("");
         PlayerManager.OpenScoreboard();
     }
