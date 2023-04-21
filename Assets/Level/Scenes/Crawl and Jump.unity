@@ -1441,6 +1441,7 @@ GameObject:
   - component: {fileID: 1712705763}
   - component: {fileID: 1712705762}
   - component: {fileID: 1712705761}
+  - component: {fileID: 1712705765}
   m_Layer: 0
   m_Name: GamePlane
   m_TagString: Untagged
@@ -1527,6 +1528,19 @@ Transform:
   m_Father: {fileID: 1549477894}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1712705765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712705760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614ab825128f49e408a6261ace284e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 6
 --- !u!1 &1838797987
 GameObject:
   m_ObjectHideFlags: 0
