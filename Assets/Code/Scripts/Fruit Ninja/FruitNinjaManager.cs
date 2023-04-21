@@ -41,6 +41,7 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     public void FinishGame() {
+        GameManager.gameManager.OrderPlayersAndSetNewScores();
         PlayerManager.ActivateHands("");
         PlayerManager.OpenScoreboard();
     }

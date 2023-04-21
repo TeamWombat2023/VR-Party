@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public int[] GetScores() {
         var scores = new int[PhotonNetwork.PlayerList.Length];
         for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) scores[i] = PhotonNetwork.PlayerList[i].GetScore();
-
         return scores;
     }
 
@@ -116,6 +115,32 @@ public class GameManager : MonoBehaviourPunCallbacks {
             if (PhotonNetwork.PlayerList[i].NickName == playerName)
                 return i;
         return -1;
+    }
+
+    public void OrderPlayersAndSetNewScores() {
+        var scores = GetScores();
+        var players = PhotonNetwork.PlayerList;
+
+        for (var i = 0; i < scores.Length; i++)
+        for (var j = 0; j < scores.Length - 1; j++)
+            if (scores[j] < scores[j + 1]) {
+                (scores[j], scores[j + 1]) = (scores[j + 1], scores[j]);
+                (players[j], players[j + 1]) = (players[j + 1], players[j]);
+            }
+
+        int k = players.Length;
+        int l = 0;
+        for (int i = 0; i < players.Length; i++) {
+            if (i > 0 && scores[i] != scores[i - 1]) {
+                l++;
+                players[i].SetScore(k - i);
+            }
+            else {
+                k--;
+                players[i].SetScore(k - i - l);
+                l = 0;
+            }
+        }
     }
 
     public enum Minigame {

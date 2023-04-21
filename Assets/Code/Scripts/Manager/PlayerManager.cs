@@ -54,6 +54,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         }
     }
 
+    public static void SetWeapon(bool isGunEnabled) {
+        LocalAvatarRightHand.transform.GetChild(0).GetComponent<Weapon>().enabled = isGunEnabled;
+    }
+
     public static void AddScore(int amount) {
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.AddScore(amount);
     }
