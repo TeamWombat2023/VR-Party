@@ -3,12 +3,12 @@ using UnityEngine;
 public class FruitNinjaManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
 
-    // Start is called before the first frame update
     private void Start() {
         SpawnPlayersWithDelay();
     }
 
     private void SpawnPlayersWithDelay() {
+        PlayerManager.ActivateHands("Fruit Ninja");
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.SetActive(false);
