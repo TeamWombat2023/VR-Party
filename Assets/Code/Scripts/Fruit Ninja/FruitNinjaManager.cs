@@ -1,4 +1,3 @@
-using Photon.Pun;
 using UnityEngine;
 
 public class FruitNinjaManager : MonoBehaviour {
@@ -13,7 +12,7 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     private void SpawnPlayersWithDelay() {
-        PlayerManager.LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, "Fruit Ninja");
+        PlayerManager.ActivateHands("Fruit Ninja");
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
             GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.Euler(0, 50, 0);
@@ -43,7 +42,7 @@ public class FruitNinjaManager : MonoBehaviour {
 
     public void FinishGame() {
         GameManager.gameManager.OrderPlayersAndSetNewScores("Fruit Ninja");
-        PlayerManager.LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, "");
+        PlayerManager.ActivateHands("");
         PlayerManager.OpenScoreboard();
     }
 }
