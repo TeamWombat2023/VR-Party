@@ -132,10 +132,11 @@ public class GameManager : MonoBehaviourPunCallbacks {
         var scores = GetScoresFor(miniGameName);
         var sortedDict = from entry in scores orderby entry.Value ascending select entry;
         var i = 1;
+        var length = PhotonNetwork.PlayerList.Length;
         foreach (var item in sortedDict) {
             var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Value)];
             if (player != null) {
-                player.AddScore(i);
+                player.AddScore(length - i);
                 i++;
             }
         }
