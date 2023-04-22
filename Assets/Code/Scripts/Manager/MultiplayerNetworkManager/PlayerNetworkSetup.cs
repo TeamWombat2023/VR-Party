@@ -3,6 +3,7 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
@@ -15,6 +16,8 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
     public TMP_Text playerNameText;
 
     private void Start() {
+        var scene = SceneManager.GetActiveScene();
+        Debug.Log("Active Scene is '" + scene.name + "'.");
         if (photonView.IsMine) {
             // This is my player
             localXROrigin.SetActive(true);
@@ -26,6 +29,9 @@ public class PlayerNetworkSetup : MonoBehaviourPunCallbacks {
             var inputActionManager = localXROrigin.AddComponent<InputActionManager>();
             inputActionManager.actionAssets = new List<InputActionAsset>() { inputActionAsset };
             mainAvatar.AddComponent<AudioListener>();
+            foreach (var componentsInChild in mainAvatar.GetComponentsInChildren<Collider>())
+                if (componentsInChild.CompareTag("Body") || componentsInChild.CompareTag("Head"))
+                    componentsInChild.isTrigger = false;
         }
         else {
             // This is another player

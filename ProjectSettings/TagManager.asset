@@ -13,6 +13,12 @@ TagManager:
   - Fruit
   - Bomb
   - Floor
+  - FxTemporaire
+  - Body
+  - Head
+  - Powerup
+  - Checkpoint
+  - Ground
   layers:
   - Default
   - TransparentFX

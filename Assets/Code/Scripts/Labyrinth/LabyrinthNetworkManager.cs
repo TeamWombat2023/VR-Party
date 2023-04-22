@@ -4,27 +4,23 @@ using TMPro;
 using UnityEngine;
 
 public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
+    [Space] [SerializeField] private Transform spawnPoint;
+    [Space] [SerializeField] public GameObject roomCam;
 
-    [SerializeField] private GameObject genericPlayerPrefab;
-    [Space] 
-    [SerializeField] private Transform spawnPoint;
-    
     private void Start() {
         Debug.Log("JOINED MINIGAME");
-        GameObject _player = PhotonNetwork.Instantiate(genericPlayerPrefab.name, spawnPoint.position, Quaternion.identity);
-        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        SpawnPlayersWithDelay();
     }
 
-    public override void OnJoinRoomFailed(short returnCode, string message) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
+    public void SpawnPlayersWithDelay() {
+        PlayerManager.LocalXROrigin.transform.position = spawnPoint.position;
+        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+        PlayerManager.LocalPlayerInstance.SetActive(false);
+        Invoke("SpawnPlayer", 5);
     }
 
-    public override void OnLeftRoom() {
-        PhotonNetwork.Disconnect();
+    public void SpawnPlayer() {
+        PlayerManager.LocalPlayerInstance.SetActive(true);
+        roomCam.SetActive(false);
     }
-    
-    public override void OnDisconnected(DisconnectCause cause) {
-        PhotonNetwork.LoadLevel("Lobby Scene");
-    }
-
 }

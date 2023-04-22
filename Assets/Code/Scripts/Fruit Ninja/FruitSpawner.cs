@@ -1,4 +1,5 @@
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
 public class FruitSpawner : MonoBehaviour {
@@ -40,13 +41,18 @@ public class FruitSpawner : MonoBehaviour {
             };
 
             var rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
-
-            var fruit = Instantiate(randomFruit, position, rotation);
-            Destroy(fruit, maxLifetime);
-
-            var rb = fruit.GetComponent<Rigidbody>();
-            rb.AddForce(fruit.transform.up * Random.Range(minForce, maxForce), ForceMode.Impulse);
-            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            var fruit = PhotonNetwork.Instantiate(randomFruit.name, position, rotation);
+            StartCoroutine(DestroyObject(fruit));
+            if (fruit) {
+                var rb = fruit.GetComponent<Rigidbody>();
+                rb.AddForce(fruit.transform.up * Random.Range(minForce, maxForce), ForceMode.Impulse);
+                yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            }
         }
+    }
+
+    private IEnumerator DestroyObject(GameObject fruit) {
+        yield return new WaitForSeconds(maxLifetime);
+        PhotonNetwork.Destroy(fruit);
     }
 }

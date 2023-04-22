@@ -1,22 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GrabAnimateHandOnInput : MonoBehaviour
-{
+public class GrabAnimateHandOnInput : MonoBehaviourPunCallbacks {
     public InputActionProperty grabAnimationAction;
+
     public Animator handAnimator;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Start() {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float gripValue = grabAnimationAction.action.ReadValue<float>();
-        handAnimator.SetFloat("Grip", gripValue);
+    private void Update() {
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && photonView.IsMine) {
+            var gripValue = grabAnimationAction.action.ReadValue<float>();
+            handAnimator.SetFloat("Grip", gripValue);
+        }
     }
 }
