@@ -8,12 +8,14 @@ public class CrawlAndJumpManager : MonoBehaviour {
     }
 
     private void SpawnPlayersWithDelay() {
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
-            GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
-        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-        PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
-        PlayerManager.LocalPlayerInstance.SetActive(false);
-        Invoke("SpawnPlayer", 5);
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
+                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
+            PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
+            PlayerManager.LocalPlayerInstance.SetActive(false);
+            Invoke("SpawnPlayer", 5);
+        }
     }
 
     public void SpawnPlayer() {
@@ -22,13 +24,14 @@ public class CrawlAndJumpManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (isAllPlayersFellDown()) {
+        if (HasAllPlayersFellDown() && PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
             PlayerManager.OpenScoreboard();
         }
     }
 
-    private bool isAllPlayersFellDown() {
+    private bool HasAllPlayersFellDown() {
         foreach (var player in GameManager.gameManager.GetPlayers())
             if (!player.CustomProperties.ContainsKey("CrawlAndJump"))
                 return false;

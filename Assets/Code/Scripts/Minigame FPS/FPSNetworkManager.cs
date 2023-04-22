@@ -74,10 +74,13 @@ public class FPSNetworkManager : MonoBehaviour {
     }
 
     public void FinishGame() {
-        PlayerManager.LocalPlayerPhotonView.RPC("EnableAllPlayers", RpcTarget.All);
-        GameManager.gameManager.OrderPlayersAndSetNewScores("FPS");
-        PlayerManager.SetWeapon(false);
-        PlayerManager.ActivateHandsIn("");
-        PlayerManager.OpenScoreboard();
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.LocalPlayerPhotonView.RPC("EnableAllPlayers", RpcTarget.All);
+            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
+            GameManager.gameManager.OrderPlayersAndSetNewScores("FPS");
+            PlayerManager.SetWeapon(false);
+            PlayerManager.ActivateHandsIn("");
+            PlayerManager.OpenScoreboard();
+        }
     }
 }

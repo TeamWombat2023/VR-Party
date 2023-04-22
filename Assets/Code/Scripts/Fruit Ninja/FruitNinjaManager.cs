@@ -12,12 +12,12 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     private void SpawnPlayersWithDelay() {
-        PlayerManager.ActivateHandsIn("Fruit Ninja");
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
-            GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
-        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.ActivateHandsIn("Fruit Ninja");
+            PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
+                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
+            PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+
             var localFruitSpawner = Instantiate(fruitSpawner,
                 PlayerManager.LocalXROrigin.transform.position + Vector3.forward, Quaternion.identity);
             Destroy(localFruitSpawner, gameDuration);
@@ -41,8 +41,10 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     public void FinishGame() {
-        GameManager.gameManager.OrderPlayersAndSetNewScores("Fruit Ninja");
-        PlayerManager.ActivateHandsIn("");
-        PlayerManager.OpenScoreboard();
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            GameManager.gameManager.OrderPlayersAndSetNewScores("Fruit Ninja");
+            PlayerManager.ActivateHandsIn("");
+            PlayerManager.OpenScoreboard();
+        }
     }
 }

@@ -1,47 +1,44 @@
 using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlaneGameManager : MonoBehaviour {
     [Header("Powerup respawn time")] public int powerupRespawnTime;
 
     [Header("Trigger Holders")] public GameObject checkPointsHolder;
-    public GameObject powerupHolder;
+    public Transform checkPointHolderSpawnPoint;
 
     public GameObject planePrefab;
     public Transform planeSpawnPoint;
     [Space] [SerializeField] public GameObject roomCam;
 
     public Pilot pilot;
-    private Checkpoint[] _checkpoints;
-    private int _currentCheckpoint;
-
-    private Powerup[] _powerups;
+    public float gameDuration = 105f;
 
 
-    // Start is called before the first frame update
     private void Start() {
-        _checkpoints = checkPointsHolder.GetComponentsInChildren<Checkpoint>();
-        _currentCheckpoint = 0;
-
-        _powerups = powerupHolder.GetComponentsInChildren<Powerup>();
-        EnableNewCheckpoint();
-
-        StartCoroutine(GameEndEvent());
+        Invoke(nameof(FinishGame), gameDuration);
         SpawnPlayersWithDelay();
     }
 
     public void SpawnPlayersWithDelay() {
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
-        PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-        PlayerManager.LocalPlayerInstance.SetActive(false);
-        var plane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position, Quaternion.identity);
-        pilot.SetPlane(plane);
-        PlayerManager.LocalPlayerInstance.transform.SetParent(plane.transform);
-        Invoke("SpawnPlayer", 5);
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
+            PlayerManager.LocalXROrigin.transform.rotation = Quaternion.Euler(0, 180, 0);
+            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
+            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = false;
+            PlayerManager.LocalPlayerInstance.SetActive(false);
+            var plane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position + Vector3.left *
+                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName),
+                Quaternion.identity);
+            pilot.SetPlane(plane);
+            PlayerManager.LocalPlayerInstance.transform.SetParent(plane.transform);
+            var localCheckPoints = Instantiate(checkPointsHolder,
+                checkPointHolderSpawnPoint.position, Quaternion.identity);
+            Destroy(localCheckPoints, gameDuration);
+            Invoke("SpawnPlayer", 5);
+        }
     }
 
     public void SpawnPlayer() {
@@ -49,25 +46,12 @@ public class PlaneGameManager : MonoBehaviour {
         roomCam.SetActive(false);
     }
 
-    public IEnumerator GameEndEvent() {
-        yield return new WaitForSeconds(25);
-        Debug.Log("Game has 75 seconds.");
-        yield return new WaitForSeconds(25);
-        Debug.Log("Game has 50 seconds.");
-        yield return new WaitForSeconds(25);
-        Debug.Log("Game has 25 seconds.");
-        yield return new WaitForSeconds(25);
-        Debug.Log("Game has 0 seconds.");
-    }
-
-
-    public void EnableNewCheckpoint() {
-        foreach (var checkpoint in _checkpoints) checkpoint.gameObject.SetActive(false);
-
-        _checkpoints[_currentCheckpoint++].gameObject.SetActive(true);
-    }
-
-
-    public void StartPowerupRespawnTimer() {
+    public void FinishGame() {
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
+            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = true;
+            GameManager.gameManager.OrderPlayersAndSetNewScores("Plane Game");
+            PlayerManager.OpenScoreboard();
+        }
     }
 }
