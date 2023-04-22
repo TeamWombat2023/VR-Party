@@ -35,16 +35,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         LocalAvatarRightHand.transform.GetChild(0).GetComponent<Weapon>().enabled = isGunEnabled;
     }
 
-    public static void AddScore(int amount) {
-        if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.Owner.AddScore(amount);
-    }
-
-    public static int GetScore() {
-        if (LocalPlayerPhotonView.IsMine) return LocalPlayerPhotonView.Owner.GetScore();
-
-        return -1;
-    }
-
     public static void AddScoreToMiniGame(string miniGame, double score) {
         if (LocalPlayerPhotonView.IsMine) {
             if (LocalPlayerPhotonView.Owner.CustomProperties.TryGetValue(miniGame, out var miniGameScore))
@@ -70,6 +60,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, gameName);
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("ScorePickup")){
+            if (GameManager.gameManager.GetCurrentSceneName() == "Labyrinth Scene") {
+                PhotonNetwork.Destroy(other.gameObject);    
+                AddScoreToMiniGame("Labyrinth", 10);
+            }
+        }
+    }
 
     [PunRPC]
     public void FPSDamageTake(int damage) {

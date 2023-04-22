@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
@@ -44,12 +43,6 @@ public class GameManager : MonoBehaviourPunCallbacks {
         var player = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         DontDestroyOnLoad(player);
         return player;
-    }
-
-    public string[] GetPlayerNames() {
-        var playerNames = new string[PhotonNetwork.PlayerList.Length];
-        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) playerNames[i] = PhotonNetwork.PlayerList[i].NickName;
-        return playerNames;
     }
 
     public Player[] GetPlayers() {
