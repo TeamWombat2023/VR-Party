@@ -14,7 +14,7 @@ public class MazeRenderer : MonoBehaviour {
     // [SerializeField]
     // private Transform floorPrefab = null;
 
-    [SerializeField] private Transform coinPrefab = null;
+        [SerializeField] private Transform coinPrefab = null;
 
     private bool generate_maze;
     private bool generate_maze_first_run = true;
@@ -104,8 +104,7 @@ public class MazeRenderer : MonoBehaviour {
 
             //draw the coins
             if (initial) {
-                var coin = Instantiate(coinPrefab, transform) as Transform;
-                coin.position = position + new Vector3(0, 0.5f, 0);
+                var coin =  PhotonNetwork.Instantiate("Score Cube",  position + new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
             }
 
             if (cell.HasFlag(WallState.UP)) {
@@ -222,20 +221,6 @@ public class MazeRenderer : MonoBehaviour {
             }
         }
         
-        //if(generate_maze == true){
-        //    //animate going up
-        //    var obj = GameObject.FindGameObjectsWithTag("Wall");
-        //    Debug.Log("Animating going up. Found: " + obj.Length + " walls");
-        //    for (var i = 0; i < obj.Length; i++)
-        //        obj[i].transform.position = obj[i].transform.position + new Vector3(0, 0.025f, 0);
-//
-        //    if (final_wall_pos.y <= obj[0].transform.position.y) {
-        //        generate_maze = false;
-        //        generate_maze_first_run = true;
-        //        genTime = PhotonNetwork.ServerTimestamp;
-        //    }
-        //    
-        //}
     }
 }
 
