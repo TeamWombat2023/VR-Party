@@ -24,6 +24,10 @@ public class MazeRenderer : MonoBehaviour {
     private string maze_json;
     private WallList wallList;
 
+    private void Awake() {
+        mazeRenderer = this;
+    }
+
     // Start is called before the first frame update
     private void Start() {
         //start a game timer 

@@ -6,6 +6,10 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     [Space] [SerializeField] public GameObject roomCam;
     public static LabyrinthNetworkManager LabyrinthManager { get; private set; }
 
+    private void Awake() {
+        if (LabyrinthManager == null) LabyrinthManager = this;
+    }
+
     private void Start() {
         SpawnPlayersWithDelay();
     }
