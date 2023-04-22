@@ -1,6 +1,7 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviourPunCallbacks {
@@ -9,6 +10,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     private static PlayerUIManager _playerUIManager;
     public static GameObject LocalXROrigin;
     public static PhotonView LocalPlayerPhotonView;
+    public static Player MasterClient;
     public static GameObject LocalAvatar;
     public static GameObject LocalAvatarBody;
     public static GameObject LocalAvatarHead;
@@ -29,6 +31,18 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start() {
+        if (photonView.IsMine) FindMasterClient();
+    }
+
+    private void FindMasterClient() {
+        foreach (var player in PhotonNetwork.PlayerList)
+            if (player.IsMasterClient) {
+                MasterClient = player;
+                break;
+            }
     }
 
     public static void SetWeapon(bool isGunEnabled) {
@@ -58,15 +72,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
 
     public static void ActivateHandsIn(string gameName) {
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, gameName);
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("ScorePickup")){
-            if (GameManager.gameManager.GetCurrentSceneName() == "Labyrinth Scene") {
-                PhotonNetwork.Destroy(other.gameObject);    
-                AddScoreToMiniGame("Labyrinth", 10);
-            }
-        }
     }
 
     [PunRPC]

@@ -1,20 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
 public class MazeRenderer : MonoBehaviour {
-
+    public static MazeRenderer mazeRenderer { get; private set; }
     [SerializeField] private PhotonView myPV;
     [SerializeField] [Range(1, 50)] private int width = 10;
     [SerializeField] [Range(1, 50)] private int height = 10;
     [SerializeField] private float size = 1f;
+
     [SerializeField] private Transform wallPrefab = null;
     //
     // [SerializeField]
     // private Transform floorPrefab = null;
-
-        [SerializeField] private Transform coinPrefab = null;
 
     private bool generate_maze;
     private bool generate_maze_first_run = true;
@@ -35,7 +33,7 @@ public class MazeRenderer : MonoBehaviour {
         Debug.Log("Is master client: " + PhotonNetwork.IsMasterClient);
 
         //generate and draw the maze
-        if(PhotonNetwork.IsMasterClient) {
+        if (PhotonNetwork.IsMasterClient) {
             maze = MazeGenerator.Generate(width, height);
             //maze_json = JsonUtility.ToJson(maze);
             //Debug.Log("Createde json: " + maze_json);
@@ -45,7 +43,12 @@ public class MazeRenderer : MonoBehaviour {
             myPV.RPC("Sync_walls", RpcTarget.Others, maze_json, true);
             Debug.Log("First maze Generated and sent to clients");
         }
+
         generate_maze = false;
+    }
+
+    public int GetPickupCount() {
+        return width * height;
     }
 
     [PunRPC]
@@ -53,20 +56,21 @@ public class MazeRenderer : MonoBehaviour {
         Debug.Log("Syncing walls");
         wallList = JsonUtility.FromJson<WallList>(maze_json);
         Debug.Log(wallList.list.Count);
-        for (int i = 0; i < wallList.list.Count; i++) {
+        for (var i = 0; i < wallList.list.Count; i++) {
             var wall = Instantiate(wallPrefab, transform) as Transform;
             wall.position = wallList.list[i];
             if (wallList.sidewall[i] == true) {
                 Debug.Log("Sidewall");
                 wall.eulerAngles = new Vector3(0, 90, 0);
             }
+
             wall.localScale = wallList.localScale[i];
             Debug.Log("Created wall at position:" + wall.position);
         }
     }
 
     [PunRPC]
-    private void sync_up(){
+    private void sync_up() {
         var obj = GameObject.FindGameObjectsWithTag("Wall");
         Debug.Log("Animating going up. Found: " + obj.Length + " walls");
         for (var i = 0; i < obj.Length; i++)
@@ -74,12 +78,12 @@ public class MazeRenderer : MonoBehaviour {
     }
 
     [PunRPC]
-    private void sync_down(){
+    private void sync_down() {
         var obj = GameObject.FindGameObjectsWithTag("Wall");
         for (var i = 0; i < obj.Length; i++) {
             //animate while moving
             obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
-            obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
+                obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
             //destroy the wall
             Destroy(obj[i], 1);
         }
@@ -92,7 +96,7 @@ public class MazeRenderer : MonoBehaviour {
         //Debug.Log(maze_json);
         //maze = JsonUtility.FromJson<WallState[,]>(maze_json);
 
-        wallList= new WallList();
+        wallList = new WallList();
         wallList.list = new List<Vector3>();
         wallList.localScale = new List<Vector3>();
         wallList.sidewall = new List<bool>();
@@ -104,11 +108,12 @@ public class MazeRenderer : MonoBehaviour {
 
             //draw the coins
             if (initial) {
-                var coin =  PhotonNetwork.Instantiate("Score Cube",  position + new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
+                var coin = PhotonNetwork.Instantiate("Score Cube", position + new Vector3(0, 0.5f, 0),
+                    Quaternion.identity, 0);
             }
 
             if (cell.HasFlag(WallState.UP)) {
-                Transform topWall = Instantiate(wallPrefab, transform) as Transform;
+                var topWall = Instantiate(wallPrefab, transform) as Transform;
                 topWall.localScale = new Vector3(size, topWall.localScale.y, topWall.localScale.z);
                 if (initial)
                     topWall.position = position + new Vector3(0, 0, size / 2);
@@ -120,7 +125,7 @@ public class MazeRenderer : MonoBehaviour {
             }
 
             if (cell.HasFlag(WallState.LEFT)) {
-                Transform leftWall = Instantiate(wallPrefab, transform) as Transform;
+                var leftWall = Instantiate(wallPrefab, transform) as Transform;
                 leftWall.localScale = new Vector3(size, leftWall.localScale.y, leftWall.localScale.z);
                 leftWall.eulerAngles = new Vector3(0, 90, 0);
                 if (initial)
@@ -134,7 +139,7 @@ public class MazeRenderer : MonoBehaviour {
 
             if (i == width - 1)
                 if (cell.HasFlag(WallState.RIGHT)) {
-                    Transform rightWall = Instantiate(wallPrefab, transform) as Transform;
+                    var rightWall = Instantiate(wallPrefab, transform) as Transform;
                     rightWall.localScale = new Vector3(size, rightWall.localScale.y, rightWall.localScale.z);
                     rightWall.eulerAngles = new Vector3(0, 90, 0);
                     if (initial)
@@ -148,7 +153,7 @@ public class MazeRenderer : MonoBehaviour {
 
             if (j == 0)
                 if (cell.HasFlag(WallState.DOWN)) {
-                    Transform bottomWall = Instantiate(wallPrefab, transform) as Transform;
+                    var bottomWall = Instantiate(wallPrefab, transform) as Transform;
                     bottomWall.localScale = new Vector3(size, bottomWall.localScale.y, bottomWall.localScale.z);
                     if (initial)
                         bottomWall.position = position + new Vector3(0, 0, -size / 2);
@@ -164,48 +169,45 @@ public class MazeRenderer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //remove the current maze
-        if (PhotonNetwork.ServerTimestamp - genTime > 10000 && generate_maze == false ) {
+        if (PhotonNetwork.ServerTimestamp - genTime > 10000 && generate_maze == false) {
             Debug.Log("Removing Maze");
             //RemoveMaze();
 
             var obj = GameObject.FindGameObjectsWithTag("Wall");
             Debug.Log("Found " + obj.Length + " walls");
 
-            if (obj.Length == 0){
+            if (obj.Length == 0) {
                 generate_maze = true;
                 Debug.Log("generate_maze set to true");
             }
 
-            if (PhotonNetwork.IsMasterClient){
+            if (PhotonNetwork.IsMasterClient) {
                 myPV.RPC("sync_down", RpcTarget.Others);
                 for (var i = 0; i < obj.Length; i++) {
                     //animate while moving
                     obj[i].transform.position = Vector3.Lerp(obj[i].transform.position,
-                    obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
+                        obj[i].transform.position + new Vector3(0, -10, 0), Time.deltaTime / 4);
                     //destroy the wall
                     Destroy(obj[i], 1);
                 }
             }
-
         }
 
         else if (generate_maze == true && PhotonNetwork.IsMasterClient) {
-
             if (generate_maze_first_run == true) {
-                
                 Debug.Log("Generating new maze for master");
                 maze = MazeGenerator.Generate(width, height);
                 Draw(maze, false);
-                string maze_json = JsonUtility.ToJson(wallList);
+                var maze_json = JsonUtility.ToJson(wallList);
                 myPV.RPC("Sync_walls", RpcTarget.Others, maze_json, false);
                 Debug.Log("New maze Generated and sent to clients");
-                
+
                 var obj = GameObject.FindGameObjectsWithTag("Wall");
                 final_wall_pos = obj[0].transform.position + new Vector3(0, 10, 0);
                 generate_maze_first_run = false;
             }
 
-            else if (generate_maze == true){
+            else if (generate_maze == true) {
                 //animate going up
                 var obj = GameObject.FindGameObjectsWithTag("Wall");
                 Debug.Log("Animating going up. Found: " + obj.Length + " walls");
@@ -220,11 +222,10 @@ public class MazeRenderer : MonoBehaviour {
                 }
             }
         }
-        
     }
 }
 
-class WallList {
+internal class WallList {
     public List<Vector3> list;
     public List<Vector3> localScale;
     public List<bool> sidewall;

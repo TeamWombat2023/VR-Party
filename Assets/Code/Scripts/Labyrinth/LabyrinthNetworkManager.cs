@@ -1,14 +1,12 @@
 using Photon.Pun;
-using Photon.Realtime;
-using TMPro;
 using UnityEngine;
 
 public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     [Space] [SerializeField] private Transform spawnPoint;
     [Space] [SerializeField] public GameObject roomCam;
+    public static LabyrinthNetworkManager LabyrinthManager { get; private set; }
 
     private void Start() {
-        Debug.Log("JOINED MINIGAME");
         SpawnPlayersWithDelay();
     }
 
@@ -22,5 +20,10 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     public void SpawnPlayer() {
         PlayerManager.LocalPlayerInstance.SetActive(true);
         roomCam.SetActive(false);
+    }
+
+    public void FinishGame() {
+        GameManager.gameManager.OrderPlayersAndSetNewScores("Labyrinth");
+        PlayerManager.OpenScoreboard();
     }
 }
