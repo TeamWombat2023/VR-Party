@@ -4,7 +4,7 @@ namespace Code.Scripts.Plane_GameCode {
     public class CheckpointManager : MonoBehaviour {
         public GameObject[] Checkpoints;
 
-        private void Start() {
+        public void EnableFirstCheckPoint() {
             for (var i = 1; i < Checkpoints.Length; i++) Checkpoints[i].SetActive(false);
             Checkpoints[0].SetActive(true);
         }
