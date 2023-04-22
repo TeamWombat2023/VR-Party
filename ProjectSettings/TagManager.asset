@@ -19,6 +19,7 @@ TagManager:
   - Powerup
   - Checkpoint
   - Ground
+  - Plane
   layers:
   - Default
   - TransparentFX
