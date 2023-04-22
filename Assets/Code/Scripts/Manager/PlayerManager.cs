@@ -31,29 +31,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void ActivateHands(string gameName) {
-        switch (gameName) {
-            case "Fruit Ninja":
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(false);
-                break;
-            case "FPS":
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(true);
-                break;
-            default:
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(false);
-                LocalAvatarRightHand.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(false);
-                break;
-        }
-    }
-
     public static void SetWeapon(bool isGunEnabled) {
         LocalAvatarRightHand.transform.GetChild(0).GetComponent<Weapon>().enabled = isGunEnabled;
     }
@@ -89,6 +66,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         if (LocalPlayerPhotonView.IsMine) _playerUIManager.OpenScoreBoard();
     }
 
+    public static void ActivateHandsIn(string gameName) {
+        if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.RPC("ActivateHands", RpcTarget.All, gameName);
+    }
+
 
     [PunRPC]
     public void FPSDamageTake(int damage) {
@@ -103,5 +84,30 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void EnableAllPlayers() {
         gameObject.SetActive(true);
+    }
+
+    [PunRPC]
+    public void ActivateHands(string gameName) {
+        var rightHand = gameObject.transform.GetChild(1).transform.GetChild(3).transform.GetChild(0).transform;
+        switch (gameName) {
+            case "Fruit Ninja":
+                rightHand.GetChild(0).gameObject.SetActive(false);
+                rightHand.GetChild(1).gameObject.SetActive(true);
+                rightHand.GetChild(2).gameObject.SetActive(false);
+                rightHand.GetChild(3).gameObject.SetActive(false);
+                break;
+            case "FPS":
+                rightHand.GetChild(0).gameObject.SetActive(false);
+                rightHand.GetChild(1).gameObject.SetActive(false);
+                rightHand.GetChild(2).gameObject.SetActive(true);
+                rightHand.GetChild(3).gameObject.SetActive(true);
+                break;
+            default:
+                rightHand.GetChild(0).gameObject.SetActive(true);
+                rightHand.GetChild(1).gameObject.SetActive(false);
+                rightHand.GetChild(2).gameObject.SetActive(false);
+                rightHand.GetChild(3).gameObject.SetActive(false);
+                break;
+        }
     }
 }

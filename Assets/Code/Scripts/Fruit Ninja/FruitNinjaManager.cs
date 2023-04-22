@@ -12,7 +12,7 @@ public class FruitNinjaManager : MonoBehaviour {
     }
 
     private void SpawnPlayersWithDelay() {
-        PlayerManager.ActivateHands("Fruit Ninja");
+        PlayerManager.ActivateHandsIn("Fruit Ninja");
         PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
             GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.Euler(0, 50, 0);
@@ -42,7 +42,7 @@ public class FruitNinjaManager : MonoBehaviour {
 
     public void FinishGame() {
         GameManager.gameManager.OrderPlayersAndSetNewScores("Fruit Ninja");
-        PlayerManager.ActivateHands("");
+        PlayerManager.ActivateHandsIn("");
         PlayerManager.OpenScoreboard();
     }
 }
