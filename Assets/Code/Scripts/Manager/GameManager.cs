@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
@@ -130,15 +131,26 @@ public class GameManager : MonoBehaviourPunCallbacks {
 
     public void OrderPlayersAndSetNewScores(string miniGameName) {
         var scores = GetScoresFor(miniGameName);
-        var sortedDict = from entry in scores orderby entry.Value ascending select entry;
-        var i = 1;
+        var sortedDict = from entry in scores orderby entry.Key descending select entry;
+        var i = 0;
+        var draw = 0;
         var length = PhotonNetwork.PlayerList.Length;
+        var previousPlayerScore = double.MinValue;
         foreach (var item in sortedDict) {
             var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Value)];
             if (player != null) {
-                player.AddScore(length - i);
-                i++;
+                if (previousPlayerScore.CompareTo(item.Key) == 0) {
+                    player.AddScore(length - i);
+                    draw++;
+                }
+                else {
+                    player.AddScore(length - draw);
+                    draw = 0;
+                    i++;
+                }
             }
+
+            previousPlayerScore = item.Key;
         }
     }
 
