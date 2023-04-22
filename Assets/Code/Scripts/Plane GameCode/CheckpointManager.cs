@@ -11,7 +11,7 @@ namespace Code.Scripts.Plane_GameCode {
 
         public void EnableNewCheckpoint(int index) {
             Checkpoints[index - 1].gameObject.SetActive(false);
-            if (index >= Checkpoints.Length) Checkpoints[index].gameObject.SetActive(true);
+            if (index <= Checkpoints.Length) Checkpoints[index].gameObject.SetActive(true);
         }
     }
 }

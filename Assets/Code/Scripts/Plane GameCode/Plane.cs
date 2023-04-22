@@ -159,7 +159,7 @@ public class Plane : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Ground") && PlayerManager.LocalPlayerInstance ==
-            gameObject.transform.Find("Generic Player").gameObject) {
+            gameObject.transform.Find("Generic Player(Clone)").gameObject) {
             Debug.Log("Crashed");
             PlayerManager.AddScoreToMiniGame("Plane Game", -50);
 

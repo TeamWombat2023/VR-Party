@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Plane") &&
-            other.transform.Find("Generic Player").gameObject == PlayerManager.LocalPlayerInstance) {
+            other.transform.Find("Generic Player(Clone)").gameObject == PlayerManager.LocalPlayerInstance) {
             PlayerManager.AddScoreToMiniGame("Plane Game", 100);
             Manager.EnableNewCheckpoint(CheckpointNumber + 1);
         }
