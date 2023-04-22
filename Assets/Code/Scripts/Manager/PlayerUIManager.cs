@@ -45,18 +45,11 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
 
     public void OpenScoreBoard() {
         var scores = GameManager.gameManager.GetScores();
-        var playerNames = GameManager.gameManager.GetPlayerNames();
-
-        for (var i = 0; i < scores.Length; i++)
-        for (var j = 0; j < scores.Length - 1; j++)
-            if (scores[j] < scores[j + 1]) {
-                (scores[j], scores[j + 1]) = (scores[j + 1], scores[j]);
-                (playerNames[j], playerNames[j + 1]) = (playerNames[j + 1], playerNames[j]);
-            }
-
-        for (var i = 0; i < scores.Length; i++) {
+        int i = 1;
+        foreach (var score in scores) {
             var scoreBoardElementInstance = Instantiate(scoreBoardElement, scoreBoardContent);
-            scoreBoardElementInstance.SetScoreInfo(i + 1, playerNames[i], scores[i]);
+            scoreBoardElementInstance.SetScoreInfo(i, score.Key, score.Value);
+            i++;
         }
 
         _isScoreBoardActive = true;

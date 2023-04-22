@@ -107,9 +107,12 @@ public class GameManager : MonoBehaviourPunCallbacks {
         for (var i = 0; i < _isPlayed.Length; i++) _isPlayed[i] = false;
     }
 
-    public int[] GetScores() {
-        var scores = new int[PhotonNetwork.PlayerList.Length];
-        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++) scores[i] = PhotonNetwork.PlayerList[i].GetScore();
+    public Dictionary<string, int> GetScores() {
+        var scores = new Dictionary<string, int>();
+        foreach (var player in PhotonNetwork.PlayerList)
+            scores.Add(player.NickName, player.GetScore());
+        var sortedDict = from entry in scores orderby entry.Value descending select entry;
+        scores = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         return scores;
     }
 
@@ -120,26 +123,26 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return -1;
     }
 
-    public Dictionary<double, string> GetScoresFor(string miniGameName) {
-        var scores = new Dictionary<double, string>();
+    private Dictionary<string, double> GetScoresFor(string miniGameName) {
+        var scores = new Dictionary<string, double>();
         foreach (var player in PhotonNetwork.PlayerList)
             if (player.CustomProperties.ContainsKey(miniGameName))
-                scores.Add((double)player.CustomProperties[miniGameName], player.NickName);
+                scores.Add(player.NickName, (double)player.CustomProperties[miniGameName]);
 
         return scores;
     }
 
     public void OrderPlayersAndSetNewScores(string miniGameName) {
         var scores = GetScoresFor(miniGameName);
-        var sortedDict = from entry in scores orderby entry.Key descending select entry;
+        var sortedDict = from entry in scores orderby entry.Value descending select entry;
         var i = 0;
         var draw = 0;
         var length = PhotonNetwork.PlayerList.Length;
         var previousPlayerScore = double.MinValue;
         foreach (var item in sortedDict) {
-            var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Value)];
+            var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Key)];
             if (player != null) {
-                if (previousPlayerScore.CompareTo(item.Key) == 0) {
+                if (previousPlayerScore.CompareTo(item.Value) == 0) {
                     player.AddScore(length - i);
                     draw++;
                 }
@@ -150,7 +153,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
                 }
             }
 
-            previousPlayerScore = item.Key;
+            previousPlayerScore = item.Value;
         }
     }
 
