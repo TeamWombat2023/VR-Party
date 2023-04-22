@@ -33,6 +33,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
+        if (PlayerManager.LocalPlayerInstance != null) {
+            Destroy(PlayerManager.LocalPlayerInstance);
+        }
         PhotonNetwork.LoadLevel("Login Scene");
     }
 
