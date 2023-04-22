@@ -20,8 +20,10 @@ public class FPSNetworkManager : MonoBehaviour {
 
     public void SpawnPlayersWithDelay() {
         PlayerManager.SetWeapon(false);
-        PlayerManager.LocalXROrigin.transform.position = Vector3.zero;
+        PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left *
+            GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
+        PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
         PlayerManager.LocalPlayerInstance.SetActive(false);
         Invoke("SpawnPlayer", 5);
     }

@@ -9,10 +9,9 @@ public class Rotator : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Head") || other.gameObject.CompareTag("Body"))
             if (GameManager.gameManager.GetCurrentSceneName() == "Labyrinth Scene") {
-                PlayerManager.AddScoreToMiniGame("Labyrinth", 10);
                 if (PlayerManager.MasterClient != null) {
                     if (PlayerManager.MasterClient.CustomProperties.ContainsKey("PickupCount")) {
-                        if ((int)PlayerManager.MasterClient.CustomProperties["PickupCount"] <= MazeRenderer.mazeRenderer.GetPickupCount())
+                        if ((int)PlayerManager.MasterClient.CustomProperties["PickupCount"] <= 0)
                             LabyrinthNetworkManager.LabyrinthManager.FinishGame();
                         else
                             PlayerManager.MasterClient.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
@@ -21,11 +20,14 @@ public class Rotator : MonoBehaviour {
                     }
                     else {
                         PlayerManager.MasterClient.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
-                            { "PickupCount", 10 }
+                            { "PickupCount", MazeRenderer.mazeRenderer.GetPickupCount() }
                         });
                     }
                 }
 
+                if (other.transform.parent.parent == PlayerManager.LocalAvatar.transform &&
+                    LabyrinthNetworkManager.LabyrinthManager.GetTime() > 5)
+                    PlayerManager.AddScoreToMiniGame("Labyrinth", 10);
                 PhotonNetwork.Destroy(gameObject);
             }
     }
