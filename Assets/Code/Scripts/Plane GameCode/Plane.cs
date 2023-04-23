@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -18,9 +15,6 @@ public class Plane : MonoBehaviour {
     private Vector3 liftForce;
 
     private Transform respawnPoint;
-
-    private int point = 500;
-
 
     [Header("Game Manager")] public PlaneGameManager planeGameManager;
 

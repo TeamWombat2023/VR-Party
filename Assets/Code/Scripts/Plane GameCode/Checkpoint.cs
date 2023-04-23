@@ -1,4 +1,3 @@
-using Code.Scripts.Plane_GameCode;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {

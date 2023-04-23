@@ -1,5 +1,3 @@
-using System.Collections;
-using Code.Scripts.Plane_GameCode;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
