@@ -33,6 +33,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         DontDestroyOnLoad(gameObject);
     }
 
+    public static void SetVariables(GameObject player) {
+        LocalXROrigin = player.transform.GetChild(0).gameObject;
+        LocalAvatar = player.transform.GetChild(1).gameObject;
+        LocalAvatarBody = LocalAvatar.transform.GetChild(0).gameObject;
+        LocalAvatarBody = LocalAvatar.transform.GetChild(1).gameObject;
+        LocalAvatarLeftHand = LocalAvatar.transform.GetChild(2).gameObject;
+        LocalAvatarRightHand = LocalAvatar.transform.GetChild(3).gameObject;
+        LocalPlayerPhotonView = player.GetComponent<PhotonView>();
+        _playerUIManager = player.transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
+    }
+
     private void Start() {
         if (photonView.IsMine) FindMasterClient();
     }

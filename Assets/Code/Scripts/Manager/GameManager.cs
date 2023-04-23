@@ -67,22 +67,27 @@ public class GameManager : MonoBehaviourPunCallbacks {
         switch (minigame) {
             case Minigame.PlaneGame:
                 _isPlayed[0] = true;
+                SetScoreHasSetProperty(false);
                 LoadScene("PlaneGameScene");
                 break;
             case Minigame.FruitNinja:
                 _isPlayed[1] = true;
+                SetScoreHasSetProperty(false);
                 LoadScene("Fruit Ninja");
                 break;
             case Minigame.FPS:
                 _isPlayed[2] = true;
+                SetScoreHasSetProperty(false);
                 LoadScene("FPS Scene");
                 break;
             case Minigame.Labyrinth:
                 _isPlayed[3] = true;
+                SetScoreHasSetProperty(false);
                 LoadScene("Labyrinth Scene");
                 break;
             case Minigame.CrawlAndJump:
                 _isPlayed[4] = true;
+                SetScoreHasSetProperty(false);
                 LoadScene("Crawl and Jump");
                 break;
             default:
@@ -96,14 +101,11 @@ public class GameManager : MonoBehaviourPunCallbacks {
         StartMinigame(GetRandomMinigame());
     }
 
-    public void ResetMinigame() {
-        for (var i = 0; i < _isPlayed.Length; i++) _isPlayed[i] = false;
-    }
-
     public Dictionary<string, int> GetScores() {
         var scores = new Dictionary<string, int>();
         foreach (var player in PhotonNetwork.PlayerList)
-            scores.Add(player.NickName, player.GetScore());
+            scores.Add(player.NickName,
+                player.CustomProperties["Score"] == null ? 0 : (int)player.CustomProperties["Score"]);
         var sortedDict = from entry in scores orderby entry.Value descending select entry;
         scores = sortedDict.ToDictionary(pair => pair.Key, pair => pair.Value);
         return scores;
@@ -125,6 +127,10 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return scores;
     }
 
+    private void SetScoreHasSetProperty(bool hasSet) {
+        PlayerManager.LocalPlayerPhotonView.Owner.CustomProperties["HasScoreSet"] = hasSet;
+    }
+
     public void OrderPlayersAndSetNewScores(string miniGameName) {
         var scores = GetScoresFor(miniGameName);
         var sortedDict = from entry in scores orderby entry.Value descending select entry;
@@ -134,16 +140,18 @@ public class GameManager : MonoBehaviourPunCallbacks {
         var previousPlayerScore = double.MinValue;
         foreach (var item in sortedDict) {
             var player = PhotonNetwork.PlayerList[GetPlayerIndex(item.Key)];
-            if (player != null) {
+            if (player != null && !(bool)player.CustomProperties["HasScoreSet"]) {
                 if (previousPlayerScore.CompareTo(item.Value) == 0) {
-                    player.AddScore(length - i);
+                    player.CustomProperties["Score"] = length - i + (int)player.CustomProperties["Score"];
                     draw++;
                 }
                 else {
-                    player.AddScore(length - draw);
+                    player.CustomProperties["Score"] = length - i - draw + (int)player.CustomProperties["Score"];
                     draw = 0;
                     i++;
                 }
+
+                player.CustomProperties["HasScoreSet"] = true;
             }
 
             previousPlayerScore = item.Value;

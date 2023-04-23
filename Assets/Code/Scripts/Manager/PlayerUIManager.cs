@@ -45,7 +45,7 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
 
     public void OpenScoreBoard() {
         var scores = GameManager.gameManager.GetScores();
-        int i = 1;
+        var i = 1;
         foreach (var score in scores) {
             var scoreBoardElementInstance = Instantiate(scoreBoardElement, scoreBoardContent);
             scoreBoardElementInstance.SetScoreInfo(i, score.Key, score.Value);
@@ -64,6 +64,8 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
 
     public void StartNextGame() {
         CloseScoreBoard();
+        PlayerManager.LocalPlayerInstance.transform.position = Vector3.zero;
+        PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
         GameManager.gameManager.StartNextGame();
     }
 

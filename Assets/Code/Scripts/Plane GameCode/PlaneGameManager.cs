@@ -59,6 +59,8 @@ public class PlaneGameManager : MonoBehaviour {
     public void FinishGame() {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             PlayerManager.LocalPlayerInstance.transform.SetParent(null);
+            DontDestroyOnLoad(PlayerManager.LocalPlayerInstance);
+            PlayerManager.SetVariables(PlayerManager.LocalPlayerInstance);
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("Plane Game");
