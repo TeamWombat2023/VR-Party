@@ -14,7 +14,7 @@ public class obstruction_spawner : MonoBehaviourPunCallbacks {
             GameObject clone = PhotonNetwork.Instantiate("Obstruction", transform.position, Quaternion.identity);
             top_or_bottom = Random.Range(0, 2);
             if (Random.Range(0, 2) == 0) clone.GetComponent<ObstructionMovement>().isRotating = true;
-            if (top_or_bottom == 0) clone.transform.position = clone.transform.position + new Vector3(0, 1.75f, 0);
+            if (top_or_bottom == 0) clone.transform.position = clone.transform.position + new Vector3(0, 0.8f, 0);
         }
     }
 }

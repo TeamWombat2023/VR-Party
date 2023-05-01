@@ -26,13 +26,12 @@ public class CrawlAndJumpInputManager : MonoBehaviour {
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Keypad0)) {
-            //local_player.GetComponent<CapsuleCollider>().height = 1.5f;
-            //local_player.GetComponent<CapsuleCollider>().center = new Vector3(0, 0.75f, 0);
+            local_player.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = false;
+            //local_player.transform.GetChild(0).transform.GetChild(0).transform.position = new Vector3(0,-0.2f,0);
         }
-
         if (Input.GetKeyUp(KeyCode.Keypad0)) {
-            //local_player.GetComponent<CapsuleCollider>().height = 2;
-            //local_player.GetComponent<CapsuleCollider>().center = new Vector3(0, 1, 0);
+            local_player.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
+            //local_player.transform.GetChild(0).transform.GetChild(0).transform.position = new Vector3(0,0,0);;
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad1) && isGrounded) {
