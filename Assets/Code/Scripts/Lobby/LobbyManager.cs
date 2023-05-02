@@ -18,12 +18,14 @@ public class LobbyManager : MonoBehaviour {
 
     public void StartButtonPressed() {
         debugText.text = "Buttona basildi.";
+        GameManager.gameManager.StartNextGame();
         AnimateStartButton();
     }
 
 
     public void StartButtonSelected() {
         debugText.text = "Buttona select yapildi. Simple";
+        GameManager.gameManager.StartNextGame();
         AnimateStartButton();
         debugText.text += "debug calisti";
     }
