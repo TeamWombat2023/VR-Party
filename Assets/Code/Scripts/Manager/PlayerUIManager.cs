@@ -63,7 +63,6 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     }
 
     public void StartNextGame() {
-        CloseScoreBoard();
         PlayerManager.LocalPlayerInstance.transform.position = Vector3.zero;
         PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
         GameManager.gameManager.StartNextGame();

@@ -17,9 +17,14 @@ public class CrawlAndJumpKillCondition : MonoBehaviour {
             PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
 
             // set custom property if the player fell and hold its timestamp
-            PlayerManager.LocalPlayerPhotonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
-                { "CrawlAndJump", PhotonNetwork.Time }
-            });
+            if (!PlayerManager.LocalPlayerPhotonView.Owner.CustomProperties.ContainsKey("HasTimeSet")) {
+                PlayerManager.LocalPlayerPhotonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+                    { "CrawlAndJump", PhotonNetwork.Time }
+                });
+                PlayerManager.LocalPlayerPhotonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+                    { "HasTimeSet", true }
+                });
+            }
         }
     }
 }

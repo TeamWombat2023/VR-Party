@@ -35,7 +35,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
                 { "Plane Game", 0.0 },
                 { "Labyrinth", 0.0 },
                 { "Score", 0 },
-                { "HasScoreSet", false }
+                { "HasScoreSet", false },
+                { "PickupCount", 0 }
             });
             _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
         }
@@ -85,6 +86,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
 
     public static void OpenScoreboard() {
         if (LocalPlayerPhotonView.IsMine) _playerUIManager.OpenScoreBoard();
+    }
+
+    public static void CloseScoreboard() {
+        if (LocalPlayerPhotonView.IsMine) _playerUIManager.CloseScoreBoard();
     }
 
     public static void ActivateHandsIn(string gameName) {

@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
     }
 
     public void StartNextGame() {
+        PlayerManager.CloseScoreboard();
         StartMinigame(GetRandomMinigame());
     }
 
