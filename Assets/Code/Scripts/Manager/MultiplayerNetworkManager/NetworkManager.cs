@@ -1,4 +1,3 @@
-using System;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -33,9 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
-        if (PlayerManager.LocalPlayerInstance != null) {
-            Destroy(PlayerManager.LocalPlayerInstance);
-        }
+        if (PlayerManager.LocalPlayerInstance != null) Destroy(PlayerManager.LocalPlayerInstance);
         PhotonNetwork.LoadLevel("Login Scene");
     }
 
