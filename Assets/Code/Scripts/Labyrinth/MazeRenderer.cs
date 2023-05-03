@@ -112,8 +112,17 @@ public class MazeRenderer : MonoBehaviour {
 
             //draw the coins
             if (initial) {
-                var coin = PhotonNetwork.Instantiate("Score Cube", position + new Vector3(0, 0.5f, 0),
+                //with 0.9 percent chance instantiate a coin
+                if (Random.Range(0, 100) < 90)
+                {
+                    var coin = PhotonNetwork.Instantiate("Score Cube", position + new Vector3(0, 0.5f, 0),
                     Quaternion.identity, 0);
+                }
+                else
+                {
+                    var powerup = PhotonNetwork.Instantiate("powerup", position + new Vector3(0, 0.5f, 0),
+                    Quaternion.identity, 0);
+                }
             }
 
             if (cell.HasFlag(WallState.UP)) {

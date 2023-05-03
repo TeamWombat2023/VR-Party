@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     [Space] [SerializeField] private Transform spawnPoint;
@@ -24,6 +25,7 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
         PlayerManager.LocalPlayerInstance.SetActive(false);
+        PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=1;
         Invoke("SpawnPlayer", 5);
     }
 
