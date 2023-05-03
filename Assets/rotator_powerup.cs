@@ -26,11 +26,13 @@ public class rotator_powerup : MonoBehaviour {
                     //start timer for 5 seconds
                     Invoke("resetSpeed", 5);
                 }
+            gameObject.SetActive(false);
         }
     }
 
     private void resetSpeed(){
         PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=1;
+        PhotonNetwork.Destroy(gameObject);
     }
 
 }
