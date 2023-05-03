@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cliff House
+* source:	https://sketchfab.com/3d-models/cliff-house-b6e7b196229d43ca896cd2372c5c5abe
+* author:	Loco490 (https://sketchfab.com/Loco490)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cliff House" (https://sketchfab.com/3d-models/cliff-house-b6e7b196229d43ca896cd2372c5c5abe) by Loco490 (https://sketchfab.com/Loco490) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
