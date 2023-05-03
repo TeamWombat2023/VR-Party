@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class rotator_powerup : MonoBehaviour {
     private void Update() {
@@ -21,9 +22,15 @@ public class rotator_powerup : MonoBehaviour {
 
                 if (other.transform.parent.parent == PlayerManager.LocalAvatar.transform &&
                     LabyrinthNetworkManager.LabyrinthManager.GetTime() > 5)
-                    PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=10;
+                    PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=3;
+                    //start timer for 10 seconds
+                    Invoke("resetSpeed", 3);
                 }
         }
+    }
+
+    private void resetSpeed(){
+        PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=1;
     }
 
 }
