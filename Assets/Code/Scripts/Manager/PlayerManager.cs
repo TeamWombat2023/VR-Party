@@ -27,16 +27,17 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
             LocalAvatarLeftHand = LocalAvatar.transform.GetChild(2).gameObject;
             LocalAvatarRightHand = LocalAvatar.transform.GetChild(3).gameObject;
             LocalPlayerPhotonView = photonView;
-            _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
             LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
-                { "Lobby", 0 },
-                { "FPS", 0 },
-                { "Plane Game", 0 },
+                { "IsImmortal", true },
+                { "FPS", 0.0 },
+                { "CrawlAndJump", 0.0 },
+                { "Fruit Ninja", 0.0 },
+                { "Plane Game", 0.0 },
+                { "Labyrinth", 0.0 },
                 { "Score", 0 },
-                { "CrawlAndJump", 0 },
-                { "Labyrinth", 0 },
-                { "Fruit Ninja", 0 }
+                { "HasScoreSet", false }
             });
+            _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
         }
 
         DontDestroyOnLoad(gameObject);
