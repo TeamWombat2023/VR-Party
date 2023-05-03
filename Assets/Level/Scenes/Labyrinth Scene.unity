@@ -4381,6 +4381,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health cube
       objectReference: {fileID: 0}
+    - target: {fileID: 1225809407043821049, guid: 5481aabe3f9e13998b9e1b5f7b2e27ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212100202003418632, guid: 5481aabe3f9e13998b9e1b5f7b2e27ff, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5481aabe3f9e13998b9e1b5f7b2e27ff, type: 3}
 --- !u!1001 &9205103624874546831
@@ -4441,6 +4449,10 @@ PrefabInstance:
     - target: {fileID: 9205103625022297645, guid: d27b428adcf15c99ebe9db7b6aaca5c1, type: 3}
       propertyPath: m_Name
       value: Score Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205103625022297645, guid: d27b428adcf15c99ebe9db7b6aaca5c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d27b428adcf15c99ebe9db7b6aaca5c1, type: 3}

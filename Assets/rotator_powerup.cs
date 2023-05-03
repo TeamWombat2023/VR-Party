@@ -23,8 +23,8 @@ public class rotator_powerup : MonoBehaviour {
                 if (other.transform.parent.parent == PlayerManager.LocalAvatar.transform &&
                     LabyrinthNetworkManager.LabyrinthManager.GetTime() > 5)
                     PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=3;
-                    //start timer for 10 seconds
-                    Invoke("resetSpeed", 3);
+                    //start timer for 5 seconds
+                    Invoke("resetSpeed", 5);
                 }
         }
     }
