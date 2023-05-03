@@ -27,6 +27,16 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
             LocalAvatarLeftHand = LocalAvatar.transform.GetChild(2).gameObject;
             LocalAvatarRightHand = LocalAvatar.transform.GetChild(3).gameObject;
             LocalPlayerPhotonView = photonView;
+            LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
+                { "IsImmortal", true },
+                { "FPS", 0.0 },
+                { "CrawlAndJump", 0.0 },
+                { "Fruit Ninja", 0.0 },
+                { "Plane Game", 0.0 },
+                { "Labyrinth", 0.0 },
+                { "Score", 0 },
+                { "HasScoreSet", false }
+            });
             _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();
         }
 
@@ -62,14 +72,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
 
     public static void AddScoreToMiniGame(string miniGame, double score) {
         if (LocalPlayerPhotonView.IsMine) {
-            if (LocalPlayerPhotonView.Owner.CustomProperties.TryGetValue(miniGame, out var miniGameScore))
-                LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
-                    { miniGame, (double)miniGameScore + score }
-                });
-            else
-                LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
-                    { miniGame, score }
-                });
+            var prevScore = (double)LocalPlayerPhotonView.Owner.CustomProperties[miniGame];
+            LocalPlayerPhotonView.Owner.SetCustomProperties(new Hashtable {
+                { miniGame, prevScore + score }
+            });
         }
     }
 
