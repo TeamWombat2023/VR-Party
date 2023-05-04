@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11272381, g: 0.28158984, b: 0.709177, a: 1}
+  m_IndirectSpecularColor: {r: 0.11275461, g: 0.2814867, b: 0.70845115, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -490,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392648911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2444.76, y: 297.12, z: 3802}
+  m_LocalPosition: {x: 2450, y: 297.12, z: 3802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,11 +631,11 @@ MonoBehaviour:
   powerupRespawnTime: 5
   checkPointsHolder: {fileID: 5970810975428257515, guid: 130d3d85db9486d4096ddd33e9a83c4c, type: 3}
   checkPointHolderSpawnPoint: {fileID: 1955574319}
-  powerupHolder: {fileID: 50127777}
   planePrefab: {fileID: 4178427641741921221, guid: bb059265cb0bea79cb618ac6d27e0120, type: 3}
   planeSpawnPoint: {fileID: 392648912}
   roomCam: {fileID: 879216023}
   pilot: {fileID: 1913621188}
+  gameDuration: 105
 --- !u!4 &455720485
 Transform:
   m_ObjectHideFlags: 0

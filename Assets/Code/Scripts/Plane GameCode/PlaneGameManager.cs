@@ -30,6 +30,7 @@ public class PlaneGameManager : MonoBehaviour {
             PlayerManager.LocalPlayerInstance.SetActive(false);
             PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
             localPlane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position + Vector3.left *
+                100 / PhotonNetwork.PlayerList.Length *
                 GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName),
                 Quaternion.identity);
             pilot.SetPlane(localPlane);
