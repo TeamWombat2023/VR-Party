@@ -47,7 +47,7 @@ public class CrawlAndJumpInputManager : MonoBehaviour {
 
     private void Jump(InputAction.CallbackContext obj) {
         Debug.Log("i be jumpin");
-        if(isGrounded){
+        if(isGrounded && !isCrawling){
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
         isGrounded = false;
