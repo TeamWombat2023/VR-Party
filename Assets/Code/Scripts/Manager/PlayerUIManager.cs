@@ -69,6 +69,8 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     }
 
     public void GoHome() {
+        Destroy(PlayerManager.LocalAvatarRightHand);
+        Destroy(PlayerManager.LocalAvatarLeftHand);
         PhotonNetwork.LeaveRoom();
     }
 
