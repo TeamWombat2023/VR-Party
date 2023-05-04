@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10034647, g: 0.124841854, b: 0.31721896, a: 1}
+  m_IndirectSpecularColor: {r: 0.10048169, g: 0.12486093, b: 0.31753215, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1375,7 +1375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484991196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.31, y: -1.329, z: 2.56}
+  m_LocalPosition: {x: 5.31, y: 0.68, z: 2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1394,7 +1394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca82e5766111b234ca55acd703979cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstructionPrefab: {fileID: 3376443993097810669, guid: 80ddaf4f2bd9a492cbac5e7ecdf7294a, type: 3}
 --- !u!1 &1549477893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1441,6 @@ GameObject:
   - component: {fileID: 1712705763}
   - component: {fileID: 1712705762}
   - component: {fileID: 1712705761}
-  - component: {fileID: 1712705765}
   m_Layer: 0
   m_Name: GamePlane
   m_TagString: Untagged
@@ -1529,19 +1527,6 @@ Transform:
   m_Father: {fileID: 1549477894}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1712705765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712705760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614ab825128f49e408a6261ace284e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 6
 --- !u!1 &1838797987
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,6 +5741,7 @@ GameObject:
   - component: {fileID: 3590022173487182933}
   - component: {fileID: 6634076414775214893}
   - component: {fileID: 6634076414775214894}
+  - component: {fileID: 6634076414775214895}
   m_Layer: 0
   m_Name: Plane_0
   m_TagString: Untagged
@@ -6234,6 +6220,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f58cb5e1e4c5943d7b03f8c6b7ae9a77, type: 2}
+--- !u!114 &6634076414775214895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872432255974180376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614ab825128f49e408a6261ace284e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 6
 --- !u!23 &6667476789206735987
 MeshRenderer:
   m_ObjectHideFlags: 0
