@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38845253, g: 0.26070893, b: 0.6503862, a: 1}
+  m_IndirectSpecularColor: {r: 0.38823798, g: 0.26087883, b: 0.65103805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3746,7 +3746,7 @@ MonoBehaviour:
   mainAvatarTransform: {fileID: 1717331747}
   avatarHead: {fileID: 1854315725}
   avatarBody: {fileID: 1737891983}
-  avatarLeftHand: {fileID: 507547363}
+  avatarLeftHand: {fileID: 0}
   avatarRightHand: {fileID: 516776920}
   mainCamera: {fileID: 603803438}
   leftHandController: {fileID: 132772072}
@@ -7163,11 +7163,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &507547363 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3695594628789852190, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
-  m_PrefabInstance: {fileID: 1717331746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &508204670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13341,6 +13336,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7702657540459274833, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864100198065428518, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
 --- !u!4 &1107234590 stripped
@@ -14433,7 +14436,7 @@ PrefabInstance:
     - target: {fileID: 3776179113177999981, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: leftTypingSphere
       value: 
-      objectReference: {fileID: 1471503368}
+      objectReference: {fileID: 0}
     - target: {fileID: 3776179113177999981, guid: 413e1184c974b4ab7b62d7baecc38270, type: 3}
       propertyPath: rightTypingSphere
       value: 
@@ -17977,11 +17980,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467321413}
   m_CullTransparentMesh: 1
---- !u!1 &1471503368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 234122007922339232, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
-  m_PrefabInstance: {fileID: 1717331746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476525430
 GameObject:
   m_ObjectHideFlags: 0
@@ -20882,6 +20880,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6417843767329803445, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6698639957168452362, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_Name
       value: ManAvatar
@@ -20944,7 +20946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528894348753020833, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8528894348753020833, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_LocalRotation.x
@@ -20956,11 +20958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528894348753020833, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8528894348753020833, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
