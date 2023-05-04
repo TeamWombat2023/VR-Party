@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public static GameManager gameManager { get; private set; }
     [SerializeField] private GameObject playerPrefab;
 
-    public static bool IsGameFinished = false;
+    public static bool IsGameFinished;
     private int _playerCount;
     private bool[] _isPlayed;
 
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return -1;
     }
 
-    private Dictionary<string, double> GetScoresFor(string miniGameName) {
+    public Dictionary<string, double> GetScoresFor(string miniGameName) {
         var scores = new Dictionary<string, double>();
         foreach (var player in PhotonNetwork.PlayerList)
             if (player.CustomProperties.ContainsKey(miniGameName))

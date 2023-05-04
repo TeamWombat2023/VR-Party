@@ -1,9 +1,10 @@
-using TMPro;
 using UnityEngine;
 
 public class LobbyManager : MonoBehaviour {
     public GameObject startButtonHolder;
-    public TMP_Text debugText;
+    public GameObject scoreBoardHolder;
+    public Transform scoreBoardContent;
+    public LobbyScoreBoardEntry scoreBoardEntry;
 
 
     private Animator _startButtonHolderAnimator;
@@ -13,21 +14,20 @@ public class LobbyManager : MonoBehaviour {
 
     private void Start() {
         _startButtonHolderAnimator = startButtonHolder.GetComponent<Animator>();
+        if (GameManager.IsGameFinished) ListScoreBoard();
+        else scoreBoardHolder.SetActive(false);
     }
 
 
     public void StartButtonPressed() {
-        debugText.text = "Buttona basildi.";
         GameManager.gameManager.StartNextGame();
         AnimateStartButton();
     }
 
 
     public void StartButtonSelected() {
-        debugText.text = "Buttona select yapildi. Simple";
         GameManager.gameManager.StartNextGame();
         AnimateStartButton();
-        debugText.text += "debug calisti";
     }
 
 
@@ -40,5 +40,22 @@ public class LobbyManager : MonoBehaviour {
         if (currentState == newState) currentState = BUTTON_IDLE;
         _startButtonHolderAnimator.Play(newState);
         currentState = newState;
+    }
+
+    private void ListScoreBoard() {
+        scoreBoardHolder.SetActive(true);
+        var totalScores = GameManager.gameManager.GetScores();
+        var fps = GameManager.gameManager.GetScoresFor("FPS");
+        var plane = GameManager.gameManager.GetScoresFor("Plane Game");
+        var labyrinth = GameManager.gameManager.GetScoresFor("Labyrinth");
+        var fruitNinja = GameManager.gameManager.GetScoresFor("Fruit Ninja");
+        var crawlAndJump = GameManager.gameManager.GetScoresFor("CrawlAndJump");
+        var i = 1;
+        foreach (var score in totalScores) {
+            var scoreBoardElementInstance = Instantiate(scoreBoardEntry, scoreBoardContent);
+            scoreBoardElementInstance.SetScoreInfo(i, score.Key, fps[score.Key], plane[score.Key],
+                labyrinth[score.Key], fruitNinja[score.Key], crawlAndJump[score.Key], score.Value);
+            i++;
+        }
     }
 }
