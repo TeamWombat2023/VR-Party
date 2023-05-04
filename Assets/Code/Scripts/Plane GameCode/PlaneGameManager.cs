@@ -37,7 +37,7 @@ public class PlaneGameManager : MonoBehaviour {
             localPlane.transform.position = planeSpawnPoint.position + Vector3.right *
                 100 / PhotonNetwork.PlayerList.Length *
                 GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
-            PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero + Vector3.up;
+            PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero;
             PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, 180, 0);
             var localCheckPoints = Instantiate(checkPointsHolder,
                 checkPointHolderSpawnPoint.position, Quaternion.identity);
