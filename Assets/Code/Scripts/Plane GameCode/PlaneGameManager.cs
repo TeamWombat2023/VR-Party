@@ -13,7 +13,7 @@ public class PlaneGameManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
 
     public Pilot pilot;
-    public float gameDuration = 105f;
+    public float gameDuration = 30f;
 
     private GameObject localPlane;
 
@@ -34,12 +34,15 @@ public class PlaneGameManager : MonoBehaviour {
             pilot.SetPlane(localPlane);
             localPlane.GetComponent<Rigidbody>().isKinematic = true;
             PlayerManager.LocalPlayerInstance.transform.SetParent(localPlane.transform);
-            localPlane.transform.position = planeSpawnPoint.position + Vector3.right *
-                100 / PhotonNetwork.PlayerList.Length *
-                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
+
             PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero +
                                                                         Vector3.up * 0.5f;
             PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, 180, 0);
+
+            localPlane.transform.position = planeSpawnPoint.position + Vector3.right *
+                100 / PhotonNetwork.PlayerList.Length *
+                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
+
             var localCheckPoints = Instantiate(checkPointsHolder,
                 checkPointHolderSpawnPoint.position, Quaternion.identity);
             localCheckPoints.GetComponent<CheckpointManager>().EnableFirstCheckPoint();

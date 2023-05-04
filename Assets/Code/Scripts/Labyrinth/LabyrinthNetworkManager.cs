@@ -17,6 +17,7 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
             { "PickupCount", MazeRenderer.mazeRenderer.GetPickupCount() }
         });
         _startTime = PhotonNetwork.Time;
+        Invoke(nameof(FinishGame), 60f);
         SpawnPlayersWithDelay();
     }
 
@@ -25,7 +26,7 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
         PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
         PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
         PlayerManager.LocalPlayerInstance.SetActive(false);
-        PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed=1;
+        PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed = 1;
         Invoke("SpawnPlayer", 5);
     }
 
