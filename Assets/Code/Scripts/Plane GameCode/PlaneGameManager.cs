@@ -29,15 +29,16 @@ public class PlaneGameManager : MonoBehaviour {
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = false;
             PlayerManager.LocalPlayerInstance.SetActive(false);
             PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
-            localPlane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position + Vector3.right *
-                100 / PhotonNetwork.PlayerList.Length *
-                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName),
+            localPlane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position,
                 Quaternion.identity);
             pilot.SetPlane(localPlane);
             localPlane.GetComponent<Rigidbody>().isKinematic = true;
             PlayerManager.LocalPlayerInstance.transform.SetParent(localPlane.transform);
             PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero + Vector3.up;
             PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            localPlane.transform.position = planeSpawnPoint.position + Vector3.right *
+                100 / PhotonNetwork.PlayerList.Length *
+                GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
             var localCheckPoints = Instantiate(checkPointsHolder,
                 checkPointHolderSpawnPoint.position, Quaternion.identity);
             localCheckPoints.GetComponent<CheckpointManager>().EnableFirstCheckPoint();
