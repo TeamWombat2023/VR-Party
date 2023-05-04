@@ -10,14 +10,13 @@ public class CrawlAndJumpKillCondition : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Body") && other.gameObject.transform.parent.parent.parent.gameObject ==
-            PlayerManager.LocalPlayerInstance) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("LocalAvatarHead") ||
+            other.gameObject.layer == LayerMask.NameToLayer("LocalAvatarHead")) {
             PlayerManager.LocalXROrigin.transform.position = teleport_transform;
             PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
 
             // set custom property if the player fell and hold its timestamp
-            if (!PlayerManager.LocalPlayerPhotonView.Owner.CustomProperties.ContainsKey("HasTimeSet")) {
+            if (!(bool)PlayerManager.LocalPlayerPhotonView.Owner.CustomProperties["HasTimeSet"]) {
                 PlayerManager.LocalPlayerPhotonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
                     { "CrawlAndJump", PhotonNetwork.Time }
                 });
@@ -25,6 +24,22 @@ public class CrawlAndJumpKillCondition : MonoBehaviour {
                     { "HasTimeSet", true }
                 });
             }
+        }
+
+        if ((other.gameObject.CompareTag("Body") || other.gameObject.CompareTag("Head")) &&
+            !(bool)other.gameObject.transform.parent.parent.parent.gameObject.GetComponent<PhotonView>().Owner
+                .CustomProperties["HasTimeSet"])
+            UpdateFellDownCount();
+    }
+
+    private void UpdateFellDownCount() {
+        if (PlayerManager.MasterClient.CustomProperties.ContainsKey("PlayerFellCount")) {
+            PlayerManager.MasterClient.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
+                { "PlayerFellCount", (int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] + 1 }
+            });
+            if ((int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >=
+                PhotonNetwork.PlayerList.Length)
+                CrawlAndJumpManager.FinishGame();
         }
     }
 }

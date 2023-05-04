@@ -121,10 +121,8 @@ public class GameManager : MonoBehaviourPunCallbacks {
     private Dictionary<string, double> GetScoresFor(string miniGameName) {
         var scores = new Dictionary<string, double>();
         foreach (var player in PhotonNetwork.PlayerList)
-            if (player.CustomProperties.ContainsKey(miniGameName)) {
-                Debug.Log(player.NickName + " " + player.CustomProperties[miniGameName]);
+            if (player.CustomProperties.ContainsKey(miniGameName))
                 scores.Add(player.NickName, (double)player.CustomProperties[miniGameName]);
-            }
 
         return scores;
     }

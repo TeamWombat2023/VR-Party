@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
                 { "Labyrinth", 0.0 },
                 { "Score", 0 },
                 { "HasScoreSet", false },
+                { "HasTimeSet", false },
                 { "PickupCount", 0 }
             });
             _playerUIManager = transform.GetChild(0).transform.GetChild(3).GetComponent<PlayerUIManager>();

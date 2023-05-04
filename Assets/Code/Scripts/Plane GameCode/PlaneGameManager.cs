@@ -28,6 +28,7 @@ public class PlaneGameManager : MonoBehaviour {
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = false;
             PlayerManager.LocalPlayerInstance.SetActive(false);
+            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
             localPlane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position + Vector3.left *
                 GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName),
                 Quaternion.identity);

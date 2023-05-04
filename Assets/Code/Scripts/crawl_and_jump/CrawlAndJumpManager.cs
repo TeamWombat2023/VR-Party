@@ -23,18 +23,10 @@ public class CrawlAndJumpManager : MonoBehaviour {
         roomCam.SetActive(false);
     }
 
-    private void Update() {
-        if (HasAllPlayersFellDown() && PlayerManager.LocalPlayerPhotonView.IsMine) {
-            PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
+    public static void FinishGame() {
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
             PlayerManager.OpenScoreboard();
         }
-    }
-
-    private bool HasAllPlayersFellDown() {
-        foreach (var player in GameManager.gameManager.GetPlayers())
-            if (!player.CustomProperties.ContainsKey("CrawlAndJump"))
-                return false;
-        return true;
     }
 }
