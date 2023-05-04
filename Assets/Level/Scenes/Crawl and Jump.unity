@@ -1375,7 +1375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484991196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.31, y: 0.68, z: 2.56}
+  m_LocalPosition: {x: 5.31, y: 0.52, z: 2.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6233,6 +6233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 6
+  jumpInput: {fileID: -8490557944613763107, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  crawlInput: {fileID: -7681978852276973768, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!23 &6667476789206735987
 MeshRenderer:
   m_ObjectHideFlags: 0
