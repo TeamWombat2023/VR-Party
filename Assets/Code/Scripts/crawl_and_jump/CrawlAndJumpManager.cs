@@ -11,12 +11,12 @@ public class CrawlAndJumpManager : MonoBehaviour {
         Invoke(nameof(FinishGame), gameDuration);
     }
 
-    // private void Update() {
-    //     if (PlayerManager.MasterClient.CustomProperties.ContainsKey("PlayerFellCount") &&
-    //         (int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >=
-    //         PhotonNetwork.PlayerList.Length)
-    //         FinishGame();
-    // }
+    private void Update() {
+        if (PlayerManager.MasterClient.CustomProperties.ContainsKey("PlayerFellCount") &&
+            (int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >
+            PhotonNetwork.PlayerList.Length)
+            FinishGame();
+    }
 
     private void SpawnPlayersWithDelay() {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {

@@ -37,8 +37,8 @@ public class CrawlAndJumpKillCondition : MonoBehaviour {
             PlayerManager.MasterClient.SetCustomProperties(new ExitGames.Client.Photon.Hashtable {
                 { "PlayerFellCount", (int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] + 1 }
             });
-        if ((int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >=
-            PhotonNetwork.PlayerList.Length)
-            CrawlAndJumpManager.FinishGame();
+        // if ((int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >=
+        //     PhotonNetwork.PlayerList.Length)
+        //     CrawlAndJumpManager.FinishGame();
     }
 }
