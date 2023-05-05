@@ -35,7 +35,7 @@ public class CrawlAndJumpManager : MonoBehaviour {
         roomCam.SetActive(false);
     }
 
-    public static void FinishGame() {
+    public void FinishGame() {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             // PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
