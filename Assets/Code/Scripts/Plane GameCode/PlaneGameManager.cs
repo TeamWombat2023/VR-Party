@@ -27,6 +27,7 @@ public class PlaneGameManager : MonoBehaviour {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = false;
+            PlayerManager.LocalXROrigin.GetComponent<LocomotionSystem>().enabled = false;
             PlayerManager.LocalPlayerInstance.SetActive(false);
             PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = true;
             localPlane = PhotonNetwork.Instantiate(planePrefab.name, planeSpawnPoint.position,
@@ -36,7 +37,7 @@ public class PlaneGameManager : MonoBehaviour {
             PlayerManager.LocalPlayerInstance.transform.SetParent(localPlane.transform);
 
             PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero + Vector3.back * 0.5f;
-            PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, -90, 0);
+            PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, 180, 0);
             PlayerManager.LocalXROrigin.transform.localPosition = Vector3.zero;
             PlayerManager.LocalXROrigin.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
@@ -69,6 +70,7 @@ public class PlaneGameManager : MonoBehaviour {
             PlayerManager.SetVariables(PlayerManager.LocalPlayerInstance);
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousTurnProvider>().enabled = true;
+            PlayerManager.LocalXROrigin.GetComponent<LocomotionSystem>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("Plane Game");
             PlayerManager.OpenScoreboard();
         }

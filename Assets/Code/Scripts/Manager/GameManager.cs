@@ -4,6 +4,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviourPunCallbacks {

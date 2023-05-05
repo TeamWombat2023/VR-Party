@@ -36,9 +36,12 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public void FinishGame() {
-        Debug.Log("FINISH GAME");
-        GameManager.gameManager.OrderPlayersAndSetNewScores("Labyrinth");
-        PlayerManager.OpenScoreboard();
+        if (PlayerManager.LocalPlayerPhotonView.IsMine) {
+            Debug.Log("FINISH GAME");
+            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().moveSpeed = 3;
+            GameManager.gameManager.OrderPlayersAndSetNewScores("Labyrinth");
+            PlayerManager.OpenScoreboard();
+        }
     }
 
     public double GetTime() {
