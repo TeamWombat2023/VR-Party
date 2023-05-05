@@ -90,7 +90,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     }
 
     public static void CloseScoreboard() {
-        if (LocalPlayerPhotonView.IsMine) _playerUIManager.CloseScoreBoard();
+        if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.RPC("CloseScoreboardRPC", RpcTarget.All);
     }
 
     public static void ActivateHandsIn(string gameName) {
@@ -110,6 +110,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     [PunRPC]
     public void EnableAllPlayers() {
         gameObject.SetActive(true);
+    }
+
+    [PunRPC]
+    public void CloseScoreboardRPC() {
+        _playerUIManager.CloseScoreBoard();
     }
 
     [PunRPC]

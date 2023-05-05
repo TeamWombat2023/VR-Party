@@ -13,7 +13,7 @@ public class CrawlAndJumpManager : MonoBehaviour {
             PlayerManager.LocalXROrigin.transform.position = Vector3.zero + Vector3.left * 2 *
                 GameManager.gameManager.GetPlayerIndex(PlayerManager.LocalPlayerPhotonView.Owner.NickName);
             PlayerManager.LocalXROrigin.transform.rotation = Quaternion.identity;
-            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
+            // PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = false;
             PlayerManager.LocalPlayerInstance.GetComponent<Rigidbody>().isKinematic = false;
             PlayerManager.LocalPlayerInstance.SetActive(false);
             Invoke("SpawnPlayer", 5);
@@ -27,7 +27,7 @@ public class CrawlAndJumpManager : MonoBehaviour {
 
     public static void FinishGame() {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
-            PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
+            // PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
             PlayerManager.OpenScoreboard();
         }
