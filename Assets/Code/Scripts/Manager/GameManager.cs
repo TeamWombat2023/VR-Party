@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviourPunCallbacks {
+    private int currentGame;
     public static GameManager gameManager { get; private set; }
     [SerializeField] private GameObject playerPrefab;
 
@@ -63,7 +64,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         return Minigame.Lobby;
     }
 
-    public void StartMinigame(Minigame minigame) {
+    public void StartRandomMinigame(Minigame minigame) {
         switch (minigame) {
             case Minigame.PlaneGame:
                 _isPlayed[0] = true;
@@ -97,9 +98,36 @@ public class GameManager : MonoBehaviourPunCallbacks {
         }
     }
 
+    public void StartMinigame() {
+        switch (currentGame) {
+            case 0:
+                SetScoreHasSetProperty(false);
+                LoadScene("Fruit Ninja");
+                break;
+            case 1:
+                SetScoreHasSetProperty(false);
+                LoadScene("Crawl and Jump");
+                break;
+            case 2:
+                SetScoreHasSetProperty(false);
+                LoadScene("FPS Scene");
+                break;
+            case 3:
+                SetScoreHasSetProperty(false);
+                LoadScene("Labyrinth Scene");
+                break;
+            case 4:
+                SetScoreHasSetProperty(false);
+                LoadScene("PlaneGameScene");
+                break;
+        }
+
+        currentGame++;
+    }
+
     public void StartNextGame() {
         PlayerManager.CloseScoreboard();
-        StartMinigame(GetRandomMinigame());
+        StartMinigame();
     }
 
     public Dictionary<string, int> GetScores() {
