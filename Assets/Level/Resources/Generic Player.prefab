@@ -2830,6 +2830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5670082392434615180, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 933144371372291159}
     - target: {fileID: 6604944898083473768, guid: 8b8ad34863889074086e848acc90eb9c, type: 3}
       propertyPath: m_Name
       value: Highlighter
