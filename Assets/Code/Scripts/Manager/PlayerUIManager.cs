@@ -1,6 +1,7 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerUIManager : MonoBehaviourPunCallbacks {
     private bool _isUIMenuActive;
@@ -59,7 +60,11 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     public void CloseScoreBoard() {
         _isScoreBoardActive = false;
         scoreBoardUI.SetActive(_isScoreBoardActive);
-        foreach (Transform child in scoreBoardContent.transform) Destroy(child.gameObject);
+        var flag = false;
+        foreach (Transform child in scoreBoardContent.transform) {
+            if (flag) Destroy(child.gameObject);
+            flag = true;
+        }
     }
 
     public void StartNextGame() {
@@ -69,9 +74,8 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     }
 
     public void GoHome() {
-        Destroy(PlayerManager.LocalAvatarRightHand);
-        Destroy(PlayerManager.LocalAvatarLeftHand);
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Login Scene");
     }
 
     public void QuitGame() {
