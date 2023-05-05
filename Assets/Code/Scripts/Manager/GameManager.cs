@@ -99,30 +99,38 @@ public class GameManager : MonoBehaviourPunCallbacks {
     }
 
     public void StartMinigame() {
+        if (currentGame == 5) {
+            SetScoreHasSetProperty(false);
+            LoadScene("Lobby Scene");
+        }
+
         switch (currentGame) {
             case 0:
                 SetScoreHasSetProperty(false);
                 LoadScene("Fruit Ninja");
+                currentGame++;
                 break;
             case 1:
                 SetScoreHasSetProperty(false);
                 LoadScene("FPS Scene");
+                currentGame++;
                 break;
             case 2:
                 SetScoreHasSetProperty(false);
                 LoadScene("Labyrinth Scene");
+                currentGame++;
                 break;
             case 3:
                 SetScoreHasSetProperty(false);
-                LoadScene("Crawl and Jump");
+                LoadScene("PlaneGameScene");
+                currentGame++;
                 break;
             case 4:
                 SetScoreHasSetProperty(false);
-                LoadScene("PlaneGameScene");
+                LoadScene("Crawl and Jump");
+                currentGame++;
                 break;
         }
-
-        currentGame++;
     }
 
     public void StartNextGame() {
