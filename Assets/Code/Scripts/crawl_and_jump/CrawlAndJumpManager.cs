@@ -1,13 +1,21 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class CrawlAndJumpManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
-    
+
     public float gameDuration = 60f;
 
     private void Start() {
         SpawnPlayersWithDelay();
         Invoke(nameof(FinishGame), gameDuration);
+    }
+
+    private void Update() {
+        if (PlayerManager.MasterClient.CustomProperties.ContainsKey("PlayerFellCount") &&
+            (int)PlayerManager.MasterClient.CustomProperties["PlayerFellCount"] >=
+            PhotonNetwork.PlayerList.Length)
+            FinishGame();
     }
 
     private void SpawnPlayersWithDelay() {
