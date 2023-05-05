@@ -29,7 +29,8 @@ public class CrawlAndJumpManager : MonoBehaviour {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             // PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
-            PlayerManager.OpenScoreboard();
+            // PlayerManager.OpenScoreboard();
+            PlayerManager.OpenScoreboardCAJ();
         }
     }
 }

@@ -86,6 +86,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     }
 
     public static void OpenScoreboard() {
+        if (LocalPlayerPhotonView.IsMine) _playerUIManager.OpenScoreBoard();
+    }
+
+    public static void OpenScoreboardCAJ() {
         // if (LocalPlayerPhotonView.IsMine) _playerUIManager.OpenScoreBoard();
         if (LocalPlayerPhotonView.IsMine) LocalPlayerPhotonView.RPC("OpenScoreboardRPC", RpcTarget.All);
     }
@@ -117,7 +121,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     public void CloseScoreboardRPC() {
         _playerUIManager.CloseScoreBoard();
     }
-    
+
     [PunRPC]
     public void OpenScoreboardRPC() {
         _playerUIManager.OpenScoreBoard();
