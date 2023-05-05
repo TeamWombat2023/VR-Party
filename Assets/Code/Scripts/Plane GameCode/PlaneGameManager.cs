@@ -13,7 +13,7 @@ public class PlaneGameManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
 
     public Pilot pilot;
-    public float gameDuration = 30f;
+    public float gameDuration = 60f;
 
     private GameObject localPlane;
 

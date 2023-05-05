@@ -1,11 +1,13 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class CrawlAndJumpManager : MonoBehaviour {
     [Space] [SerializeField] public GameObject roomCam;
+    
+    public float gameDuration = 60f;
 
     private void Start() {
         SpawnPlayersWithDelay();
+        Invoke(nameof(FinishGame), gameDuration);
     }
 
     private void SpawnPlayersWithDelay() {
@@ -29,8 +31,7 @@ public class CrawlAndJumpManager : MonoBehaviour {
         if (PlayerManager.LocalPlayerPhotonView.IsMine) {
             // PlayerManager.LocalXROrigin.GetComponent<ActionBasedContinuousMoveProvider>().enabled = true;
             GameManager.gameManager.OrderPlayersAndSetNewScores("CrawlAndJump");
-            // PlayerManager.OpenScoreboard();
-            PlayerManager.OpenScoreboardCAJ();
+            PlayerManager.OpenScoreboard();
         }
     }
 }
