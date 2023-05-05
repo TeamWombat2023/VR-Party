@@ -45,25 +45,29 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     }
 
     public void OpenScoreBoard() {
-        var scores = GameManager.gameManager.GetScores();
-        var i = 1;
-        foreach (var score in scores) {
-            var scoreBoardElementInstance = Instantiate(scoreBoardElement, scoreBoardContent);
-            scoreBoardElementInstance.SetScoreInfo(i, score.Key, score.Value);
-            i++;
-        }
+        if (!_isScoreBoardActive) {
+            var scores = GameManager.gameManager.GetScores();
+            var i = 1;
+            foreach (var score in scores) {
+                var scoreBoardElementInstance = Instantiate(scoreBoardElement, scoreBoardContent);
+                scoreBoardElementInstance.SetScoreInfo(i, score.Key, score.Value);
+                i++;
+            }
 
-        _isScoreBoardActive = true;
-        scoreBoardUI.SetActive(_isScoreBoardActive);
+            _isScoreBoardActive = true;
+            scoreBoardUI.SetActive(_isScoreBoardActive);
+        }
     }
 
     public void CloseScoreBoard() {
-        _isScoreBoardActive = false;
-        scoreBoardUI.SetActive(_isScoreBoardActive);
-        var flag = false;
-        foreach (Transform child in scoreBoardContent.transform) {
-            if (flag) Destroy(child.gameObject);
-            flag = true;
+        if (_isScoreBoardActive) {
+            _isScoreBoardActive = false;
+            scoreBoardUI.SetActive(_isScoreBoardActive);
+            var flag = false;
+            foreach (Transform child in scoreBoardContent.transform) {
+                if (flag) Destroy(child.gameObject);
+                flag = true;
+            }
         }
     }
 
