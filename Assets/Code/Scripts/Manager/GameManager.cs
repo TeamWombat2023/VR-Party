@@ -106,15 +106,15 @@ public class GameManager : MonoBehaviourPunCallbacks {
                 break;
             case 1:
                 SetScoreHasSetProperty(false);
-                LoadScene("Crawl and Jump");
+                LoadScene("FPS Scene");
                 break;
             case 2:
                 SetScoreHasSetProperty(false);
-                LoadScene("FPS Scene");
+                LoadScene("Labyrinth Scene");
                 break;
             case 3:
                 SetScoreHasSetProperty(false);
-                LoadScene("Labyrinth Scene");
+                LoadScene("Crawl and Jump");
                 break;
             case 4:
                 SetScoreHasSetProperty(false);
