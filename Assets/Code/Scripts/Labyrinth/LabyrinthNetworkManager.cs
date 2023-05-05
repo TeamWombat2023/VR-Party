@@ -17,7 +17,7 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
             { "PickupCount", MazeRenderer.mazeRenderer.GetPickupCount() }
         });
         _startTime = PhotonNetwork.Time;
-        Invoke(nameof(FinishGame), 60f);
+        Invoke(nameof(FinishGame), 20f);
         SpawnPlayersWithDelay();
     }
 
@@ -36,6 +36,7 @@ public class LabyrinthNetworkManager : MonoBehaviourPunCallbacks {
     }
 
     public void FinishGame() {
+        Debug.Log("FINISH GAME");
         GameManager.gameManager.OrderPlayersAndSetNewScores("Labyrinth");
         PlayerManager.OpenScoreboard();
     }

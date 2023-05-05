@@ -59,7 +59,7 @@ public class PlayerUIManager : MonoBehaviourPunCallbacks {
     public void CloseScoreBoard() {
         _isScoreBoardActive = false;
         scoreBoardUI.SetActive(_isScoreBoardActive);
-        foreach (Transform child in scoreBoardUI.transform) Destroy(child.gameObject);
+        foreach (Transform child in scoreBoardContent.transform) Destroy(child.gameObject);
     }
 
     public void StartNextGame() {

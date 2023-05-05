@@ -13341,6 +13341,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3738952571752045055, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0ca3796751644a31b9a9b4f4447be84, type: 2}
+    - target: {fileID: 3815380685286025074, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7702657540459274833, guid: 3db3215632c85fe41809b26e80a17fb8, type: 3}
       propertyPath: sceneViewId
       value: 4
@@ -20901,6 +20909,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6950594383816582545, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450327955424287516, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0ca3796751644a31b9a9b4f4447be84, type: 2}
     - target: {fileID: 7686800500755628313, guid: 69edaa7f6d0367845b76420b47e4be35, type: 3}
       propertyPath: m_RootOrder
       value: 1

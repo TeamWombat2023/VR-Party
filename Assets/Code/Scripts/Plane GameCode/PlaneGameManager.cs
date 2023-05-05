@@ -35,9 +35,10 @@ public class PlaneGameManager : MonoBehaviour {
             localPlane.GetComponent<Rigidbody>().isKinematic = true;
             PlayerManager.LocalPlayerInstance.transform.SetParent(localPlane.transform);
 
-            PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero +
-                                                                        Vector3.up * 0.5f;
-            PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            PlayerManager.LocalPlayerInstance.transform.localPosition = Vector3.zero + Vector3.back * 0.5f;
+            PlayerManager.LocalPlayerInstance.transform.localRotation = Quaternion.Euler(0, -90, 0);
+            PlayerManager.LocalXROrigin.transform.localPosition = Vector3.zero;
+            PlayerManager.LocalXROrigin.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
             localPlane.transform.position = planeSpawnPoint.position + Vector3.right *
                 100 / PhotonNetwork.PlayerList.Length *
