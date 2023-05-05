@@ -117,7 +117,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     public void CloseScoreboardRPC() {
         _playerUIManager.CloseScoreBoard();
     }
-
+    
+    [PunRPC]
     public void OpenScoreboardRPC() {
         _playerUIManager.OpenScoreBoard();
     }
